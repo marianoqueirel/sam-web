@@ -1,0 +1,144 @@
+// Import files
+@import 'variables';
+@import 'dashboard';
+
+body {
+  background-color: $body-bg;
+  color: $font-color;
+  // font: 400 14px/1.8 $font-family-base;
+}
+
+// AngularJS Styles Helpers
+[ng-click],
+[data-ng-click] {
+  cursor: pointer;
+}
+
+// General
+* { outline: none; }
+
+::selection {
+  background: #E8F3FD;
+}
+
+.huge {
+  font-size: 18px;
+}
+
+// Overlay
+#overlay {
+  position: absolute;
+  z-index: 1000000;
+  width: 120px;
+  height: 120px;
+  left: 50%;
+  margin-left: -60px;
+  top: 50%;
+  margin-top: -60px;
+
+  img {
+    border-radius: 10px;
+    height: 120px;
+    opacity: .75;
+    position: fixed;
+    width: 120px;
+  }
+}
+
+// Navbar
+.navbar-brand {
+  padding: 10px;
+}
+.navbar-user {
+  padding: 12px 0;
+}
+
+#content-wrapper{
+  margin-top: 80px;
+}
+
+.content-header h3 {
+  margin-top: 0;
+}
+
+// Growl
+.growl {
+  z-index: 99999;
+
+  .growl-item {
+    &.ng-enter,
+    &.ng-leave {
+      transition: .4s ease-in-out all;
+    }
+  }
+}
+
+// CC Icons
+.cc-icon {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+
+  &.used-tm {
+    background-image:url('/img/tm-ico.png');
+  }
+
+  &.used-groupon {
+    background-image:url('/img/groupon-ico.png');
+  }
+}
+
+.registration_form {
+  opacity: 1;
+}
+
+.login_content {
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="password"] {
+    margin: 0 0 0px;
+  }
+
+  .login-input {
+    margin: 0 0 20px;
+  }
+
+  .validator-error{
+    text-align: left;
+    color: #CE5454;
+  }
+}
+.login_content {
+  form input[type="text"],
+  form input[type="email"],
+  form input[type="password"] {
+    margin: 0 0 0px;
+  }
+
+  .login-input {
+    margin: 0 0 20px;
+  }
+
+  .validator-error{
+    text-align: left;
+    color: #CE5454;
+  }
+}
+
+.my-section-validation {
+  .validator-error{
+    text-align: left;
+    color: #CE5454;
+    margin-top: 6px;
+  }
+}
+
+.validator-error {
+  text-align: left;
+  color: #CE5454;
+}
+
+.grid {
+  width: 500px;
+  height: 400px;
+}

@@ -1,0 +1,41 @@
+<div id="login" ng-init="init()">
+  <div>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form ng-submit="formSubmit()">
+              <h1>Ingresar</h1>
+              <div class="login-input">
+                <input type="text" ng-model="username" class="form-control" placeholder="Email" required="" />
+              </div>
+              <div class="login-input">
+                <input type="password" ng-model="password" class="form-control" placeholder="Contrase&ntilde;a" required="" />
+              </div>
+              <div class="login-input">
+                <button class="btn btn-default submit">Ingresar</button>
+                <a class="reset_pass" href="#">¿Olvid&oacute; su contase&ntilde;a?</a>
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">¿Sos nuevo?
+                  <a ng-href="/signup" class="to_register"> Create una cuenta </a>
+                </p>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                  <h1><i class="fa fa-money"></i> SAM!</h1>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+
+      </div>
+    </div>
+</div>

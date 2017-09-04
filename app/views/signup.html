@@ -1,0 +1,51 @@
+<div id="signup">
+  <div>
+    <div class="login_wrapper">
+      <div id="register" class="animate form registration_form">
+        <section class="login_content">
+          <form ng-submit="registerUser()">
+            <h1>Crear una cuenta</h1>
+            <div class="login-input">
+              <input type="text" class="form-control" name="first_name" placeholder="Nombre" ng-model="user.first_name" />
+              <div class="validator-error" ng-show="form_errors.first_name">* {{validatorLabel(form_errors.first_name[0])}}</div>
+            </div>
+            <div class="login-input">
+              <input type="text" class="form-control" name="last_name" placeholder="Apellido" ng-model="user.last_name" />
+              <div class="validator-error" ng-show="form_errors.last_name">* {{validatorLabel(form_errors.last_name[0])}}</div>
+            </div>
+            <div class="login-input">
+              <input type="email" class="form-control" name="email" placeholder="Email" ng-model="user.email" />
+              <div class="validator-error" ng-show="form_errors.email">* {{validatorLabel(form_errors.email[0])}}</div>
+            </div>
+            <div class="login-input">
+              <input type="password" class="form-control" name="password" placeholder="Confirmar Contrase&ntilde;a" ng-model="user.password" />
+              <div class="validator-error" ng-show="form_errors.password">* {{validatorLabel(form_errors.password[0])}}</div>
+            </div>
+            <div class="login-input">
+              <input type="password" class="form-control" name="password_confirmation" placeholder="Contrase&ntilde;a" ng-model="user.password_confirmation" />
+            </div>
+            <div>
+              <button class="btn btn-default submit">Crear!</button>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">¿Ya tenes una cuenta?
+                <a ng-href="/login" class="to_register"> Ingresar</a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+
+              <div>
+                <h1><i class="fa fa-money"></i> SAM</h1>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+
+    </div>
+  </div>
+</div>
