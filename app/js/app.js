@@ -57,6 +57,10 @@ angular.module('payeSAM')
         templateUrl: 'views/signup.html',
         controller: 'RegisterCtrl'
       })
+      .when('/providers', {
+        templateUrl: 'views/providers.html',
+        controller: 'ProviderCtrl'
+      })
       .when('/404', {
         templateUrl: 'views/404.html'
       })
@@ -74,7 +78,7 @@ angular.module('payeSAM')
 
     if (user) {
       var currentTime = +(new Date()),
-          timeDiff = user.timeout - currentTime;
+        timeDiff = user.timeout - currentTime;
 
       if (timeDiff > 0) {
         $rootScope.currentUser = user;
