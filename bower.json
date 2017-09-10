@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "^1.6.6",
+    "angular": "~1.4.0",
     "angular-resource": "~1.4.0",
     "angular-route": "~1.4.0",
     "font-awesome": "~4.3.0",
@@ -30,7 +30,7 @@
     "paper-dashboard": "https://github.com/creativetimofficial/paper-dashboard.git"
   },
   "resolutions": {
-    "angular": "^1.6.6"
+    "angular": "1.4.14"
   },
   "devDependencies": {
     "angular-translate": "^2.14.0"
