@@ -67,6 +67,7 @@ angular.module('payeSAM')
       .otherwise({ redirectTo: '/404' });
 
     // Set HTML5 mode
+    $locationProvider.hashPrefix('');
     $locationProvider.html5Mode(true);
 
   }])
