@@ -5,6 +5,7 @@ angular.module('payeSAM.controllers')
 
     $scope.init = function () {
       $scope.sending = false;
+      $scope.provider = {};
     };
 
 
@@ -12,7 +13,7 @@ angular.module('payeSAM.controllers')
       $rootScope.loading = true;
       $scope.sending = true;
 
-      Provider.new($scope.order, function () {
+      Provider.new($scope.provider, function () {
         notification.success('Provider created successfully.');
 
         $rootScope.loading = false;

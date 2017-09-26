@@ -3,12 +3,40 @@
     <h3 class="modal-title">Nuevo Prestador</h3>
   </div>
 
-  <form role="form" name="newProviderForm" ng-submit="addProvider()">
+  <form role="form" name="newProviderForm" ng-submit="createProvider()">
     <div class="modal-body clearfix">
       <div class="form-group">
         <div class="col-md-12">
           <label for="name">Prestador</label>
-          <input type="text" class="form-control" placeholder="Prestador" ng-model="name" pattern="^\w+" ng-disabled="sending" required>
+          <input type="text" class="form-control" placeholder="Nombre y Apellido..." ng-model="provider.name" pattern="^\w+" ng-disabled="sending" required>
+        </div>
+        <div class="col-md-12">
+          <label for="address">Direccion</label>
+          <input type="text" class="form-control" placeholder="Direccion..." ng-model="provider.address" pattern="^\w+" ng-disabled="sending" required>
+        </div>
+        <div class="col-md-12">
+          <label for="phone">Telefono</label>
+          <input type="text" class="form-control" placeholder="Telefono..." ng-model="provider.phone" pattern="^\w+" ng-disabled="sending" required>
+        </div>
+        <div class="col-md-12">
+          <label for="in_charge">Responsable</label>
+          <input type="text" class="form-control" placeholder="Responsable..." ng-model="provider.in_charge" pattern="^\w+" ng-disabled="sending" required>
+        </div>
+        <div class="col-md-12">
+          <label for="email">Mail</label>
+          <input type="text" class="form-control" placeholder="Mail..." ng-model="provider.email" pattern="^\w+" ng-disabled="sending" required>
+        </div>
+        <div class="col-md-12">
+          <label for="cuit">CUIT/CUIL</label>
+          <input type="text" class="form-control" placeholder="CUIT/CUIL..." ng-model="provider.cuit" pattern="^\w+" ng-disabled="sending" required>
+        </div>
+        <div class="col-md-12">
+          <label for="cbu">CBU</label>
+          <input type="text" class="form-control" placeholder="CBU..." ng-model="provider.cbu" pattern="^\w+" ng-disabled="sending" required>
+        </div>
+        <div class="col-md-12">
+          <label for="description">Observaciones</label>
+          <input type="textarea" class="form-control" placeholder="Observaciones..." ng-model="provider.description" pattern="^\w+" ng-disabled="sending" required>
         </div>
       </div>
     </div>

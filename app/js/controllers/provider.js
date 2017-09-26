@@ -2,27 +2,28 @@
 
 angular.module('payeSAM.controllers')
   .controller('ProviderCtrl', ['$rootScope', '$scope', '$http', '$location', '$uibModal', 'Provider', 'notification', 'paginationLimit', function ($rootScope, $scope, $http, $location, $uibModal, Provider, notification, paginationLimit) {
-      $scope.init = function () {
-      };
-
-      $scope.addProvider = function () {
+      var _getProviders = function (page) {
         $rootScope.loading = true;
-        $scope.sending = true;
 
         Provider
-          .create({ name: $scope.name }, function () {
-            notification.success('Prestador creado satisfactoriamente.');
-
+          .query({
+            page: $scope.currentPage,
+          }, function (response) {
+            $scope.providers = response.rows;
+            $scope.totalItems = response.count;
+            $scope.totalPages = Math.ceil(response.count / paginationLimit);
             $rootScope.loading = false;
-            $scope.sending = false;
-
-            $uibModal.close();
           }, function () {
+            notification.error('Error al cargar prestadores.');
             $rootScope.loading = false;
-            $scope.sending = false;
+          });
+      };
 
-            notification.error('Error al crear prestador.');
-        });
+      $scope.init = function () {
+        $scope.currentPage = parseInt($location.search().page, 10) || 1;
+        $scope.sortBy = $location.search().sortBy || null;
+        $scope.sortDir = $location.search().sortDir || 'desc';
+        _getProviders($scope.currentPage);
       };
 
       $scope.newProviderModal = function () {

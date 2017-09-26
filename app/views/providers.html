@@ -31,6 +31,8 @@
               <th class="column-title">Telefono</th>
               <th class="column-title">Responsable</th>
               <th class="column-title">Mail</th>
+              <th class="column-title">CUIT</th>
+              <th class="column-title">CBU</th>
               <th class="column-title">Calificacion</th>
               <th class="column-title no-link last">
                 <span class="nobr">Opciones</span>
@@ -38,27 +40,17 @@
           </thead>
 
           <tbody>
-            <tr ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
-              <td class=" ">1</td>
-              <td class=" ">121000040</td>
-              <td class=" ">May 23, 2014 11:47:56 PM </td>
-              <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-              <td class=" ">John Blank L</td>
-              <td class=" ">Paid</td>
-              <td class="a-right a-right ">$7.45</td>
-              <td class=" last"><a href="#">View</a>
-              </td>
-            </tr>
-            <tr ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
-              <td class=" ">1</td>
-              <td class=" ">121000040</td>
-              <td class=" ">May 23, 2014 11:47:56 PM </td>
-              <td class=" ">121000210 <i class="success fa fa-long-arrow-up"></i></td>
-              <td class=" ">John Blank L</td>
-              <td class=" ">Paid</td>
-              <td class="a-right a-right ">$7.45</td>
-              <td class=" last"><a href="#">View</a>
-              </td>
+            {{providers}}
+            <tr ng-repeat="provider in providers track by $id(provider)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
+              <td class=" ">{{provider.name}}</td>
+              <td class=" ">{{provider.address}}</td>
+              <td class=" ">{{provider.phone}}</td>
+              <td class=" ">{{provider.in_charge}}</td>
+              <td class=" ">{{provider.email}}</td>
+              <td class=" ">{{provider.cuit}}</td>
+              <td class=" ">{{provider.cbu}}</td>
+              <td class="a-right a-right">"★★★★★"}}</td>
+              <td class=""><a href="#">View</a></td>
             </tr>
           </tbody>
         </table>
