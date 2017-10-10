@@ -40,8 +40,8 @@
           </thead>
 
           <tbody>
-            {{providers}}
             <tr ng-repeat="provider in providers track by $id(provider)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
+              <td class=" ">{{provider.id}}</td>
               <td class=" ">{{provider.name}}</td>
               <td class=" ">{{provider.address}}</td>
               <td class=" ">{{provider.phone}}</td>
@@ -49,8 +49,11 @@
               <td class=" ">{{provider.email}}</td>
               <td class=" ">{{provider.cuit}}</td>
               <td class=" ">{{provider.cbu}}</td>
-              <td class="a-right a-right">"★★★★★"}}</td>
-              <td class=""><a href="#">View</a></td>
+              <td class="a-right">"★★★★★"</td>
+              <td class="">
+                <a href="#">View</a>
+                <a href="newProviderModal()">Edit</a>
+              </td>
             </tr>
           </tbody>
         </table>
