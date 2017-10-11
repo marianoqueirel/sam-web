@@ -21,6 +21,9 @@ angular.module('payeSAM.services')
         url: urlResources,
         method: 'POST'
       },
+      update: {
+        method: 'PUT'
+      },
       delete: {
         method: 'DELETE'
       },

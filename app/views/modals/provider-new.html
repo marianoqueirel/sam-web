@@ -1,9 +1,9 @@
-<div id="provider-new">
+<div id="provider-new" ng-init="init()">
   <div class="modal-header">
-    <h3 class="modal-title">Nuevo Prestador</h3>
+    <h3 class="modal-title">{{ action == 'create' ? 'Nuevo' : 'Editar'}} Prestador</h3>
   </div>
 
-  <form role="form" name="newProviderForm" ng-submit="createProvider()">
+  <form role="form" name="newProviderForm" ng-submit="saveForm()">
     <div class="modal-body clearfix">
       <div class="form-group">
         <div class="col-md-12">
@@ -42,8 +42,8 @@
     </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-link" ng-click="cancel()">Cancel</button>
-      <button type="submit" class="btn btn-success" ng-disabled="newProviderForm.$invalid || sending">Create</button>
+      <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
+      <button type="submit" class="btn btn-success" ng-disabled="newProviderForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
     </div>
   </form>
 </div>

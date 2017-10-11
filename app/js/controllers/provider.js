@@ -26,14 +26,38 @@ angular.module('payeSAM.controllers')
         _getProviders($scope.currentPage);
       };
 
-      $scope.newProviderModal = function () {
+      $scope.providerModal = function (provider) {
         var modalInstance = $uibModal.open({
           templateUrl: 'views/modals/provider-new.html',
           controller: 'ProviderNewModalCtrl',
           size: 'lg',
+          resolve: {
+            provider_id: function() {
+              return (provider && provider.id);
+            }
+          }
         });
 
-        modalInstance.result.then(null);
+        modalInstance.result.then(function(){
+          _getProviders();
+        });
+      };
+
+      $scope.deleteProvider = function (provider) {
+        var confirmation = window.confirm('Are you sure you want to delete this Provider?');
+
+        if (confirmation) {
+          $rootScope.loading = true;
+
+          Provider
+          .delete({ id: provider.id }, function () {
+            notification.success('Provider delete successfully.');
+            _getProviders();
+          }, function () {
+            $rootScope.loading = false;
+            notification.error('Error deleting this Provider.');
+          });
+        }
       };
   }]);
 
