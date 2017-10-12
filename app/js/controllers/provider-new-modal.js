@@ -4,6 +4,7 @@ angular.module('payeSAM.controllers')
   .controller('ProviderNewModalCtrl', ['$rootScope', '$scope', 'Provider', '$uibModalInstance', 'notification', 'provider_id', function ($rootScope, $scope, Provider, $uibModalInstance, notification, provider_id) {
 
     $scope.init = function () {
+      $scope.form_errors = null;
       $scope.sending = false;
       $scope.action = 'create';
       $scope.provider = {};
@@ -26,7 +27,8 @@ angular.module('payeSAM.controllers')
         $scope.sending = false;
 
         $uibModalInstance.close($scope.provider);
-      }, function (err) {
+      }, function (data) {
+        $scope.form_errors = data.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
         notification.error('Error.');
@@ -43,7 +45,8 @@ angular.module('payeSAM.controllers')
         $scope.sending = false;
 
         $uibModalInstance.close($scope.provider);
-      }, function (err) {
+      }, function (data) {
+        $scope.form_errors = data.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
         notification.error('Error.');
@@ -63,6 +66,15 @@ angular.module('payeSAM.controllers')
 
     $scope.cancel = function () {
       $uibModalInstance.close(false);
+    };
+
+    $scope.validatorLabel = function (key) {
+      var msg = {
+        'not_present': 'Es requerido',
+        'not_numeric': 'No es número',
+        'format': 'Formato Inválido'
+      };
+      return msg[key];
     };
   }
 ]);
