@@ -21,7 +21,7 @@ angular.module('payeSAM.controllers')
 
     var createProvider = function () {
       Provider.new($scope.provider, function () {
-        notification.success('Provider created successfully.');
+        notification.success('Proveedor Creado.');
 
         $rootScope.loading = false;
         $scope.sending = false;
@@ -39,7 +39,7 @@ angular.module('payeSAM.controllers')
        Provider.update(
         { id: $scope.provider.id, provider: $scope.provider },
         function () {
-        notification.success('Provider saved successfully.');
+        notification.success('Proveedor Guardado.');
 
         $rootScope.loading = false;
         $scope.sending = false;

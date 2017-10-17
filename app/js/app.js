@@ -33,6 +33,7 @@ angular.module('payeSAM')
   .constant('apiUrl', originUrl + '/api/v1')
   .constant('paginationLimit', 20)
   .constant('rootURL', '/dashboard');
+  .constant('adminRootURL', '/dashboard');
 
 // Config Routes
 angular.module('payeSAM')

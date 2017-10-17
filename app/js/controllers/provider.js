@@ -2,16 +2,32 @@
 
 angular.module('payeSAM.controllers')
   .controller('ProviderCtrl', ['$rootScope', '$scope', '$http', '$location', '$uibModal', 'Provider', 'notification', 'paginationLimit', function ($rootScope, $scope, $http, $location, $uibModal, Provider, notification, paginationLimit) {
-      var _getProviders = function (page) {
+      $scope.sort = {
+        column: 'created_at',
+        descending: false
+      };
+
+      $scope.pagination = {
+        currentPage: 1,
+        maxSize: 12,
+        totalItems: 0,
+        itemsPerPage: 10
+      };
+
+      $scope.filters = {};
+
+      var _getProviders = function () {
         $rootScope.loading = true;
 
         Provider
           .query({
-            page: $scope.currentPage,
+            page: $scope.pagination.currentPage,
+            limit: $scope.pagination.itemsPerPage,
+            searchProvider: $scope.term
           }, function (response) {
             $scope.providers = response.rows;
-            $scope.totalItems = response.count;
-            $scope.totalPages = Math.ceil(response.count / paginationLimit);
+            $scope.pagination.totalItems = response.total;
+            $scope.totalPages = Math.ceil(response.total / paginationLimit);
             $rootScope.loading = false;
           }, function () {
             notification.error('Error al cargar prestadores.');
@@ -20,10 +36,10 @@ angular.module('payeSAM.controllers')
       };
 
       $scope.init = function () {
-        $scope.currentPage = parseInt($location.search().page, 10) || 1;
+        $scope.pagination.currentPage = parseInt($location.search().page, 10) || 1;
         $scope.sortBy = $location.search().sortBy || null;
         $scope.sortDir = $location.search().sortDir || 'desc';
-        _getProviders($scope.currentPage);
+        _getProviders();
       };
 
       $scope.providerModal = function (provider) {
@@ -43,22 +59,30 @@ angular.module('payeSAM.controllers')
         });
       };
 
+      $scope.searchProvider = function () {
+        _getProviders();
+      };
+
       $scope.deleteProvider = function (provider) {
-        var confirmation = window.confirm('Are you sure you want to delete this Provider?');
+        var confirmation = window.confirm('¿Esta seguro que desea borrar este Proveedor?');
 
         if (confirmation) {
           $rootScope.loading = true;
 
           Provider
           .delete({ id: provider.id }, function () {
-            notification.success('Provider delete successfully.');
+            notification.success('Proveedor Borrado.');
             _getProviders();
           }, function () {
             $rootScope.loading = false;
-            notification.error('Error deleting this Provider.');
+            notification.error('Error al intentar borrar el Proveedor.');
           });
         }
       };
+
+      $scope.$watch('pagination.currentPage', function() {
+        _getProviders();
+      });
   }]);
 
 

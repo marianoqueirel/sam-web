@@ -4,14 +4,16 @@
   </div>
 
   <div class="title_right">
-    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-      <div class="input-group">
-        <input type="text" class="form-control">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">Buscar</button>
-        </span>
+    <form ng-submit="searchProvider()">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="term">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Buscar</button>
+          </span>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 <div id="providers" ng-init="init()">
@@ -57,6 +59,9 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="dataTables_paginate" ng-if="totalPages > 1">
+        <ul uib-pagination total-items="pagination.totalItems" ng-model="pagination.currentPage" max-size="pagination.maxSize" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
       </div>
     </div>
   </div>
