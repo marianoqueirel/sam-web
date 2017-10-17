@@ -53,8 +53,11 @@
               <td class=" ">{{provider.cbu}}</td>
               <td class="a-right">"★★★★★"</td>
               <td class="">
-                <a ng-click="providerModal(provider)">Editar</a>
-                <a ng-click="deleteProvider(provider)">Borrar</a>
+                <div class="btn-group">
+                  <a class="btn btn-info" ng-click="providerModal(provider, true)"> Ver</a>
+                  <a class="btn btn-primary" ng-click="providerModal(patient, false)">Editar</a>
+                  <a class="btn btn-danger" ng-click="deleteProvider(provider)">Eliminar</a>
+                </div>
               </td>
             </tr>
           </tbody>

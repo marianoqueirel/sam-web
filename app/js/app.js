@@ -32,7 +32,7 @@ angular.module('payeSAM')
   .constant('originUrl',  originUrl)
   .constant('apiUrl', originUrl + '/api/v1')
   .constant('paginationLimit', 20)
-  .constant('rootURL', '/dashboard');
+  .constant('rootURL', '/dashboard')
   .constant('adminRootURL', '/dashboard');
 
 // Config Routes
@@ -61,6 +61,10 @@ angular.module('payeSAM')
       .when('/providers', {
         templateUrl: 'views/providers.html',
         controller: 'ProviderCtrl'
+      })
+      .when('/patients', {
+        templateUrl: 'views/patients.html',
+        controller: 'PatientCtrl'
       })
       .when('/404', {
         templateUrl: 'views/404.html'

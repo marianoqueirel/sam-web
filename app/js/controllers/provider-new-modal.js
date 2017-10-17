@@ -1,15 +1,22 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('ProviderNewModalCtrl', ['$rootScope', '$scope', 'Provider', '$uibModalInstance', 'notification', 'provider_id', function ($rootScope, $scope, Provider, $uibModalInstance, notification, provider_id) {
+  .controller('ProviderNewModalCtrl', ['$rootScope', '$scope', 'Provider', '$uibModalInstance', 'notification', 'provider_id', 'show', function ($rootScope, $scope, Provider, $uibModalInstance, notification, provider_id, show) {
 
     $scope.init = function () {
       $scope.form_errors = null;
       $scope.sending = false;
-      $scope.action = 'create';
+      if (show) {
+        $scope.action = 'show';
+      }
+      else {
+        $scope.action = 'create';
+      }
       $scope.provider = {};
       if (provider_id) {
-        $scope.action = 'edit';
+        if (!show) {
+          $scope.action = 'edit';
+        }
         Provider.get(
           { id: provider_id },
           function (data) {
