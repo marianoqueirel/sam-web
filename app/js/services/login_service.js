@@ -14,7 +14,7 @@ angular.module('payeSAM.services')
             .then(
               function (response) {
                 isAuthenticated = response.data.authenticated;
-                $http.defaults.headers.common['X-CHEQUESGRAM-ACCESS-TOKEN'] = response.data.user.access_token;
+                $http.defaults.headers.common['X-PAYE-SAM-ACCESS-TOKEN'] = response.data.user.access_token;
                 $rootScope.currentUser = response.data.user;
                 $rootScope.currentUser.timeout = +(new Date()) + 14400000;
                 localStorageService.add('currentUser', response.data.user);

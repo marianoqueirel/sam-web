@@ -1,5 +1,5 @@
 {
-  "name": "chequesgram_frontend",
+  "name": "sam_frontend",
   "version": "0.0.1",
   "private": true,
   "authors": [
@@ -15,22 +15,22 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.0",
-    "angular-resource": "~1.4.0",
-    "angular-route": "~1.4.0",
+    "angular": "1.6" ,
+    "angular-resource": "1.6",
+    "angular-route": "1.6",
     "font-awesome": "~4.3.0",
     "angular-local-storage": "~0.2.2",
     "bootstrap": "~3.3.4",
-    "angular-growl": "~0.4.0",
-    "angular-animate": "~1.4.0",
-    "angular-bootstrap": "~0.13.0",
+    "bootstrap.growl": "3.1.3",
+    "angular-animate": "1.6",
+    "angular-bootstrap": "*",
     "lodash": "~3.9.3",
     "gentelella": "1.3.0",
     "angular-datatables": "~0.5.0",
     "paper-dashboard": "https://github.com/creativetimofficial/paper-dashboard.git"
   },
   "resolutions": {
-    "angular": "1.4.14"
+    "angular": "1.6"
   },
   "devDependencies": {
     "angular-translate": "^2.14.0"

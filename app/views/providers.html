@@ -1,0 +1,68 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>Prestadores</h3>
+  </div>
+
+  <div class="title_right">
+    <form ng-submit="searchProvider()">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="term">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Buscar</button>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="providers" ng-init="init()">
+  <div class="x_panel">
+    <button class="btn btn-primary pull-right" ng-click="providerModal()">
+      Nuevo
+      <i class="fa fa-user-md"></i>
+    </button>
+    <div class="x_content">
+      <div class="table-responsive">
+        <table class="table table-striped jambo_table bulk_action">
+          <thead>
+            <tr class="headings">
+              <th class="column-title">#</th>
+              <th class="column-title">Prestador</th>
+              <th class="column-title">Direccion</th>
+              <th class="column-title">Telefono</th>
+              <th class="column-title">Responsable</th>
+              <th class="column-title">Mail</th>
+              <th class="column-title">CUIT</th>
+              <th class="column-title">CBU</th>
+              <th class="column-title">Calificacion</th>
+              <th class="column-title no-link last">
+                <span class="nobr">Opciones</span>
+              </th>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="provider in providers track by $id(provider)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
+              <td class=" ">{{provider.id}}</td>
+              <td class=" ">{{provider.name}}</td>
+              <td class=" ">{{provider.address}}</td>
+              <td class=" ">{{provider.phone}}</td>
+              <td class=" ">{{provider.in_charge}}</td>
+              <td class=" ">{{provider.email}}</td>
+              <td class=" ">{{provider.cuit}}</td>
+              <td class=" ">{{provider.cbu}}</td>
+              <td class="a-right">"★★★★★"</td>
+              <td class="">
+                <a ng-click="providerModal(provider)">Editar</a>
+                <a ng-click="deleteProvider(provider)">Borrar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dataTables_paginate" ng-if="totalPages > 1">
+        <ul uib-pagination total-items="pagination.totalItems" ng-model="pagination.currentPage" max-size="pagination.maxSize" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+      </div>
+    </div>
+  </div>
+</div>

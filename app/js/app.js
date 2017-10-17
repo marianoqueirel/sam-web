@@ -33,6 +33,7 @@ angular.module('payeSAM')
   .constant('apiUrl', originUrl + '/api/v1')
   .constant('paginationLimit', 20)
   .constant('rootURL', '/dashboard');
+  .constant('adminRootURL', '/dashboard');
 
 // Config Routes
 angular.module('payeSAM')
@@ -57,12 +58,17 @@ angular.module('payeSAM')
         templateUrl: 'views/signup.html',
         controller: 'RegisterCtrl'
       })
+      .when('/providers', {
+        templateUrl: 'views/providers.html',
+        controller: 'ProviderCtrl'
+      })
       .when('/404', {
         templateUrl: 'views/404.html'
       })
       .otherwise({ redirectTo: '/404' });
 
     // Set HTML5 mode
+    $locationProvider.hashPrefix('');
     $locationProvider.html5Mode(true);
 
   }])
@@ -74,7 +80,7 @@ angular.module('payeSAM')
 
     if (user) {
       var currentTime = +(new Date()),
-          timeDiff = user.timeout - currentTime;
+        timeDiff = user.timeout - currentTime;
 
       if (timeDiff > 0) {
         $rootScope.currentUser = user;
