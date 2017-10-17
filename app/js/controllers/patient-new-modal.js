@@ -21,6 +21,7 @@ angular.module('payeSAM.controllers')
           { id: patient_id },
           function (data) {
             $scope.patient = data;
+            $scope.patient.birthday = new Date($scope.patient.birthday);
           }
         );
       }
