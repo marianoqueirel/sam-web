@@ -4,7 +4,10 @@
 angular.module('payeSAM', [
   'ngRoute',
   'ngResource',
+  'ngSanitize',
+
   'ui.bootstrap',
+  'ui.select',
   // 'ngAnimate',
   'LocalStorageModule',
   'angular-growl',
@@ -65,6 +68,10 @@ angular.module('payeSAM')
       .when('/patients', {
         templateUrl: 'views/patients.html',
         controller: 'PatientCtrl'
+      })
+      .when('/services', {
+        templateUrl: 'views/services.html',
+        controller: 'ServiceCtrl'
       })
       .when('/404', {
         templateUrl: 'views/404.html'

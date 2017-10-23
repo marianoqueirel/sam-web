@@ -55,11 +55,19 @@
         </div>
         <div class="col-md-12">
           <label for="second_diagnosis">Diagnostico 2</label>
-          <input type="textarea" class="form-control" placeholder="Diagnostico 1..." ng-model="patient.second_diagnosis" ng-disabled="sending" ng-readonly="show">
+          <input type="textarea" class="form-control" placeholder="Diagnostico 2..." ng-model="patient.second_diagnosis" ng-disabled="sending" ng-readonly="show">
         </div>
         <div class="col-md-12">
-          <label for="second_diagnosis">Medico de Cabecera</label>
+          <label for="primary_doctor">Medico de Cabecera</label>
           <input type="text" class="form-control" placeholder="Medico de Cabecera..." ng-model="patient.primary_doctor" ng-disabled="sending" required ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="primary_doctor_number">Matricula</label>
+          <input type="text" class="form-control" placeholder="Matricula..." ng-model="patient.primary_doctor_number" ng-disabled="sending" required ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="primary_doctor_business">Empresa o Servicio</label>
+          <input type="text" class="form-control" placeholder="Empresa o Servicio..." ng-model="patient.primary_doctor_business" ng-disabled="sending" required ng-readonly="show">
         </div>
       </div>
     </div>

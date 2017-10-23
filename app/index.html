@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="../bower_components/angular-datatables/dist/css/angular-datatables.css">
     <link rel="stylesheet" href="../bower_components/angular-bootstrap/ui-bootstrap-csp.css">
     <link rel="stylesheet" href="../bower_components/angular-ui-grid/ui-grid.min.css">
+    <link rel="stylesheet" href="../bower_components/angular-ui-select/dist/select.css">
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -74,11 +75,11 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-dashboard"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-dashboard"></i> Inicio <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a ng-href="/dashboard">Dashboard</a></li>
                       <li><a ng-href="/providers">Prestadores</a></li>
                       <li><a ng-href="/patients">Pacientes</a></li>
+                      <li><a ng-href="/services">Internaciones</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -236,6 +237,8 @@
   <script src="../bower_components/gentelella/src/js/helper.js"></script>
   <script src="../bower_components/gentelella/src/js/custom.js"></script>
   <script src="../bower_components/gentelella/vendors/iCheck/icheck.js"></script>
+  <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="../bower_components/angular-ui-select/dist/select.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -255,6 +258,8 @@
   <script src="js/controllers/provider-new-modal.js"></script>
   <script src="js/controllers/patient.js"></script>
   <script src="js/controllers/patient-new-modal.js"></script>
+  <script src="js/controllers/service.js"></script>
+  <script src="js/controllers/service-form-modal.js"></script>
 
   <script src="js/directives/alerts.js"></script>
 
@@ -266,6 +271,7 @@
   <script src="js/services/edit_user.js"></script>
   <script src="js/services/provider.js"></script>
   <script src="js/services/patient.js"></script>
+  <script src="js/services/service.js"></script>
   <!-- endbuild -->
 
   <!-- build:js({.tmp,app}) js/templates.js -->

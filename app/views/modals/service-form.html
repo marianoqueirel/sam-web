@@ -1,0 +1,70 @@
+<div id="service-form" ng-init="init()">
+  <div class="modal-header">
+    <h3 class="modal-title">{{ title }} Internacion</h3>
+  </div>
+
+  <form role="form" name="newServiceForm" ng-submit="saveForm()">
+    <div class="modal-body clearfix">
+      <div class="form-group">
+        <div class="col-md-12">
+          <label for="patient">Paciente</label>
+            <ui-select multiple ng-model="$root.selectedPatients"  close-on-select="true" title="Seleccionar Paciente" limit="1" on-select="setSelectedPatient($item)" on-remove="clearSelectedPatient()">
+              <ui-select-match placeholder="Seleccionar paciente...">{{$item.dni}} - {{$item.name}}</ui-select-match>
+              <ui-select-choices repeat="patient in availablePatients" refresh="listPatients($select.search)" refresh-delay="300">
+                {{patient.dni}} -- {{patient.name}}
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <h2>Contacto o Responsable:</h2>
+        <div class="clearfix"></div>
+        <div class="col-md-12">
+          <label for="in_charge_dni">DNI</label>
+          <input type="text" class="form-control" placeholder="DNI..." ng-model="service.in_charge_dni" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="in_charge_name">Apellido y Nombre</label>
+          <input type="text" class="form-control" placeholder="Apellido y Nombre..." ng-model="service.in_charge_name" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="in_charge_relationship">Parentesco</label>
+          <input type="text" class="form-control" placeholder="Parentesco..." ng-model="service.in_charge_relationship" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="in_charge_phone">Telefono</label>
+          <input type="text" class="form-control" placeholder="Telefono..." ng-model="service.in_charge_phone" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="first_diagnosis">Diagnostico 1</label>
+          <input type="textarea" class="form-control" placeholder="Diagnostico 1..." ng-model="service.first_diagnosis" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="second_diagnosis">Diagnostico 2</label>
+          <input type="textarea" class="form-control" placeholder="Diagnostico 2..." ng-model="service.second_diagnosis" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="primary_doctor">Medico de Cabecera</label>
+          <input type="text" class="form-control" placeholder="Medico de Cabecera..." ng-model="service.primary_doctor" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="primary_doctor_number">Matricula</label>
+          <input type="text" class="form-control" placeholder="Matricula..." ng-model="service.primary_doctor_number" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="primary_doctor_business">Empresa o Servicio</label>
+          <input type="text" class="form-control" placeholder="Empresa o Servicio..." ng-model="service.primary_doctor_business" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <input type="text" class="form-control has-feedback-left" ng-model="service.started_at" ng-disabled="sending" ng-readonly="show" id="started_at">
+          <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
+      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newServiceForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+    </div>
+  </form>
+</div>
