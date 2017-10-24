@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('DashboardCtrl', ['$rootScope', '$scope',
+  .controller('AdminDashboardCtrl', ['$rootScope', '$scope',
     function ($rootScope, $scope) {
 
       $scope.init = function () {

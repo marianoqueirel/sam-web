@@ -69,6 +69,21 @@ angular.module('payeSAM')
       .when('/404', {
         templateUrl: 'views/404.html'
       })
+      // ADMIN ROUTES
+      .when('/admin/dashboard', {
+        controller: 'AdminDashboardCtrl',
+        templateUrl: 'views/admin/dashboard.html',
+        data: {
+          roles: 'Admin'
+        }
+      })
+      .when('/admin/auditors', {
+        controller: 'AdminAuditorsCtrl',
+        templateUrl: 'views/admin/auditors.html',
+        data: {
+          roles: 'Admin'
+        }
+      })
       .otherwise({ redirectTo: '/404' });
 
     // Set HTML5 mode
@@ -110,6 +125,16 @@ angular.module('payeSAM')
         $location.path(authUrl);
       }
     }
+  }])
+
+  .run(['$rootScope', '$location', function($rootScope, $location) {
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+      // Check if current user has group access
+      var role = next.$$route.data && next.$$route.data.roles;
+      if(role && role !== $rootScope.currentUser.user_type) {
+         $location.path('/');
+      }
+    });
   }])
 
   // user permissions

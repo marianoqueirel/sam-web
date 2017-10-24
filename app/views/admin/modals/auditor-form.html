@@ -1,0 +1,37 @@
+<div id="patient-new" ng-init="init()">
+  <div class="modal-header">
+    <h3 class="modal-title">{{ title }} Auditor</h3>
+  </div>
+
+  <form role="form" name="newPatientForm" ng-submit="saveForm()">
+    <div class="modal-body clearfix">
+      <div class="form-group">
+        <div class="col-md-12">
+          <label for="last_name">Apellido</label>
+          <input type="text" class="form-control" placeholder="Apellido..." ng-model="auditor.last_name" ng-disabled="sending" required ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="first_name">Nombre</label>
+          <input type="text" class="form-control" placeholder="Nombre..." ng-model="auditor.first_name" ng-disabled="sending" required ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" placeholder="Email..." ng-model="auditor.email" ng-disabled="sending" required ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="password">Contrase&ntilde;a</label>
+          <input type="text" class="form-control" placeholder="Contrase&ntilde;a..." ng-model="auditor.password" ng-disabled="sending" ng-readonly="show">
+        </div>
+        <div class="col-md-12">
+          <label for="password_confirmation">Confirmar contrase&ntilde;a</label>
+          <input type="text" class="form-control" placeholder="Confirmar contrase&ntilde;a..." ng-model="auditor.password_confirmation" ng-disabled="sending" ng-readonly="show">
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
+      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newPatientForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+    </div>
+  </form>
+</div>
