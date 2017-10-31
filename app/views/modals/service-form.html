@@ -56,15 +56,15 @@
           <input type="text" class="form-control" placeholder="Empresa o Servicio..." ng-model="service.primary_doctor_business" ng-disabled="sending" ng-readonly="show">
         </div>
         <div class="col-md-12">
-          <input type="text" class="form-control has-feedback-left" ng-model="service.started_at" ng-disabled="sending" ng-readonly="show" id="started_at">
+          <input type="date" class="form-control has-feedback-left" ng-model="service.started_at" ng-disabled="sending" ng-readonly="show" id="started_at">
           <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
         </div>
       </div>
-    </div>
 
-    <div class="modal-footer">
-      <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
-      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newServiceForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
+        <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newServiceForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+      </div>
     </div>
   </form>
 </div>

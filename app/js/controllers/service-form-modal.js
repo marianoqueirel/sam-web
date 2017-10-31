@@ -1,43 +1,9 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('ServiceFormModalCtrl', ['$rootScope', '$scope', 'Service', 'Patient', '$uibModalInstance', 'notification', 'service_id', 'show', function ($rootScope, $scope, Service, Patient, $uibModalInstance, notification, service_id, show) {
+  .controller('ServiceFormModalCtrl', ['$filter', '$rootScope', '$scope', 'Service', 'Patient', '$uibModalInstance', 'notification', 'service_id', 'show', function ($filter, $rootScope, $scope, Service, Patient, $uibModalInstance, notification, service_id, show) {
 
     $scope.init = function () {
-      $('#started_at').daterangepicker({
-        locale: {
-          format: 'DD-MM-YYYY',
-          daysOfWeek: [
-            'Do',
-            'Lu',
-            'Ma',
-            'Mi',
-            'Ju',
-            'Vi',
-            'Sa'
-          ],
-          monthNames: [
-            'Enero',
-            'Febrero',
-            'Marzo',
-            'Abril',
-            'Mayo',
-            'Junio',
-            'Julio',
-            'Agosto',
-            'Septiembre',
-            'Octubre',
-            'Noviembre',
-            'Deciembre'
-          ]
-        },
-        singleDatePicker: true,
-        showDropdowns: true,
-        autoUpdateInput: false
-      }, function(start, end, label) {
-        $('#started_at').val(start.format('DD-MM-YYYY'));
-      });
-
       $scope.sending = false;
       $scope.loadingServices = false;
       $scope.loadingPatients = false;
@@ -56,8 +22,13 @@ angular.module('payeSAM.controllers')
         Service.get(
           { id: service_id },
           function (data) {
-            $scope.service = data;
+            $scope.availablePatients = [data.patient];
+            $scope.setSelectedPatient(data.patient);
+            $rootScope.selectedPatients = [data.patient];
+            // $scope.service = data;
             $scope.service.started_at = new Date($scope.service.started_at);
+            // $rootScope.selectedPatients = $scope.service;
+            // $scope.setSelectedPatient();
           }
         );
       }

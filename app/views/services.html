@@ -16,7 +16,7 @@
     </form>
   </div>
 </div>
-<div id="patients" ng-init="init()">
+<div id="services" ng-init="init()">
   <div class="x_panel">
     <button class="btn btn-primary pull-right" ng-click="serviceModal()">
       Nuevo
@@ -37,18 +37,17 @@
               </th>
           </thead>
           <tbody>
-            <tr ng-repeat="patient in patients track by $id(patient)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
-              <td class=" ">{{patient.number}}</td>
-              <td class=" ">{{patient.dni}}</td>
-              <td class=" ">{{patient.name}}</td>
-              <td class=" ">{{patient.address}}</td>
-              <td class=" ">{{patient.first_diagnosis}}</td>
-              <td class=" ">{{patient.second_diagnosis}}</td>
+            <tr ng-repeat="service in services track by $id(service)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
+              <td class=" ">{{service.patient.number}}</td>
+              <td class=" ">{{service.patient.dni}}</td>
+              <td class=" ">{{service.patient.name}}</td>
+              <td class=" ">{{service.patient.address}}</td>
+              <td class=" ">{{service.patient.first_diagnosis}}</td>
               <td class="">
                 <div class="btn-group">
-                  <a class="btn btn-info" ng-click="patientModal(patient, true)"> Ver</a>
-                  <a class="btn btn-primary" ng-click="patientModal(patient, false)">Editar</a>
-                  <a class="btn btn-danger" ng-click="deletePatient(patient)">Eliminar</a>
+                  <a class="btn btn-info" ng-click="serviceModal(service, true)"> Ver</a>
+                  <a class="btn btn-primary" ng-click="serviceModal(service, false)">Editar</a>
+                  <a class="btn btn-danger" ng-click="deletePatient(service)">Eliminar</a>
                 </div>
               </td>
             </tr>
