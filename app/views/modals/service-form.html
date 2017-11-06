@@ -16,13 +16,15 @@
             </ui-select>
           </div>
         </div>
+        <div class="col-md-12">
+          <label for="service_type_id">Prestaci&oacute;n</label>
+          <select name="service_type_id" ng-model="service.service_type_id" class="form-control" ng-disabled="sending" ng-readonly="show">
+            <option ng-repeat="option in service_types" value="{{option.id}}" ng-selected="{{service.service_type_id == option.id}}">{{option.description}}</option>
+          </select>
+        </div>
         <div class="clearfix"></div>
         <h2>Contacto o Responsable:</h2>
         <div class="clearfix"></div>
-        <div class="col-md-12">
-          <label for="in_charge_dni">DNI</label>
-          <input type="text" class="form-control" placeholder="DNI..." ng-model="service.in_charge_dni" ng-disabled="sending" ng-readonly="show">
-        </div>
         <div class="col-md-12">
           <label for="in_charge_name">Apellido y Nombre</label>
           <input type="text" class="form-control" placeholder="Apellido y Nombre..." ng-model="service.in_charge_name" ng-disabled="sending" ng-readonly="show">
