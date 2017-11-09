@@ -74,7 +74,7 @@ angular.module('payeSAM')
         controller: 'ServiceCtrl'
       })
       .when('/services/:id', {
-        templateUrl: 'views/services-show.html',
+        templateUrl: 'views/services/show.html',
         controller: 'ServiceShowCtrl'
       })
       .when('/404', {

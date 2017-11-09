@@ -45,7 +45,7 @@
               <td class=" ">{{service.patient.first_diagnosis}}</td>
               <td class="">
                 <div class="btn-group">
-                  <a class="btn btn-info" ng-click="serviceModal(service, true)"> Ver</a>
+                  <a class="btn btn-info" ng-href="/services/{{service.id}}"> Ver</a>
                   <a class="btn btn-primary" ng-click="serviceModal(service, false)">Editar</a>
                   <a class="btn btn-danger" ng-click="deletePatient(service)">Eliminar</a>
                 </div>
