@@ -11,11 +11,68 @@
       <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12">Lugar</label>
         <div class="col-md-9 col-sm-9 col-xs-12">
-          Un lugar en corrientes
+          {{ service.place }}
         </div>
       </div>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Diagnostico</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          {{ service.diagnosis }}
+        </div>
+      </div>
+      <hr>
+      <br>
+
+      <div class="clearfix"></div>
+
+      <!-- start project list -->
+      <table class="table table-striped projects">
+        <thead>
+          <tr>
+            <th>Dictamen</th>
+            <th>Desde</th>
+            <th>Dias</th>
+            <th>Prestador</th>
+            <th>Tipo de Serv.</th>
+            <th>Auditor</th>
+            <th style="width: 20%">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="audit in service.audits">
+            <td>
+              <button type="button" class="btn btn-{{ audit.approved ? 'success' : 'danger' }} btn-xs">
+                {{ audit.approved ? 'Amerita' : 'Rechazado' }}
+              </button>
+            </td>
+            <td>
+              {{ audit.started_on }}
+            </td>
+            <td>
+              {{ audit.days }}
+            </td>
+            <td>
+              {{ audit.provider_name }}
+            </td>
+            <td>
+              {{ audit.service_type_option }}
+            </td>
+            <td>
+              {{ audit.auditor_name }}
+            </td>
+            <td>
+              <div class="btn-group btn-group-justified">
+                <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Detalles </a>
+                <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Editar </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- end project list -->
     </div>
   </div>
+
 </div>
 
 <a href="#" class="btn btn-primary">Nueva Auditoria</a>
