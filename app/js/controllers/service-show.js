@@ -6,6 +6,7 @@ angular.module('payeSAM.controllers')
                                   '$rootScope',
                                   '$scope',
                                   '$routeParams',
+                                  '$uibModal',
                                   'Service',
                                   'ServiceType',
                                   'Patient',
@@ -15,6 +16,7 @@ angular.module('payeSAM.controllers')
                                     $rootScope,
                                     $scope,
                                     $routeParams,
+                                    $uibModal,
                                     Service,
                                     ServiceType,
                                     Patient,
@@ -32,6 +34,7 @@ angular.module('payeSAM.controllers')
           { id: service_id },
           function (data) {
             $scope.service = data;
+            //// Begin Fake Data
             $scope.service.place = 'Un Lugar en el mundo';
             $scope.service.diagnosis = 'Un Lugar diagnostico';
             $scope.service.audits = [
@@ -53,9 +56,23 @@ angular.module('payeSAM.controllers')
 
               }
             ];
+            /// End Fake Datass
           }
         );
       }
     };
+
+    $scope.newAudit = function () {
+      var modalInstance = $uibModal.open({
+          templateUrl: 'views/services/audit-form.html',
+          controller: 'AuditFormModalCtrl',
+          size: 'lg'
+        });
+
+        modalInstance.result.then(function(){
+          //TODO
+          return true;
+        });
+    }
   }
 ]);

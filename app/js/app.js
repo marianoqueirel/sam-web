@@ -70,7 +70,7 @@ angular.module('payeSAM')
         controller: 'PatientCtrl'
       })
       .when('/services', {
-        templateUrl: 'views/services.html',
+        templateUrl: 'views/services/index.html',
         controller: 'ServiceCtrl'
       })
       .when('/services/:id', {

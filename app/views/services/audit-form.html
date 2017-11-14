@@ -1,33 +1,16 @@
 <div id="service-form" ng-init="init()">
   <div class="modal-header">
-    <h3 class="modal-title">{{ title }} Internacion</h3>
+    <h3 class="modal-title">{{ title }} Auditoria</h3>
   </div>
 
-  <form role="form" name="newServiceForm" ng-submit="saveForm()">
+  <form role="form" name="newAuditForm" ng-submit="saveForm()">
     <div class="modal-body clearfix">
       <div class="form-group">
-        <div class="col-md-12">
-          <label for="patient">Paciente</label>
-            <ui-select multiple ng-model="$root.selectedPatients"  close-on-select="true" title="Seleccionar Paciente" limit="1" on-select="setSelectedPatient($item)" on-remove="clearSelectedPatient()">
-              <ui-select-match placeholder="Seleccionar paciente...">{{$item.dni}} - {{$item.name}}</ui-select-match>
-              <ui-select-choices repeat="patient in availablePatients" refresh="listPatients($select.search)" refresh-delay="300">
-                {{patient.dni}} -- {{patient.name}}
-              </ui-select-choices>
-            </ui-select>
+        <div class="row">
+          <div class="col-md-12">
+            <label for="in_charge_name">Amerita</label>
+            <input type="checkbox" class="js-switch" checked="{{ false }}" />
           </div>
-        </div>
-        <div class="col-md-12">
-          <label for="service_type_id">Prestaci&oacute;n</label>
-          <select name="service_type_id" ng-model="service.service_type_id" class="form-control" ng-disabled="sending" ng-readonly="show">
-            <option ng-repeat="option in service_types" value="{{option.id}}" ng-selected="{{service.service_type_id == option.id}}">{{option.description}}</option>
-          </select>
-        </div>
-        <div class="clearfix"></div>
-        <h2>Contacto o Responsable:</h2>
-        <div class="clearfix"></div>
-        <div class="col-md-12">
-          <label for="in_charge_name">Apellido y Nombre</label>
-          <input type="text" class="form-control" placeholder="Apellido y Nombre..." ng-model="service.in_charge_name" ng-disabled="sending" ng-readonly="show">
         </div>
         <div class="col-md-12">
           <label for="in_charge_relationship">Parentesco</label>
@@ -61,7 +44,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
-        <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newServiceForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+        <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newAuditForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
       </div>
     </div>
   </form>
