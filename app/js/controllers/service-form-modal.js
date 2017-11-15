@@ -76,37 +76,19 @@ angular.module('payeSAM.controllers')
 
     $scope.setSelectedPatient = function (selectedPatient) {
       $scope.service.patient_id = selectedPatient.id;
-      $scope.service.in_charge_dni = selectedPatient.in_charge_dni;
-      $scope.service.in_charge_name = selectedPatient.in_charge_name;
-      $scope.service.in_charge_relationship = selectedPatient.in_charge_relationship;
-      $scope.service.in_charge_phone = selectedPatient.in_charge_phone;
 
       $scope.service.first_diagnosis = selectedPatient.first_diagnosis;
-      $scope.service.second_diagnosis = selectedPatient.second_diagnosis;
-
-      $scope.service.primary_doctor = selectedPatient.primary_doctor;
-      $scope.service.primary_doctor_number = selectedPatient.primary_doctor_number;
-      $scope.service.primary_doctor_business = selectedPatient.primary_doctor_business;
     };
 
     $scope.clearSelectedPatient = function () {
       $scope.service.patient_id = '';
-      $scope.service.in_charge_dni = '';
-      $scope.service.in_charge_name = '';
-      $scope.service.in_charge_relationship = '';
-      $scope.service.in_charge_phone = '';
 
       $scope.service.first_diagnosis = '';
-      $scope.service.second_diagnosis = '';
-
-      $scope.service.primary_doctor = '';
-      $scope.service.primary_doctor_number = '';
-      $scope.service.primary_doctor_business = '';
     };
 
     var createService = function () {
       Service.new($scope.service, function () {
-        notification.success('Internacion creada con exito!');
+        notification.success('Prestación creada con exito!');
 
         $rootScope.loading = false;
         $scope.sending = false;
@@ -123,7 +105,7 @@ angular.module('payeSAM.controllers')
        Service.update(
         { id: $scope.service.id, service: $scope.service },
         function () {
-        notification.success('Internacion guardada con exito!');
+        notification.success('Prestación guardada con exito!');
 
         $rootScope.loading = false;
         $scope.sending = false;
