@@ -1,8 +1,15 @@
 <div class="page-title">
-  <h3>
-    {{ service.service_type }}
-    <small>{{service.patient.name}} -  DNI: {{service.patient.dni}}</small>
-  </h3>
+  <div class="title_left">
+    <h3>
+      {{ service.service_type }}
+      <small>{{service.patient.name}} -  DNI: {{service.patient.dni}}</small>
+    </h3>
+  </div>
+  <div class="title_right">
+    <div class="pull-right">
+      <a href="javascript:window.history.back()" class="btn btn-primary"><i class="fa fa-chevron-circle-left"></i> Atr&aacute;s </a>
+    </div>
+  </div>
 </div>
 
 <div id="service-show" ng-init="init()">

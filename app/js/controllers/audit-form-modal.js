@@ -15,12 +15,11 @@ angular.module('payeSAM.controllers')
 
     $scope.init = function () {
       //TODO
-      var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
-        elems.forEach(function (html) {
-          new window.Switchery(html, {
-            color: '#26B99A'
-          });
-      });
+      $scope.service_type_options = [
+                                      {id: 1, description: 'Nivel 1'},
+                                      {id: 2, description: 'Nivel 2'},
+                                      {id: 3, description: 'Nivel 3'}
+                                    ];
       return true;
     };
 

@@ -3,42 +3,43 @@
     <h3 class="modal-title">{{ title }} Auditoria</h3>
   </div>
 
-  <form role="form" name="newAuditForm" ng-submit="saveForm()">
+  <form role="form" name="newAuditForm" class="form-horizontal form-label-left" ng-submit="saveForm()">
     <div class="modal-body clearfix">
       <div class="form-group">
-        <div class="row">
-          <div class="col-md-12">
-            <label for="in_charge_name">Amerita</label>
-            <input type="checkbox" class="js-switch" checked="{{ false }}" />
+        <div class="col-md-6">
+          <label class="control-label col-md-6 col-sm-6 col-xs-12" for="approved">Amerita</label>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="checkbox" class="js-switch form-control" ui-switch="{color: '#26B99A'}" ng-model="audit.approved">
           </div>
         </div>
-        <div class="col-md-12">
-          <label for="in_charge_relationship">Parentesco</label>
-          <input type="text" class="form-control" placeholder="Parentesco..." ng-model="service.in_charge_relationship" ng-disabled="sending" ng-readonly="show">
+                <div class="col-md-6">
+          <label class="control-label col-md-6 col-sm-6 col-xs-12" for="in_charge_relationship">Fecha de Inicio</label>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="date" class="form-control" ng-model="audit.started_on" ng-disabled="sending" ng-readonly="show">
+          </div>
         </div>
-        <div class="col-md-12">
-          <label for="in_charge_phone">Telefono</label>
-          <input type="text" class="form-control" placeholder="Telefono..." ng-model="service.in_charge_phone" ng-disabled="sending" ng-readonly="show">
+      </div>
+      <div class="form-group">
+        <div class="col-md-6">
+          <label class="control-label col-md-6 col-sm-6 col-xs-12" for="in_charge_relationship">Nivel</label>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <select name="service_type_option_id" ng-model="audit.service_type_option_id" class="form-control" ng-disabled="sending || !audit.approved" ng-readonly="show">
+              <option ng-repeat="option in service_type_options" value="{{option.id}}" ng-selected="{{service.service_type_option_id == option.id}}">{{option.description}}</option>
+            </select>
+          </div>
         </div>
-        <div class="col-md-12">
-          <label for="first_diagnosis">Diagnostico 1</label>
-          <input type="textarea" class="form-control" placeholder="Diagnostico 1..." ng-model="service.first_diagnosis" ng-disabled="sending" ng-readonly="show">
+        <div class="col-md-6">
+          <label class="control-label col-md-6 col-sm-6 col-xs-12" for="days">D&iacute;as Aprobados</label>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="number" class="form-control" placeholder="D&iacute;as Aprobados" ng-model="audit.days" ng-disabled="sending" ng-readonly="show">
+          </div>
         </div>
+      </div>
+
+      <div class="form-group">
         <div class="col-md-12">
-          <label for="primary_doctor">Medico de Cabecera</label>
-          <input type="text" class="form-control" placeholder="Medico de Cabecera..." ng-model="service.primary_doctor" ng-disabled="sending" ng-readonly="show">
-        </div>
-        <div class="col-md-12">
-          <label for="primary_doctor_number">Matricula</label>
-          <input type="text" class="form-control" placeholder="Matricula..." ng-model="service.primary_doctor_number" ng-disabled="sending" ng-readonly="show">
-        </div>
-        <div class="col-md-12">
-          <label for="primary_doctor_business">Empresa o Servicio</label>
-          <input type="text" class="form-control" placeholder="Empresa o Servicio..." ng-model="service.primary_doctor_business" ng-disabled="sending" ng-readonly="show">
-        </div>
-        <div class="col-md-12">
-          <input type="date" class="form-control has-feedback-left" ng-model="service.started_at" ng-disabled="sending" ng-readonly="show" id="started_at">
-          <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+          <label class="control-label" for="report">Informe</label>
+          <textarea class="form-control" placeholder="Informe..." ng-model="audit.report" ng-disabled="sending" ng-readonly="show">
         </div>
       </div>
 

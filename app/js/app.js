@@ -12,6 +12,7 @@ angular.module('payeSAM', [
   'LocalStorageModule',
   'angular-growl',
   'templates',
+  'NgSwitchery',
 
   // App
   'payeSAM.factories',
