@@ -23,39 +23,13 @@
           </select>
         </div>
         <div class="clearfix"></div>
-        <h2>Contacto o Responsable:</h2>
-        <div class="clearfix"></div>
         <div class="col-md-12">
-          <label for="in_charge_name">Apellido y Nombre</label>
-          <input type="text" class="form-control" placeholder="Apellido y Nombre..." ng-model="service.in_charge_name" ng-disabled="sending" ng-readonly="show">
+          <label for="in_charge_name">Lugar</label>
+          <input type="text" class="form-control" ng-model="service.place" ng-disabled="sending" ng-readonly="show">
         </div>
         <div class="col-md-12">
-          <label for="in_charge_relationship">Parentesco</label>
-          <input type="text" class="form-control" placeholder="Parentesco..." ng-model="service.in_charge_relationship" ng-disabled="sending" ng-readonly="show">
-        </div>
-        <div class="col-md-12">
-          <label for="in_charge_phone">Telefono</label>
-          <input type="text" class="form-control" placeholder="Telefono..." ng-model="service.in_charge_phone" ng-disabled="sending" ng-readonly="show">
-        </div>
-        <div class="col-md-12">
-          <label for="first_diagnosis">Diagnostico 1</label>
-          <input type="textarea" class="form-control" placeholder="Diagnostico 1..." ng-model="service.first_diagnosis" ng-disabled="sending" ng-readonly="show">
-        </div>
-        <div class="col-md-12">
-          <label for="primary_doctor">Medico de Cabecera</label>
-          <input type="text" class="form-control" placeholder="Medico de Cabecera..." ng-model="service.primary_doctor" ng-disabled="sending" ng-readonly="show">
-        </div>
-        <div class="col-md-12">
-          <label for="primary_doctor_number">Matricula</label>
-          <input type="text" class="form-control" placeholder="Matricula..." ng-model="service.primary_doctor_number" ng-disabled="sending" ng-readonly="show">
-        </div>
-        <div class="col-md-12">
-          <label for="primary_doctor_business">Empresa o Servicio</label>
-          <input type="text" class="form-control" placeholder="Empresa o Servicio..." ng-model="service.primary_doctor_business" ng-disabled="sending" ng-readonly="show">
-        </div>
-        <div class="col-md-12">
-          <input type="date" class="form-control has-feedback-left" ng-model="service.started_at" ng-disabled="sending" ng-readonly="show" id="started_at">
-          <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+          <label for="first_diagnosis">Diagnostico</label>
+          <input type="textarea" class="form-control" ng-model="service.first_diagnosis" ng-disabled="sending" ng-readonly="show">
         </div>
       </div>
 
