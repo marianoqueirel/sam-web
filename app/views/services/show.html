@@ -33,7 +33,7 @@
       </div>
       <hr>
       <div class="row">
-        <div class="pull-right">
+        <div class="pull-right" ng-if="service.can_add_audits">
           <a class="btn btn-primary" ng-click="newAudit()">Nueva Auditoria</a>
         </div>
       </div>
@@ -55,8 +55,8 @@
         <tbody>
           <tr ng-repeat="audit in service.audits">
             <td>
-              <button type="button" class="btn btn-{{ audit.approved ? 'success' : 'danger' }} btn-xs">
-                {{ audit.approved ? 'Amerita' : 'Rechazado' }}
+              <button type="button" class="btn btn-{{ statusColor(audit.status) }} btn-xs">
+                {{ statusText(audit.status) }}
               </button>
             </td>
             <td>

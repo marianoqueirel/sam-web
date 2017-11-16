@@ -34,29 +34,6 @@ angular.module('payeSAM.controllers')
           { id: service_id },
           function (data) {
             $scope.service = data;
-            //// Begin Fake Data
-            // $scope.service.place = 'Un Lugar en el mundo';
-            // $scope.service.diagnosis = 'Un Lugar diagnostico';
-            // $scope.service.audits = [
-            //   {
-            //     'approved': true,
-            //     'started_on': moment().format('DD-MM-YYY'),
-            //     'days': 15,
-            //     'provider_name': 'Proveedor 1',
-            //     'service_type_option': 'Nivel I',
-            //     'auditor_name': 'Auditor 1'
-            //   },
-            //   {
-            //     'approved': false,
-            //     'started_on': moment().format('DD-MM-YYY'),
-            //     'days': 15,
-            //     'provider_name': 'Proveedor 2',
-            //     'service_type_option': 'Nivel II',
-            //     'auditor_name': 'Auditor 2'
-
-            //   }
-            // ];
-            /// End Fake Datass
           }
         );
       }
@@ -73,6 +50,18 @@ angular.module('payeSAM.controllers')
           //TODO
           return true;
         });
-    }
+    };
+
+    $scope.statusText = function (status) {
+      if (status === 'pending') { return 'Pendiente'; }
+      if (status === 'approved') { return 'Aprobado'; }
+      if (status === 'rejected') { return 'Rechazado'; }
+    };
+
+    $scope.statusColor = function (status) {
+      if (status === 'pending') { return 'warning'; }
+      if (status === 'approved') { return 'success'; }
+      if (status === 'rejected') { return 'danger'; }
+    };
   }
 ]);
