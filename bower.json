@@ -30,7 +30,8 @@
     "paper-dashboard": "https://github.com/creativetimofficial/paper-dashboard.git",
     "angular-ui-select": "^0.19.8",
     "angular-sanitize": "^1.6.6",
-    "angular-growl": "^0.4.0"
+    "angular-growl": "^0.4.0",
+    "ng-switchery": "^1.0.0-alpha7"
   },
   "resolutions": {
     "angular": "1.6"

@@ -18,7 +18,7 @@
 </div>
 <div id="providers" ng-init="init()">
   <div class="x_panel">
-    <button class="btn btn-primary pull-right" ng-click="providerModal()">
+    <button class="btn btn-primary pull-right" ng-click="providerModal({}, false)">
       Nuevo
       <i class="fa fa-user-md"></i>
     </button>
@@ -55,7 +55,7 @@
               <td class="">
                 <div class="btn-group">
                   <a class="btn btn-info" ng-click="providerModal(provider, true)"> Ver</a>
-                  <a class="btn btn-primary" ng-click="providerModal(patient, false)">Editar</a>
+                  <a class="btn btn-primary" ng-click="providerModal(provider, false)">Editar</a>
                   <a class="btn btn-danger" ng-click="deleteProvider(provider)">Eliminar</a>
                 </div>
               </td>

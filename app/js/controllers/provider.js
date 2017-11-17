@@ -39,15 +39,17 @@ angular.module('payeSAM.controllers')
         $scope.pagination.currentPage = parseInt($location.search().page, 10) || 1;
         $scope.sortBy = $location.search().sortBy || null;
         $scope.sortDir = $location.search().sortDir || 'desc';
+        $scope.show = false;
         _getProviders();
       };
 
-      $scope.providerModal = function (provider) {
+      $scope.providerModal = function (provider, show) {
         var modalInstance = $uibModal.open({
           templateUrl: 'views/modals/provider-new.html',
           controller: 'ProviderNewModalCtrl',
           size: 'lg',
           resolve: {
+            show: show,
             provider_id: function() {
               return (provider && provider.id);
             }
