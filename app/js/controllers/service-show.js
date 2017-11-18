@@ -22,12 +22,8 @@ angular.module('payeSAM.controllers')
                                     Patient,
                                     notification
                                   ) {
-    $scope.init = function () {
-      $scope.sending = false;
-      $scope.loadingServices = false;
-      $scope.loadingPatients = false;
 
-      $scope.service = {};
+    var _getService = function () {
       var service_id = $routeParams.id;
       if (service_id) {
         Service.get(
@@ -39,18 +35,32 @@ angular.module('payeSAM.controllers')
       }
     };
 
-    $scope.newAudit = function () {
-      var modalInstance = $uibModal.open({
+    $scope.init = function () {
+      $scope.sending = false;
+      $scope.loadingServices = false;
+      $scope.loadingPatients = false;
+
+      $scope.service = {};
+      _getService();
+    };
+
+    $scope.auditModal = function (audit, show) {
+        var modalInstance = $uibModal.open({
           templateUrl: 'views/services/audit-form.html',
-          controller: 'AuditFormModalCtrl',
-          size: 'lg'
+          controller: 'ServiceAuditFormModalCtrl',
+          size: 'lg',
+          resolve: {
+            show: show,
+            audit_id: function() {
+              return (audit && audit.id);
+            }
+          }
         });
 
         modalInstance.result.then(function(){
-          //TODO
-          return true;
+          _getService();
         });
-    };
+      };
 
     $scope.statusText = function (status) {
       if (status === 'pending') { return 'Pendiente'; }

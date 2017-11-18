@@ -1,20 +1,38 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('AuditFormModalCtrl', [
+  .controller('ServiceAuditFormModalCtrl', [
+                                      'ServiceAudit',
                                       '$rootScope',
                                       '$scope',
                                       '$uibModalInstance',
                                       'notification',
+                                      'audit_id',
+                                      'show',
                                       function (
+                                        ServiceAudit,
                                         $rootScope,
                                         $scope,
                                         $uibModalInstance,
-                                        notification
+                                        notification,
+                                        audit_id,
+                                        show
                                       ) {
 
+    var _getServiceAudit = function () {
+      if (audit_id) {
+        ServiceAudit.get(
+          { id: audit_id },
+          function (data) {
+            $scope.audit = data;
+          }
+        );
+      }
+    };
+
     $scope.init = function () {
-      //TODO
+      $scope.audit = {};
+      _getServiceAudit();
       $scope.service_type_options = [
                                       {id: 1, description: 'Nivel 1'},
                                       {id: 2, description: 'Nivel 2'},

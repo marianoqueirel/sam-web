@@ -1,7 +1,24 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('PatientNewModalCtrl', ['$rootScope', '$scope', 'Patient', '$uibModalInstance', 'notification', 'patient_id', 'show', function ($rootScope, $scope, Patient, $uibModalInstance, notification, patient_id, show) {
+  .controller('PatientNewModalCtrl',
+                [
+                  '$rootScope',
+                  '$scope',
+                  'Patient',
+                  '$uibModalInstance',
+                  'notification',
+                  'patient_id',
+                  'show',
+                  function (
+                    $rootScope,
+                    $scope,
+                    Patient,
+                    $uibModalInstance,
+                    notification,
+                    patient_id,
+                    show
+                  ) {
 
     $scope.init = function () {
       $scope.sending = false;
