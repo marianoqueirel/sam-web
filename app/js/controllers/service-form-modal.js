@@ -76,13 +76,11 @@ angular.module('payeSAM.controllers')
 
     $scope.setSelectedPatient = function (selectedPatient) {
       $scope.service.patient_id = selectedPatient.id;
-
       $scope.service.diagnosis = selectedPatient.diagnosis;
     };
 
     $scope.clearSelectedPatient = function () {
       $scope.service.patient_id = '';
-
       $scope.service.diagnosis = '';
     };
 

@@ -51,8 +51,11 @@ angular.module('payeSAM.controllers')
           size: 'lg',
           resolve: {
             show: show,
-            audit_id: function() {
-              return (audit && audit.id);
+            service_type_options: function () {
+              return $scope.service.available_service_type_options;
+            },
+            audit: function() {
+              return (audit);
             }
           }
         });
