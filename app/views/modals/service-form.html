@@ -8,12 +8,31 @@
       <div class="form-group">
         <div class="col-md-12">
           <label for="patient">Paciente</label>
-            <ui-select multiple ng-model="$root.selectedPatients"  close-on-select="true" title="Seleccionar Paciente" limit="1" on-select="setSelectedPatient($item)" on-remove="clearSelectedPatient()">
+            <ui-select ng-model="selectedPatient"
+              on-select="setSelectedPatient($select.selected)"
+              theme="bootstrap"
+              reset-search-input="false"
+              on-remove="clearSelectedPatient()">
+              <ui-select-match
+                placeholder="Seleccionar paciente...">
+                {{$select.selected.dni}} - {{$select.selected.name}}
+              </ui-select-match>
+              <ui-select-choices repeat="patient in availablePatients track by $index"
+                refresh="listPatients($select.search)"
+                refresh-delay="300">{{ patient.name }}
+              </ui-select-choices>
+            </ui-select>
+            <!-- <ui-select multiple ng-model="$root.selectedPatients"
+              close-on-select="true"
+              title="Seleccionar Paciente"
+              limit="1"
+              on-select="setSelectedPatient($item)"
+              on-remove="clearSelectedPatient()">
               <ui-select-match placeholder="Seleccionar paciente...">{{$item.dni}} - {{$item.name}}</ui-select-match>
               <ui-select-choices repeat="patient in availablePatients" refresh="listPatients($select.search)" refresh-delay="300">
                 {{patient.dni}} -- {{patient.name}}
               </ui-select-choices>
-            </ui-select>
+            </ui-select> -->
           </div>
         </div>
         <div class="col-md-12">

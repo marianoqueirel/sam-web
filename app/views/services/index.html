@@ -27,21 +27,27 @@
         <table class="table table-striped jambo_table bulk_action">
           <thead>
             <tr class="headings">
-              <th class="column-title">Afiliado Nro.</th>
+              <th class="column-title"></th>
+              <th class="column-title">Tipo</th>
               <th class="column-title">DNI</th>
               <th class="column-title">Apellido y Nombre</th>
-              <th class="column-title">Domicilio</th>
+              <th class="column-title">Lugar</th>
               <th class="column-title">Diagnostico</th>
               <th class="column-title no-link last">
-                <span class="nobr">Opciones</span>
+                <span class="nobr"></span>
               </th>
           </thead>
           <tbody>
             <tr ng-repeat="service in services track by $id(service)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
-              <td class=" ">{{service.patient.number}}</td>
+              <td class=" ">
+                <button type="button" class="btn btn-{{ statusColor(service.status) }} btn-xs">
+                {{ statusText(service.status) }}
+                </button>
+              </td>
+              <td class=" ">{{service.service_type || 'Prestacion'}}</td>
               <td class=" ">{{service.patient.dni}}</td>
               <td class=" ">{{service.patient.name}}</td>
-              <td class=" ">{{service.patient.address}}</td>
+              <td class=" ">{{service.place}}</td>
               <td class=" ">{{service.diagnosis}}</td>
               <td class="">
                 <div class="btn-group">

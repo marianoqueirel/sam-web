@@ -34,7 +34,7 @@ angular.module('payeSAM.controllers')
           function (data) {
             $scope.availablePatients = [data.patient];
             $scope.setSelectedPatient(data.patient);
-            $rootScope.selectedPatients = [data.patient];
+            $scope.selectedPatient = data.patient;
             $scope.service = data;
             $scope.service.started_at = new Date($scope.service.started_at);
           }
@@ -73,8 +73,10 @@ angular.module('payeSAM.controllers')
     };
 
     $scope.setSelectedPatient = function (selectedPatient) {
-      $scope.service.patient_id = selectedPatient.id;
-      $scope.service.diagnosis = selectedPatient.diagnosis;
+      if (selectedPatient) {
+        $scope.service.patient_id = selectedPatient.id;
+        $scope.service.diagnosis = selectedPatient.diagnosis;
+      }
     };
 
     $scope.clearSelectedPatient = function () {

@@ -64,6 +64,18 @@ angular.module('payeSAM.controllers')
           });
         }
       };
+
+      $scope.statusText = function (status) {
+        if (status === 'pending') { return 'Pendiente'; }
+        if (status === 'approved') { return 'Aprobado'; }
+        if (status === 'rejected') { return 'Rechazado'; }
+      };
+
+      $scope.statusColor = function (status) {
+        if (status === 'pending') { return 'warning'; }
+        if (status === 'approved') { return 'success'; }
+        if (status === 'rejected') { return 'danger'; }
+      };
   }]);
 
 

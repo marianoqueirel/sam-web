@@ -40,7 +40,8 @@ angular.module('payeSAM.controllers')
     };
 
     $scope.setSelectedProvider = function (selectedProvider) {
-      $scope.audit.provider_id = selectedProvider.id;
+      if (selectedProvider)
+        $scope.audit.provider_id = selectedProvider.id;
     };
 
     $scope.refreshProviders = function(provider) {

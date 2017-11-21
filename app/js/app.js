@@ -166,4 +166,13 @@ angular.module('payeSAM')
 
       return false;
     };
+
+    $rootScope.validatorLabel = function (key) {
+      var msg = {
+        'not_present': 'Es requerido',
+        'not_numeric': 'No es número',
+        'format': 'Formato Inválido'
+      };
+      return msg[key];
+    };
   }]);

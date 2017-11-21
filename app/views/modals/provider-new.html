@@ -9,42 +9,42 @@
         <div class="col-md-12">
           <label for="name">Prestador</label>
           <input type="text" class="form-control" placeholder="Nombre y Apellido..." ng-model="provider.name" ng-disabled="sending">
-          <div class="validator-error" ng-show="form_errors.name">* {{validatorLabel(form_errors.name[0])}}</div>
+          <div class="validator-error" ng-show="form_errors.name">* {{$root.validatorLabel(form_errors.name[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="address">Direccion</label>
           <input type="text" class="form-control" placeholder="Direccion..." ng-model="provider.address" ng-disabled="sending">
-          <div class="validator-error" ng-show="form_errors.address">* {{validatorLabel(form_errors.address[0])}}</div>
+          <div class="validator-error" ng-show="form_errors.address">* {{$root.validatorLabel(form_errors.address[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="phone">Telefono</label>
           <input type="text" class="form-control" placeholder="Telefono..." ng-model="provider.phone" ng-disabled="sending">
-          <div class="validator-error" ng-show="form_errors.phone">* {{validatorLabel(form_errors.phone[0])}}</div>
+          <div class="validator-error" ng-show="form_errors.phone">* {{$root.validatorLabel(form_errors.phone[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="in_charge">Responsable</label>
           <input type="text" class="form-control" placeholder="Responsable..." ng-model="provider.in_charge" ng-disabled="sending">
-          <div class="validator-error" ng-show="form_errors.in_charge">* {{validatorLabel(form_errors.in_charge[0])}}</div>
+          <div class="validator-error" ng-show="form_errors.in_charge">* {{$root.validatorLabel(form_errors.in_charge[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="email">Mail</label>
           <input type="text" class="form-control" placeholder="Mail..." ng-model="provider.email" ng-disabled="sending">
-          <div class="validator-error" ng-show="form_errors.email">* {{validatorLabel(form_errors.email[0])}}</div>
+          <div class="validator-error" ng-show="form_errors.email">* {{$root.validatorLabel(form_errors.email[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="cuit">CUIT/CUIL</label>
           <input type="text" class="form-control" placeholder="CUIT/CUIL..." ng-model="provider.cuit" ng-disabled="sending">
-          <div class="validator-error" ng-show="form_errors.cuit">* {{validatorLabel(form_errors.cuit[0])}}</div>
+          <div class="validator-error" ng-show="form_errors.cuit">* {{$root.validatorLabel(form_errors.cuit[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="cbu">CBU</label>
           <input type="text" class="form-control" placeholder="CBU..." ng-model="provider.cbu" ng-disabled="sending">
-          <div class="validator-error" ng-show="form_errors.cbu">* {{validatorLabel(form_errors.cbu[0])}}</div>
+          <div class="validator-error" ng-show="form_errors.cbu">* {{$root.validatorLabel(form_errors.cbu[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="description">Observaciones</label>
           <input type="textarea" class="form-control" placeholder="Observaciones..." ng-model="provider.description" ng-disabled="sending">
-          <div class="validator-error" ng-show="form_errors.description">* {{validatorLabel(form_errors.description[0])}}</div>
+          <div class="validator-error" ng-show="form_errors.description">* {{$root.validatorLabel(form_errors.description[0])}}</div>
         </div>
       </div>
     </div>
