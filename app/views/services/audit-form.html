@@ -43,8 +43,7 @@
                on-select="setSelectedProvider($select.selected)"
                theme="bootstrap"
                ng-disabled="sending || !audit.approved || show"
-               reset-search-input="false"
-               title="Choose an address">
+               reset-search-input="false">
               <ui-select-match placeholder="Proveedor...">{{$select.selected.name}}</ui-select-match>
               <ui-select-choices repeat="provider in providers track by $index"
                  refresh="refreshProviders($select.search)"

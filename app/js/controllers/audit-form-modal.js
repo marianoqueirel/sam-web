@@ -35,7 +35,8 @@ angular.module('payeSAM.controllers')
       $scope.selected_provider = {};
       $scope.audit = {};
       _getServiceAudit();
-      $scope.providers = [];
+      $scope.setSelectedProvider($scope.audit.provider);
+      $scope.selected_provider = $scope.audit.provider;
     };
 
     $scope.setSelectedProvider = function (selectedProvider) {

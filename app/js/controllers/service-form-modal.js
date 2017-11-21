@@ -37,8 +37,6 @@ angular.module('payeSAM.controllers')
             $rootScope.selectedPatients = [data.patient];
             $scope.service = data;
             $scope.service.started_at = new Date($scope.service.started_at);
-            // $rootScope.selectedPatients = $scope.service;
-            // $scope.setSelectedPatient();
           }
         );
       }
