@@ -1,6 +1,6 @@
 <div id="service-form" ng-init="init()">
   <div class="modal-header">
-    <h3 class="modal-title">{{ title }} Internacion</h3>
+    <h3 class="modal-title">{{ title }} Prestacion</h3>
   </div>
 
   <form role="form" name="newServiceForm" ng-submit="saveForm()">
@@ -18,18 +18,43 @@
         </div>
         <div class="col-md-12">
           <label for="service_type_id">Prestaci&oacute;n</label>
-          <select name="service_type_id" ng-model="service.service_type_id" class="form-control" ng-disabled="sending" ng-readonly="show">
+          <select name="service_type_id" ng-model="service.service_type_id" class="form-control" ng-disabled="sending">
             <option ng-repeat="option in service_types" value="{{option.id}}" ng-selected="{{service.service_type_id == option.id}}">{{option.description}}</option>
           </select>
         </div>
         <div class="clearfix"></div>
         <div class="col-md-12">
           <label for="in_charge_name">Lugar</label>
-          <input type="text" class="form-control" ng-model="service.place" ng-disabled="sending" ng-readonly="show">
+          <input type="text" class="form-control" ng-model="service.place" ng-disabled="sending">
         </div>
         <div class="col-md-12">
           <label for="diagnosis">Diagnostico</label>
-          <input type="textarea" class="form-control" ng-model="service.diagnosis" ng-disabled="sending" ng-readonly="show">
+          <input type="textarea" class="form-control" ng-model="service.diagnosis" ng-disabled="sending">
+        </div>
+        <div class="col-md-12" ng-show="action == 'edit'">
+          <hr/>
+          <h2 ng-show="action == 'edit'">Contacto o Responsable:</h2>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-md-12" ng-show="action == 'edit'">
+          <label for="in_charge_name">Apellido y Nombre</label>
+          <input type="text" class="form-control" placeholder="Apellido y Nombre..." ng-model="service.in_charge_name" ng-disabled="sending">
+        </div>
+        <div class="col-md-12" ng-show="action == 'edit'">
+          <label for="in_charge_relationship">Parentesco</label>
+          <input type="text" class="form-control" placeholder="Parentesco..." ng-model="service.in_charge_relationship" ng-disabled="sending">
+        </div>
+        <div class="col-md-12" ng-show="action == 'edit'">
+          <label for="in_charge_phone">Telefono</label>
+          <input type="text" class="form-control" placeholder="Telefono..." ng-model="service.in_charge_phone" ng-disabled="sending">
+        </div>
+        <div class="col-md-12" ng-show="action == 'edit'">
+          <label for="primary_doctor">Medico de Cabecera</label>
+          <input type="text" class="form-control" placeholder="Medico de Cabecera..." ng-model="service.primary_doctor" ng-disabled="sending">
+        </div>
+        <div class="col-md-12" ng-show="action == 'edit'">
+          <label for="primary_doctor_number">Matricula</label>
+          <input type="text" class="form-control" placeholder="Matricula..." ng-model="service.primary_doctor_number" ng-disabled="sending">
         </div>
       </div>
 
