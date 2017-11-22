@@ -5,6 +5,12 @@
 
   <div class="title_right">
     <form ng-submit="searchService()">
+      <div class="col-md-5 col-sm-5 col-xs-12">
+        <select name="service_type_id" ng-model="service_type_id" class="form-control" ng-disabled="sending" ng-change="searchService()">
+          <option value="">Tipo de Prestacion</option>
+          <option ng-repeat="option in service_types" value="{{option.id}}">{{option.description}}</option>
+        </select>
+      </div>
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
         <div class="input-group">
           <input type="text" class="form-control" ng-model="term">

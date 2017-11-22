@@ -1,12 +1,30 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('ServiceCtrl', ['$rootScope', '$scope', '$http', '$location', '$uibModal', 'Service', 'notification', 'paginationLimit', function ($rootScope, $scope, $http, $location, $uibModal, Service, notification, paginationLimit) {
+  .controller('ServiceCtrl', ['$rootScope',
+                              '$scope',
+                              '$http',
+                              '$location',
+                              '$uibModal',
+                              'Service',
+                              'ServiceType',
+                              'notification',
+                              'paginationLimit',
+                              function ($rootScope,
+                                        $scope,
+                                        $http,
+                                        $location,
+                                        $uibModal,
+                                        Service,
+                                        ServiceType,
+                                        notification,
+                                        paginationLimit) {
       var _getServices = function (page) {
         $rootScope.loading = true;
         Service
           .query({
-            page: $scope.currentPage
+            page: $scope.currentPage,
+            service_type_id: $scope.service_type_id
           }, function (response) {
             $scope.services = response.rows;
             $scope.totalItems = response.count;
@@ -18,12 +36,22 @@ angular.module('payeSAM.controllers')
           });
       };
 
+      var loadServiceTypes = function () {
+        ServiceType.query(
+          {},
+          function (response) {
+            $scope.service_types = response;
+          }
+        );
+      };
+
       $scope.init = function () {
         $scope.currentPage = parseInt($location.search().page, 10) || 1;
         $scope.sortBy = $location.search().sortBy || null;
         $scope.sortDir = $location.search().sortDir || 'desc';
         $scope.show = false;
         _getServices($scope.currentPage);
+        loadServiceTypes();
       };
 
       $scope.serviceModal = function (service, show) {
