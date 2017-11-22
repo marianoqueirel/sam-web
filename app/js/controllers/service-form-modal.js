@@ -93,6 +93,7 @@ angular.module('payeSAM.controllers')
 
         $uibModalInstance.close($scope.service);
       }, function (err) {
+        $scope.form_errors = err.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
         notification.error('Error.');
@@ -110,6 +111,7 @@ angular.module('payeSAM.controllers')
 
         $uibModalInstance.close($scope.service);
       }, function (err) {
+        $scope.form_errors = err.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
         notification.error('Error.');

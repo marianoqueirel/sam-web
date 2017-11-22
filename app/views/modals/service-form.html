@@ -8,35 +8,39 @@
       <div class="form-group">
         <div class="col-md-12">
           <label for="patient">Paciente</label>
-            <ui-select ng-model="selectedPatient"
-              on-select="setSelectedPatient($select.selected)"
-              theme="bootstrap"
-              reset-search-input="false"
-              on-remove="clearSelectedPatient()">
-              <ui-select-match
-                placeholder="Seleccionar paciente...">
-                {{$select.selected.dni}} - {{$select.selected.name}}
-              </ui-select-match>
-              <ui-select-choices repeat="patient in availablePatients track by $index"
-                refresh="listPatients($select.search)"
-                refresh-delay="300">{{ patient.name }}
-              </ui-select-choices>
-            </ui-select>
-          </div>
+          <ui-select ng-model="selectedPatient"
+            on-select="setSelectedPatient($select.selected)"
+            theme="bootstrap"
+            reset-search-input="false"
+            on-remove="clearSelectedPatient()">
+            <ui-select-match
+              placeholder="Seleccionar paciente...">
+              {{$select.selected.dni}} - {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="patient in availablePatients track by $index"
+              refresh="listPatients($select.search)"
+              refresh-delay="300">{{ patient.name }}
+            </ui-select-choices>
+          </ui-select>
+          <div class="validator-error" ng-show="form_errors.patient_id">* {{$root.validatorLabel(form_errors.patient_id[0])}}</div>
+        </div>
         </div>
         <div class="col-md-12">
           <label for="service_type_id">Prestaci&oacute;n</label>
           <select name="service_type_id" ng-model="service.service_type_id" class="form-control" ng-disabled="sending" ng-options="option.id as option.description for option in service_types">
           </select>
+          <div class="validator-error" ng-show="form_errors.service_type_id">* {{$root.validatorLabel(form_errors.service_type_id[0])}}</div>
         </div>
         <div class="clearfix"></div>
         <div class="col-md-12">
           <label for="in_charge_name">Lugar</label>
           <input type="text" class="form-control" ng-model="service.place" ng-disabled="sending">
+          <div class="validator-error" ng-show="form_errors.place">* {{$root.validatorLabel(form_errors.place[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="diagnosis">Diagnostico</label>
           <input type="textarea" class="form-control" ng-model="service.diagnosis" ng-disabled="sending">
+          <div class="validator-error" ng-show="form_errors.diagnosis">* {{$root.validatorLabel(form_errors.diagnosis[0])}}</div>
         </div>
         <div class="col-md-12" ng-show="action == 'edit'">
           <hr/>
@@ -46,28 +50,33 @@
         <div class="col-md-12" ng-show="action == 'edit'">
           <label for="in_charge_name">Apellido y Nombre</label>
           <input type="text" class="form-control" placeholder="Apellido y Nombre..." ng-model="service.in_charge_name" ng-disabled="sending">
+          <div class="validator-error" ng-show="form_errors.in_charge_name">* {{$root.validatorLabel(form_errors.in_charge_name[0])}}</div>
         </div>
         <div class="col-md-12" ng-show="action == 'edit'">
           <label for="in_charge_relationship">Parentesco</label>
           <input type="text" class="form-control" placeholder="Parentesco..." ng-model="service.in_charge_relationship" ng-disabled="sending">
+          <div class="validator-error" ng-show="form_errors.in_charge_relationship">* {{$root.validatorLabel(form_errors.in_charge_relationship[0])}}</div>
         </div>
         <div class="col-md-12" ng-show="action == 'edit'">
           <label for="in_charge_phone">Telefono</label>
           <input type="text" class="form-control" placeholder="Telefono..." ng-model="service.in_charge_phone" ng-disabled="sending">
+          <div class="validator-error" ng-show="form_errors.in_charge_phone">* {{$root.validatorLabel(form_errors.in_charge_phone[0])}}</div>
         </div>
         <div class="col-md-12" ng-show="action == 'edit'">
           <label for="primary_doctor">Medico de Cabecera</label>
           <input type="text" class="form-control" placeholder="Medico de Cabecera..." ng-model="service.primary_doctor" ng-disabled="sending">
+          <div class="validator-error" ng-show="form_errors.primary_doctor">* {{$root.validatorLabel(form_errors.primary_doctor[0])}}</div>
         </div>
         <div class="col-md-12" ng-show="action == 'edit'">
           <label for="primary_doctor_number">Matricula</label>
           <input type="text" class="form-control" placeholder="Matricula..." ng-model="service.primary_doctor_number" ng-disabled="sending">
+          <div class="validator-error" ng-show="form_errors.primary_doctor_number">* {{$root.validatorLabel(form_errors.primary_doctor_number[0])}}</div>
         </div>
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
-        <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newServiceForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+        <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
       </div>
     </div>
   </form>

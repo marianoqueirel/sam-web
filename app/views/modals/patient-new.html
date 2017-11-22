@@ -9,26 +9,33 @@
         <div class="col-md-12">
           <label for="number">Nro. de Afiliado</label>
           <input type="text" class="form-control" placeholder="Nro. de Afiliado..." ng-model="patient.number" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.number">* {{$root.validatorLabel(form_errors.number[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="dni">DNI</label>
           <input type="text" class="form-control" placeholder="DNI..." ng-model="patient.dni" ng-disabled="sending" required ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.dni">* {{$root.validatorLabel(form_errors.dni[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="name">Apellido y Nombre</label>
           <input type="text" class="form-control" placeholder="Apellido y Nombre..." ng-model="patient.name" ng-disabled="sending" required ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.name">* {{$root.validatorLabel(form_errors.name[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="birthday">Fecha de Nacimiento</label>
-          <input type="date" class="form-control" placeholder="Fecha de Nacimiento..." ng-model="patient.birthday" ng-disabled="sending" ng-readonly="show">
+          <input type="date" class="form-control" placeholder="Fecha de Nacimiento..." ng-model="patient.birthday" ng-disabled="sending" ng-readonly="show"
+          >
+          <div class="validator-error" ng-show="form_errors.birthday">* {{$root.validatorLabel(form_errors.birthday[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="address">Direccion</label>
           <input type="text" class="form-control" placeholder="Direccion..." ng-model="patient.address" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.address">* {{$root.validatorLabel(form_errors.address[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="phone">Telefono</label>
           <input type="text" class="form-control" placeholder="Telefono..." ng-model="patient.phone" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.phone">* {{$root.validatorLabel(form_errors.phone[0])}}</div>
         </div>
         <hr>
         <div class="col-md-12">
@@ -36,22 +43,27 @@
         </div>
         <div class="col-md-12">
           <label for="in_charge_name">Apellido y Nombre</label>
-          <input type="text" class="form-control" placeholder="Apellido y Nombre..." ng-model="patient.in_charge_name" ng-disabled="sending" ng-readonly="show">
+          <input type="text" class="form-control" placeholder="Apellido y Nombre..." ng-model="patient.in_charge_name" ng-disabled="sending" ng-readonly="
+          show">
+          <div class="validator-error" ng-show="form_errors.in_charge_name">* {{$root.validatorLabel(form_errors.in_charge_name[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="in_charge_relationship">Parentesco</label>
-          <input type="text" class="form-control" placeholder="Parentesco..." ng-model="patient.in_charge_relationship" ng-disabled="sending" ng-readonly="show">
+          <input type="text" class="form-control" placeholder="Parentesco..." ng-model="patient.in_charge_relationship" ng-disabled="sending" ng-readonly="
+          show">
+          <div class="validator-error" ng-show="form_errors.in_charge_relationship">* {{$root.validatorLabel(form_errors.in_charge_relationship[0])}}</div>
         </div>
         <div class="col-md-12">
           <label for="in_charge_phone">Telefono</label>
           <input type="text" class="form-control" placeholder="Telefono..." ng-model="patient.in_charge_phone" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.in_charge_phone">* {{$root.validatorLabel(form_errors.in_charge_phone[0])}}</div>
         </div>
       </div>
     </div>
 
     <div class="modal-footer">
       <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
-      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newPatientForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
     </div>
   </form>
 </div>
