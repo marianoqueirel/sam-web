@@ -46,7 +46,7 @@ angular.module('payeSAM.controllers')
 
     $scope.auditModal = function (audit, show) {
         var modalInstance = $uibModal.open({
-          templateUrl: 'views/services/audit-form.html',
+          templateUrl: 'views/modals/audit-form.html',
           controller: 'ServiceAuditFormModalCtrl',
           size: 'lg',
           resolve: {

@@ -29,7 +29,7 @@ angular.module('payeSAM.controllers')
 
       $scope.patientModal = function (patient, show) {
         var modalInstance = $uibModal.open({
-          templateUrl: 'views/modals/patient-new.html',
+          templateUrl: 'views/modals/patient-form.html',
           controller: 'PatientNewModalCtrl',
           size: 'lg',
           resolve: {

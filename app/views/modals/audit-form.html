@@ -10,12 +10,14 @@
           <label class="control-label col-md-6 col-sm-6 col-xs-12" for="approved">Amerita</label>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="checkbox" class="js-switch form-control" ui-switch ui-switch-options="{color: '#26B99A'}" ng-model="audit.approved" ng-readonly="show">
+            <div class="validator-error" ng-show="form_errors.approved">* {{$root.validatorLabel(form_errors.approved[0])}}</div>
           </div>
         </div>
         <div class="col-md-6">
           <label class="control-label col-md-6 col-sm-6 col-xs-12" for="in_charge_relationship">Fecha de Inicio</label>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="date" class="form-control" ng-model="audit.started_on" ng-disabled="sending" ng-readonly="show">
+            <div class="validator-error" ng-show="form_errors.started_on">* {{$root.validatorLabel(form_errors.started_on[0])}}</div>
           </div>
         </div>
       </div>
@@ -25,12 +27,14 @@
           <div class="col-md-6 col-sm-6 col-xs-12">
             <select name="service_type_option_id" ng-model="audit.service_type_option_id" class="form-control" ng-disabled="sending || !audit.approved || show" ng-readonly="show" ng-options="option.id as option.description for option in service_type_options">
             </select>
+            <div class="validator-error" ng-show="form_errors.service_type_option_id">* {{$root.validatorLabel(form_errors.service_type_option_id[0])}}</div>
           </div>
         </div>
         <div class="col-md-6">
           <label class="control-label col-md-6 col-sm-6 col-xs-12" for="days">D&iacute;as Aprobados</label>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <input type="number" class="form-control" placeholder="D&iacute;as Aprobados" ng-model="audit.days" ng-disabled="sending" ng-readonly="show" min="0">
+            <div class="validator-error" ng-show="form_errors.days">* {{$root.validatorLabel(form_errors.days[0])}}</div>
           </div>
         </div>
       </div>
@@ -50,6 +54,7 @@
                  refresh-delay="300">{{ provider.name }}
               </ui-select-choices>
             </ui-select>
+            <div class="validator-error" ng-show="form_errors.provider_id">* {{$root.validatorLabel(form_errors.provider_id[0])}}</div>
           </div>
         </div>
       </div>
