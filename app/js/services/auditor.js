@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('payeSAM.services')
-  .factory('Auditor', ['$rootScope', '$resource', 'apiUrl', function ($rootScope, $resource, apiUrl) {
+  .factory('User', ['$rootScope', '$resource', 'apiUrl', function ($rootScope, $resource, apiUrl) {
 
-    var urlResources = apiUrl + '/auditors',
+    var urlResources = apiUrl + '/admin_users',
         urlResource  = urlResources + '/:id';
 
     return $resource(urlResource, {

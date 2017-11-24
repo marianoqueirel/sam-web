@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('AuditorNewModalCtrl', ['$rootScope', '$scope', 'Auditor', '$uibModalInstance', 'notification', 'auditor_id', 'show', function ($rootScope, $scope, Auditor, $uibModalInstance, notification, auditor_id, show) {
+  .controller('UserFormModalCtrl', ['$rootScope', '$scope', 'User', '$uibModalInstance', 'notification', 'user_id', 'show', function ($rootScope, $scope, User, $uibModalInstance, notification, user_id, show) {
 
     $scope.init = function () {
       $scope.sending = false;
@@ -12,15 +12,15 @@ angular.module('payeSAM.controllers')
         $scope.action = 'create';
       }
       $scope.show = show;
-      $scope.auditor = {};
-      if (auditor_id) {
+      $scope.user = {};
+      if (user_id) {
         if (!show) {
           $scope.action = 'edit';
         }
-        Auditor.get(
-          { id: auditor_id },
+        User.get(
+          { id: user_id },
           function (data) {
-            $scope.auditor = data;
+            $scope.user = data;
           }
         );
       }
@@ -37,14 +37,14 @@ angular.module('payeSAM.controllers')
         }
     };
 
-    var createAuditor = function () {
-      Auditor.new($scope.auditor, function () {
-        notification.success('Auditor creado con exito!');
+    var createUser = function () {
+      User.new($scope.user, function () {
+        notification.success('User creado con exito!');
 
         $rootScope.loading = false;
         $scope.sending = false;
 
-        $uibModalInstance.close($scope.auditor);
+        $uibModalInstance.close($scope.user);
       }, function (err) {
         $rootScope.loading = false;
         $scope.sending = false;
@@ -52,16 +52,16 @@ angular.module('payeSAM.controllers')
       });
     };
 
-    var saveAuditor = function () {
-       Auditor.update(
-        { id: $scope.auditor.id, auditor: $scope.auditor },
+    var saveUser = function () {
+       User.update(
+        { id: $scope.user.id, user: $scope.user },
         function () {
-        notification.success('Auditor guardado con exito!');
+        notification.success('User guardado con exito!');
 
         $rootScope.loading = false;
         $scope.sending = false;
 
-        $uibModalInstance.close($scope.auditor);
+        $uibModalInstance.close($scope.user);
       }, function (err) {
         $rootScope.loading = false;
         $scope.sending = false;
@@ -74,9 +74,9 @@ angular.module('payeSAM.controllers')
       $rootScope.loading = true;
       $scope.sending = true;
       if ($scope.action === 'create') {
-        createAuditor();
+        createUser();
       } else {
-        saveAuditor();
+        saveUser();
       }
     };
 

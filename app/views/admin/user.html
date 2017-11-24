@@ -1,6 +1,6 @@
 <div class="page-title">
   <div class="title_left">
-    <h3>Auditores</h3>
+    <h3>Usuarios</h3>
   </div>
 
   <div class="title_right">
@@ -16,9 +16,9 @@
     </form>
   </div>
 </div>
-<div id="auditors" ng-init="init()">
+<div id="users" ng-init="init()">
   <div class="x_panel">
-    <button class="btn btn-primary pull-right" ng-click="auditorModal()">
+    <button class="btn btn-primary pull-right" ng-click="userModal()">
       Nuevo
       <i class="fa fa-user-md"></i>
     </button>
@@ -36,15 +36,15 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="auditor in auditors track by $id(auditor)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
-              <td class=" ">{{auditor.last_name}}</td>
-              <td class=" ">{{auditor.first_name}}</td>
-              <td class=" ">{{auditor.email}}</td>
+            <tr ng-repeat="user in users track by $id(user)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
+              <td class=" ">{{user.last_name}}</td>
+              <td class=" ">{{user.first_name}}</td>
+              <td class=" ">{{user.email}}</td>
               <td class="">
                 <div class="btn-group">
-                  <a class="btn btn-info" ng-click="auditorModal(auditor, true)"> Ver</a>
-                  <a class="btn btn-primary" ng-click="auditorModal(auditor, false)">Editar</a>
-                  <a class="btn btn-danger" ng-click="deleteAuditor(auditor)">Eliminar</a>
+                  <a class="btn btn-info" ng-click="userModal(user, true)"> Ver</a>
+                  <a class="btn btn-primary" ng-click="userModal(user, false)">Editar</a>
+                  <a class="btn btn-danger" ng-click="deleteAuditor(user)">Eliminar</a>
                 </div>
               </td>
             </tr>

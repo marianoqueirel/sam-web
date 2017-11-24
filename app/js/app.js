@@ -89,9 +89,9 @@ angular.module('payeSAM')
           roles: 'Admin'
         }
       })
-      .when('/admin/auditors', {
-        controller: 'AdminAuditorsCtrl',
-        templateUrl: 'views/admin/auditors.html',
+      .when('/admin/users', {
+        controller: 'AdminUserCtrl',
+        templateUrl: 'views/admin/user.html',
         data: {
           roles: 'Admin'
         }

@@ -89,7 +89,7 @@
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+            <!-- <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="fa fa-cog" aria-hidden="true"></span>
               </a>
@@ -103,7 +103,7 @@
                 <span class="fa fa-power-off" aria-hidden="true" ng-click="logout()"></span>
               </a>
             </div>
-            <!-- /menu footer buttons -->
+ -->            <!-- /menu footer buttons -->
           </div>
         </div>
 
@@ -124,13 +124,13 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a ng-href="/profile/edit">Mi perfil</a></li>
-                    <li>
+                    <!-- <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
                       </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
+                    </li> -->
+                    <!-- <li><a href="javascript:;">Help</a></li> -->
                     <li ng-controller="SessionCtrl"><a href="#" ng-click="logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
@@ -251,8 +251,8 @@
   <script src="js/app.js"></script>
 
   <script src="js/controllers/admin/dashboard.js"></script>
-  <script src="js/controllers/admin/auditor.js"></script>
-  <script src="js/controllers/admin/auditor-from-modal.js"></script>
+  <script src="js/controllers/admin/user.js"></script>
+  <script src="js/controllers/admin/user-form-modal.js"></script>
   <script src="js/controllers/audit-form-modal.js"></script>
   <script src="js/controllers/dashboard.js"></script>
   <script src="js/controllers/navbar.js"></script>

@@ -1,9 +1,9 @@
-<div id="patient-new" ng-init="init()">
+<div id="user-form" ng-init="init()">
   <div class="modal-header">
-    <h3 class="modal-title">{{ title }} Auditor</h3>
+    <h3 class="modal-title">{{ title }} Usuario</h3>
   </div>
 
-  <form role="form" name="newPatientForm" ng-submit="saveForm()">
+  <form role="form" name="userForm" ng-submit="saveForm()">
     <div class="modal-body clearfix">
       <div class="form-group">
         <div class="col-md-12">
@@ -31,7 +31,7 @@
 
     <div class="modal-footer">
       <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
-      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newPatientForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
     </div>
   </form>
 </div>
