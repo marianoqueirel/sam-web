@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('PatientNewModalCtrl',
+  .controller('PatientFormModalCtrl',
                 [
                   '$rootScope',
                   '$scope',
@@ -64,6 +64,7 @@ angular.module('payeSAM.controllers')
 
         $uibModalInstance.close($scope.patient);
       }, function (err) {
+        $scope.form_errors = err.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
         notification.error('Error.');
@@ -81,6 +82,7 @@ angular.module('payeSAM.controllers')
 
         $uibModalInstance.close($scope.patient);
       }, function (err) {
+        $scope.form_errors = err.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
         notification.error('Error.');

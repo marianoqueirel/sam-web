@@ -35,7 +35,7 @@ var originUrl = isProd ? 'http://staging.sam.com.ar' : 'http://localhost:9292';
 angular.module('payeSAM')
   .constant('originUrl',  originUrl)
   .constant('apiUrl', originUrl + '/api/v1')
-  .constant('paginationLimit', 20)
+  .constant('paginationLimit', 10)
   .constant('rootURL', '/dashboard')
   .constant('adminRootURL', '/dashboard');
 
@@ -169,9 +169,12 @@ angular.module('payeSAM')
 
     $rootScope.validatorLabel = function (key) {
       var msg = {
-        'not_present': 'Es requerido',
-        'not_numeric': 'No es número',
-        'format': 'Formato Inválido'
+        'not_present': 'Es requerido.',
+        'not_numeric': 'No es número.',
+        'format': 'Formato Inválido.',
+        'not_in_range': 'Longitud Inválida.',
+        'not_equal': 'No es igual.',
+        'can_create_new_service': 'No puede tener mas de 1 prestación en progreso'
       };
       return msg[key];
     };

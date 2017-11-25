@@ -46,7 +46,7 @@ angular.module('payeSAM.controllers')
       $scope.providerModal = function (provider, show) {
         var modalInstance = $uibModal.open({
           templateUrl: 'views/modals/provider-form.html',
-          controller: 'ProviderNewModalCtrl',
+          controller: 'ProviderFormModalCtrl',
           size: 'lg',
           resolve: {
             show: show,

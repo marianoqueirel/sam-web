@@ -19,16 +19,29 @@ angular.module('payeSAM.controllers')
                                         ServiceType,
                                         notification,
                                         paginationLimit) {
+      $scope.sort = {
+        column: 'created_at',
+        descending: false
+      };
+
+      $scope.pagination = {
+        currentPage: 1,
+        maxSize: 12,
+        totalItems: 0,
+        itemsPerPage: 10
+      };
+
       var _getServices = function (page) {
         $rootScope.loading = true;
         Service
           .query({
-            page: $scope.currentPage,
+            page: $scope.pagination.currentPage,
+            limit: $scope.pagination.itemsPerPage,
             service_type_id: $scope.service_type_id
           }, function (response) {
             $scope.services = response.rows;
-            $scope.totalItems = response.count;
-            $scope.totalPages = Math.ceil(response.count / paginationLimit);
+            $scope.pagination.totalItems = response.total;
+            $scope.totalPages = Math.ceil(response.total / paginationLimit);
             $rootScope.loading = false;
           }, function () {
             notification.error('Error al cargar internaciones.');
@@ -46,7 +59,7 @@ angular.module('payeSAM.controllers')
       };
 
       $scope.init = function () {
-        $scope.currentPage = parseInt($location.search().page, 10) || 1;
+        $scope.pagination.currentPage = parseInt($location.search().page, 10) || 1;
         $scope.sortBy = $location.search().sortBy || null;
         $scope.sortDir = $location.search().sortDir || 'desc';
         $scope.show = false;
@@ -104,6 +117,10 @@ angular.module('payeSAM.controllers')
         if (status === 'approved') { return 'success'; }
         if (status === 'rejected') { return 'danger'; }
       };
+
+      $scope.$watch('pagination.currentPage', function() {
+        _getServices();
+      });
   }]);
 
 
