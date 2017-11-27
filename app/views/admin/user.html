@@ -29,9 +29,9 @@
             <tr class="headings">
               <th class="column-title">Apellido</th>
               <th class="column-title">Nombre</th>
-              <th class="column-title">Eamil</th>
+              <th class="column-title">Email</th>
+              <th class="column-title">Tipo</th>
               <th class="column-title no-link last">
-                <span class="nobr">Opciones</span>
               </th>
           </thead>
 
@@ -40,6 +40,11 @@
               <td class=" ">{{user.last_name}}</td>
               <td class=" ">{{user.first_name}}</td>
               <td class=" ">{{user.email}}</td>
+              <td>
+                <button type="button" class="btn btn-{{ userTypeColor(user.user_type) }} btn-xs">
+                  {{ userTypeText(user.user_type) }}
+                </button>
+              </td>
               <td class="">
                 <div class="btn-group">
                   <a class="btn btn-info" ng-click="userModal(user, true)"> Ver</a>

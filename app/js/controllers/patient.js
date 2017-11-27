@@ -2,16 +2,29 @@
 
 angular.module('payeSAM.controllers')
   .controller('PatientCtrl', ['$rootScope', '$scope', '$http', '$location', '$uibModal', 'Patient', 'notification', 'paginationLimit', function ($rootScope, $scope, $http, $location, $uibModal, Patient, notification, paginationLimit) {
+      $scope.sort = {
+        column: 'created_at',
+        descending: false
+      };
+
+      $scope.pagination = {
+        currentPage: 1,
+        maxSize: 12,
+        totalItems: 0,
+        itemsPerPage: 10
+      };
+
       var _getPatients = function (page) {
         $rootScope.loading = true;
         Patient
           .query({
-            page: $scope.currentPage,
+            page: $scope.pagination.currentPage,
+            limit: $scope.pagination.itemsPerPage,
             searchPatient: $scope.term
           }, function (response) {
             $scope.patients = response.rows;
-            $scope.totalItems = response.count;
-            $scope.totalPages = Math.ceil(response.count / paginationLimit);
+            $scope.pagination.totalItems = response.total;
+            $scope.totalPages = Math.ceil(response.total / paginationLimit);
             $rootScope.loading = false;
           }, function () {
             notification.error('Error al cargar pacientes.');
@@ -20,7 +33,7 @@ angular.module('payeSAM.controllers')
       };
 
       $scope.init = function () {
-        $scope.currentPage = parseInt($location.search().page, 10) || 1;
+        $scope.pagination.currentPage = parseInt($location.search().page, 10) || 1;
         $scope.sortBy = $location.search().sortBy || null;
         $scope.sortDir = $location.search().sortDir || 'desc';
         $scope.show = false;
@@ -30,7 +43,7 @@ angular.module('payeSAM.controllers')
       $scope.patientModal = function (patient, show) {
         var modalInstance = $uibModal.open({
           templateUrl: 'views/modals/patient-form.html',
-          controller: 'PatientNewModalCtrl',
+          controller: 'PatientFormModalCtrl',
           size: 'lg',
           resolve: {
             show: show,
@@ -65,6 +78,10 @@ angular.module('payeSAM.controllers')
           });
         }
       };
+
+      $scope.$watch('pagination.currentPage', function() {
+        _getPatients();
+      });
   }]);
 
 

@@ -48,6 +48,7 @@ angular.module('payeSAM.controllers')
       }, function (err) {
         $rootScope.loading = false;
         $scope.sending = false;
+        $scope.form_errors = err.data.errors;
         notification.error('Error.');
       });
     };
@@ -65,6 +66,7 @@ angular.module('payeSAM.controllers')
       }, function (err) {
         $rootScope.loading = false;
         $scope.sending = false;
+        $scope.form_errors = err.data.errors;
         notification.error('Error.');
       });
     };

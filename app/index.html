@@ -49,7 +49,7 @@
 
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col" ng-show="$root.currentUser" ng-controller="NavbarCtrl" ng-init="init()">
+        <div class="col-md-3 left_col custom-navbar" ng-show="$root.currentUser" ng-controller="NavbarCtrl" ng-init="init()">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
               <a href="/" class="site_title"><i class="fa fa-medkit"></i> <span>SAM</span></a>
@@ -81,6 +81,7 @@
                       <li><a ng-href="/patients">Pacientes</a></li>
                       <li><a ng-href="/services">Prestaciones</a></li>
                       <li><a ng-href="/providers">Prestadores</a></li>
+                      <li ng-if="$root.currentUser.user_type === 'Admin'"><a ng-href="/admin/users">Usuarios</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -260,9 +261,9 @@
   <script src="js/controllers/session.js"></script>
   <script src="js/controllers/profile/edit.js"></script>
   <script src="js/controllers/provider.js"></script>
-  <script src="js/controllers/provider-new-modal.js"></script>
+  <script src="js/controllers/provider-form-modal.js"></script>
   <script src="js/controllers/patient.js"></script>
-  <script src="js/controllers/patient-new-modal.js"></script>
+  <script src="js/controllers/patient-form-modal.js"></script>
   <script src="js/controllers/service.js"></script>
   <script src="js/controllers/service-form-modal.js"></script>
   <script src="js/controllers/service-show.js"></script>
@@ -272,7 +273,7 @@
   <script src="js/factories/notification.js"></script>
 
   <script src="js/services/login_service.js"></script>
-  <script src="js/services/auditor.js"></script>
+  <script src="js/services/user.js"></script>
   <script src="js/services/register_user.js"></script>
   <script src="js/services/edit_user.js"></script>
   <script src="js/services/provider.js"></script>
