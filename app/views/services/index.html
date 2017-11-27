@@ -24,7 +24,7 @@
 </div>
 <div id="services" ng-init="init()">
   <div class="x_panel">
-    <button class="btn btn-primary pull-right" ng-click="serviceModal()">
+    <button ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary pull-right" ng-click="serviceModal()">
       Nuevo
       <i class="fa fa-user-md"></i>
     </button>
@@ -58,8 +58,8 @@
               <td class="">
                 <div class="btn-group">
                   <a class="btn btn-info" ng-href="/services/{{service.id}}"> Auditorias </a>
-                  <a class="btn btn-primary" ng-click="serviceModal(service, false)">Editar</a>
-                  <a class="btn btn-danger" ng-click="deletePatient(service)">Eliminar</a>
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="serviceModal(service, false)">Editar</a>
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-danger" ng-click="deletePatient(service)">Eliminar</a>
                 </div>
               </td>
             </tr>

@@ -18,7 +18,7 @@
 </div>
 <div id="patients" ng-init="init()">
   <div class="x_panel">
-    <button class="btn btn-primary pull-right" ng-click="patientModal()">
+    <button ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary pull-right" ng-click="patientModal()">
       Nuevo
       <i class="fa fa-user-md"></i>
     </button>
@@ -31,6 +31,7 @@
               <th class="column-title">DNI</th>
               <th class="column-title">Apellido y Nombre</th>
               <th class="column-title">Domicilio</th>
+              <th ng-if="$root.currentUser.user_type != 'User'" class="column-title">Usuario</th>
               <th class="column-title no-link last">
               </th>
           </thead>
@@ -41,11 +42,12 @@
               <td class=" ">{{patient.dni}}</td>
               <td class=" ">{{patient.name}}</td>
               <td class=" ">{{patient.address}}</td>
+              <td ng-if="$root.currentUser.user_type != 'User'" class=" ">{{patient.user_name}}</td>
               <td class="">
                 <div class="btn-group">
                   <a class="btn btn-info" ng-click="patientModal(patient, true)"> Ver</a>
-                  <a class="btn btn-primary" ng-click="patientModal(patient, false)">Editar</a>
-                  <a class="btn btn-danger" ng-click="deletePatient(patient)">Eliminar</a>
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="patientModal(patient, false)">Editar</a>
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-danger" ng-click="deletePatient(patient)">Eliminar</a>
                 </div>
               </td>
             </tr>
