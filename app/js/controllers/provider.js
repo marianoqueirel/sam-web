@@ -23,9 +23,11 @@ angular.module('payeSAM.controllers')
           .query({
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
+            user_id: $scope.search_user_id,
             searchProvider: $scope.term
           }, function (response) {
             $scope.providers = response.rows;
+            $scope.users = response.users;
             $scope.pagination.totalItems = response.total;
             $scope.totalPages = Math.ceil(response.total / paginationLimit);
             $rootScope.loading = false;

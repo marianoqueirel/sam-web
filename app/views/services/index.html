@@ -15,6 +15,11 @@
           </span>
         </div>
       </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.currentUser.user_type !== 'User'">
+        <select name="search_user_id" ng-model="search_user_id" class="form-control" ng-disabled="sending" ng-change="searchService()" ng-options="option.id as option.first_name for option in users">
+          <option value="" selected>Seleccione un usuario</option>
+        </select>
+      </div>
       <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
         <select name="service_type_id" ng-model="service_type_id" class="form-control" ng-disabled="sending" ng-change="searchService()">
           <option value="" selected>Tipo de Prestacion</option>
