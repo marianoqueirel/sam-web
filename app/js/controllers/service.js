@@ -38,6 +38,7 @@ angular.module('payeSAM.controllers')
         $rootScope.loading = true;
         Service
           .query({
+            searchService: $scope.term,
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
             user_id: $scope.search_user_id,
