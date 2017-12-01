@@ -65,6 +65,25 @@ angular.module('payeSAM.controllers')
         });
       };
 
+    $scope.requireAudit = function (serviceId, name) {
+      if (serviceId) {
+        var confirmation = window.confirm('Desea solicitar una nueva auditoria para ' + name + '?');
+
+        if (confirmation) {
+          $rootScope.loading = true;
+
+          Service
+          .requireAudit({ id: serviceId }, function () {
+            notification.success('Auditoria requerida con exito!.');
+            _getService();
+          }, function () {
+            notification.error('No puede requerir una nueva auditoria para este paciente teniendo otra pendiente.');
+          });
+          $rootScope.loading = false;
+        }
+      }
+    };
+
     $scope.statusText = function (status) {
       if (status === 'pending') { return 'Pendiente'; }
       if (status === 'approved') { return 'Aprobado'; }

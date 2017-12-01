@@ -37,7 +37,7 @@
       <hr>
       <div class="row">
         <div class="pull-right" ng-if="service.can_add_audits">
-          <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="auditModal({'service_id': service.id}, false)">Nueva Auditoria</a>
+          <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="requireAudit(service.id, service.patient.name)">Solicitar Auditoria</a>
         </div>
       </div>
       <div class="clearfix"></div>

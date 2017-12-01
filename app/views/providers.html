@@ -5,11 +5,13 @@
 
   <div class="title_right">
     <form ng-submit="searchProvider()">
-      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
         <div class="input-group">
           <input type="text" class="form-control" ng-model="term">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">Buscar</button>
+            <button type="submit" class="btn btn-default">
+              <i class="fa fa-search"></i>
+            </button>
           </span>
         </div>
       </div>

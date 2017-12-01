@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-12">
           <label for="email">Email</label>
-          <input type="text" class="form-control" placeholder="Email..." ng-model="user.email" ng-disabled="sending" ng-readonly>
+          <input type="text" class="form-control" placeholder="Email..." ng-model="user.email" ng-disabled="sending" ng-readonly="show">
           <div class="validator-error" ng-show="form_errors.email">* {{$root.validatorLabel(form_errors.email[0])}}</div>
         </div>
         <div class="col-md-12">

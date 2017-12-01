@@ -30,6 +30,10 @@ angular.module('payeSAM.services')
       count: {
         url: urlResources + '/count',
         method: 'GET'
+      },
+      requireAudit: {
+        url: urlResource + '/require_audit',
+        method: 'POST'
       }
     });
   }

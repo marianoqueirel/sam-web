@@ -72,10 +72,24 @@ angular.module('payeSAM.controllers')
       }
     };
 
+    var setPlace = function () {
+      if ($scope.service.service_type_id === 1){
+        $scope.service.place = $scope.place;
+      } else {
+        $scope.service.place = null;
+      }
+    };
+
+    $scope.updatePlace = function () {
+      setPlace();
+    };
+
     $scope.setSelectedPatient = function (selectedPatient) {
       if (selectedPatient) {
         $scope.service.patient_id = selectedPatient.id;
         $scope.service.diagnosis = selectedPatient.diagnosis;
+        $scope.place = selectedPatient.address;
+        setPlace();
       }
     };
 

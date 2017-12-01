@@ -16,13 +16,16 @@ angular.module('payeSAM.controllers')
 
       var _getPatients = function (page) {
         $rootScope.loading = true;
+        console.log($scope);
         Patient
           .query({
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
+            user_id: $scope.userId,
             searchPatient: $scope.term
           }, function (response) {
             $scope.patients = response.rows;
+            $scope.users = response.users;
             $scope.pagination.totalItems = response.total;
             $scope.totalPages = Math.ceil(response.total / paginationLimit);
             $rootScope.loading = false;
@@ -58,7 +61,7 @@ angular.module('payeSAM.controllers')
         });
       };
 
-      $scope.searchPatient = function () {
+      $scope.searchPatients = function () {
         _getPatients();
       };
 
