@@ -1,8 +1,28 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('ServiceFormModalCtrl', ['$filter', '$rootScope', '$scope', 'Service', 'ServiceType', 'Patient', '$uibModalInstance', 'notification', 'service_id', 'show', function ($filter, $rootScope, $scope, Service, ServiceType, Patient, $uibModalInstance, notification, service_id, show) {
-
+  .controller('ServiceFormModalCtrl', [
+    '$rootScope',
+    '$scope',
+    'Service',
+    'ServiceType',
+    'Patient',
+    '$uibModalInstance',
+    'notification',
+    'service_id',
+    'show',
+    function (
+      $rootScope,
+      $scope,
+      Service,
+      ServiceType,
+      Patient,
+      $uibModalInstance,
+      notification,
+      service_id,
+      show
+    )
+  {
     var loadServiceTypes = function () {
       ServiceType.query(
         {},
@@ -13,7 +33,6 @@ angular.module('payeSAM.controllers')
     };
 
     $scope.init = function () {
-
       $scope.sending = false;
       $scope.loadingServices = false;
       $scope.loadingPatients = false;

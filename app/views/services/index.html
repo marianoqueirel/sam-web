@@ -17,7 +17,7 @@
       </div>
       <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
         <select name="service_type_id" ng-model="service_type_id" class="form-control" ng-disabled="sending" ng-change="searchService()">
-          <option value="" disabled selected>Tipo de Prestacion</option>
+          <option value="" selected>Tipo de Prestacion</option>
           <option ng-repeat="option in service_types" value="{{option.id}}">{{option.description}}</option>
         </select>
       </div>

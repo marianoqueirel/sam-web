@@ -16,12 +16,11 @@ angular.module('payeSAM.controllers')
 
       var _getPatients = function (page) {
         $rootScope.loading = true;
-        console.log($scope);
         Patient
           .query({
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
-            user_id: $scope.userId,
+            user_id: $scope.search_user_id,
             searchPatient: $scope.term
           }, function (response) {
             $scope.patients = response.rows;

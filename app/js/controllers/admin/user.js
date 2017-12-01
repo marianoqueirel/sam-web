@@ -1,7 +1,27 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('AdminUserCtrl', ['$rootScope', '$scope', '$http', '$location', '$uibModal', 'User', 'notification', 'paginationLimit', function ($rootScope, $scope, $http, $location, $uibModal, User, notification, paginationLimit) {
+  .controller('AdminUserCtrl', [
+                                  '$rootScope',
+                                  '$scope',
+                                  '$http',
+                                  '$location',
+                                  '$uibModal',
+                                  'User',
+                                  'notification',
+                                  'paginationLimit',
+                                  'localStorageService',
+                                  function (
+                                    $rootScope,
+                                    $scope,
+                                    $http,
+                                    $location,
+                                    $uibModal,
+                                    User,
+                                    notification,
+                                    paginationLimit,
+                                    localStorageService
+                                  ) {
       $scope.sort = {
         column: 'created_at',
         descending: false
@@ -82,6 +102,19 @@ angular.module('payeSAM.controllers')
       $scope.$watch('pagination.currentPage', function() {
         _getUsers();
       });
+
+      $scope.loginAs = function (user) {
+        var confirmation = window.confirm('Esta seguro que desea cambiar de Usuario?');
+        if (confirmation){
+          localStorageService.remove('currentUser');
+          delete $rootScope.currentUser;
+          $http.defaults.headers.common['X-PAYE-SAM-ACCESS-TOKEN'] = user.access_token;
+          $rootScope.currentUser = user;
+          $rootScope.currentUser.timeout = +(new Date()) + 14400000;
+          localStorageService.add('currentUser', user);
+          $location.path('/');
+        }
+      };
 
       $scope.userTypeText = function (userType) {
         if (userType === 'Admin') { return 'Administrador'; }

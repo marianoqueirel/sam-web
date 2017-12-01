@@ -1,24 +1,27 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('ServiceCtrl', ['$rootScope',
-                              '$scope',
-                              '$http',
-                              '$location',
-                              '$uibModal',
-                              'Service',
-                              'ServiceType',
-                              'notification',
-                              'paginationLimit',
-                              function ($rootScope,
-                                        $scope,
-                                        $http,
-                                        $location,
-                                        $uibModal,
-                                        Service,
-                                        ServiceType,
-                                        notification,
-                                        paginationLimit) {
+  .controller('ServiceCtrl', [
+    '$rootScope',
+    '$scope',
+    '$http',
+    '$location',
+    '$uibModal',
+    'Service',
+    'ServiceType',
+    'notification',
+    'paginationLimit',
+    function (
+      $rootScope,
+      $scope,
+      $http,
+      $location,
+      $uibModal,
+      Service,
+      ServiceType,
+      notification,
+      paginationLimit)
+    {
       $scope.sort = {
         column: 'created_at',
         descending: false

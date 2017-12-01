@@ -2,26 +2,27 @@
 
 angular.module('payeSAM.controllers')
   .controller('ServiceShowCtrl', [
-                                  '$filter',
-                                  '$rootScope',
-                                  '$scope',
-                                  '$routeParams',
-                                  '$uibModal',
-                                  'Service',
-                                  'ServiceType',
-                                  'Patient',
-                                  'notification',
-                                  function (
-                                    $filter,
-                                    $rootScope,
-                                    $scope,
-                                    $routeParams,
-                                    $uibModal,
-                                    Service,
-                                    ServiceType,
-                                    Patient,
-                                    notification
-                                  ) {
+    '$filter',
+    '$rootScope',
+    '$scope',
+    '$routeParams',
+    '$uibModal',
+    'Service',
+    'ServiceType',
+    'Patient',
+    'notification',
+    function (
+      $filter,
+      $rootScope,
+      $scope,
+      $routeParams,
+      $uibModal,
+      Service,
+      ServiceType,
+      Patient,
+      notification
+    )
+  {
 
     var _getService = function () {
       var service_id = $routeParams.id;

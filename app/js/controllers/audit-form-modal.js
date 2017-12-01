@@ -2,31 +2,33 @@
 
 angular.module('payeSAM.controllers')
   .controller('ServiceAuditFormModalCtrl', [
-                                      'ServiceAudit',
-                                      'Provider',
-                                      '$rootScope',
-                                      '$scope',
-                                      '$uibModalInstance',
-                                      'notification',
-                                      'audit',
-                                      'show',
-                                      'service_type_options',
-                                      function (
-                                        ServiceAudit,
-                                        Provider,
-                                        $rootScope,
-                                        $scope,
-                                        $uibModalInstance,
-                                        notification,
-                                        audit,
-                                        show,
-                                        service_type_options
-                                      ) {
+    'ServiceAudit',
+    'Provider',
+    '$rootScope',
+    '$scope',
+    '$uibModalInstance',
+    'notification',
+    'audit',
+    'show',
+    'service_type_options',
+    function (
+      ServiceAudit,
+      Provider,
+      $rootScope,
+      $scope,
+      $uibModalInstance,
+      notification,
+      audit,
+      show,
+      service_type_options
+    )
+  {
 
     var _getServiceAudit = function () {
       $scope.show = show;
       $scope.audit = audit;
-      $scope.audit.started_on = new Date($scope.audit.started_on);
+      if ($scope.audit.started_on)
+        $scope.audit.started_on = new Date($scope.audit.started_on);
       $scope.service_type_options = service_type_options;
       $scope.action = ($scope.audit.id ? 'edit' : 'create' );
     };
