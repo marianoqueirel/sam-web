@@ -48,6 +48,7 @@
           <tr>
             <th>Dictamen</th>
             <th>Desde</th>
+            <th>Hasta</th>
             <th>D&iacute;as</th>
             <th>Prestador</th>
             <th>Tipo de Serv.</th>
@@ -63,7 +64,10 @@
               </button>
             </td>
             <td>
-              {{ audit.started_on | date:'dd/MM/yyyy'}}
+              {{ audit.started_on | date:'dd/MM/yyyy' }}
+            </td>
+            <td>
+              {{ audit.finished_on | date:'dd/MM/yyyy' }}
             </td>
             <td>
               {{ audit.days }}

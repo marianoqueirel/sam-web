@@ -13,6 +13,7 @@ angular.module('payeSAM.controllers')
         $scope.action = 'create';
       }
       $scope.provider = {};
+      $scope.show = show;
       if (provider_id) {
         if (!show) {
           $scope.action = 'edit';
@@ -24,6 +25,17 @@ angular.module('payeSAM.controllers')
           }
         );
       }
+      switch ($scope.action) {
+        case 'show':
+          $scope.title = 'Ver';
+          break;
+        case 'edit':
+          $scope.title = 'Editar';
+          break;
+        case 'create':
+          $scope.title = 'Crear';
+          break;
+        }
     };
 
     var createProvider = function () {
