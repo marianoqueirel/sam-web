@@ -1,7 +1,24 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('PatientNewModalCtrl', ['$rootScope', '$scope', 'Patient', '$uibModalInstance', 'notification', 'patient_id', 'show', function ($rootScope, $scope, Patient, $uibModalInstance, notification, patient_id, show) {
+  .controller('PatientFormModalCtrl',
+                [
+                  '$rootScope',
+                  '$scope',
+                  'Patient',
+                  '$uibModalInstance',
+                  'notification',
+                  'patient_id',
+                  'show',
+                  function (
+                    $rootScope,
+                    $scope,
+                    Patient,
+                    $uibModalInstance,
+                    notification,
+                    patient_id,
+                    show
+                  ) {
 
     $scope.init = function () {
       $scope.sending = false;
@@ -47,6 +64,7 @@ angular.module('payeSAM.controllers')
 
         $uibModalInstance.close($scope.patient);
       }, function (err) {
+        $scope.form_errors = err.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
         notification.error('Error.');
@@ -64,6 +82,7 @@ angular.module('payeSAM.controllers')
 
         $uibModalInstance.close($scope.patient);
       }, function (err) {
+        $scope.form_errors = err.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
         notification.error('Error.');

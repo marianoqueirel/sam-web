@@ -25,12 +25,14 @@
     <!-- bootstrap-daterangepicker -->
     <link href="../bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <link rel="stylesheet" href="../bower_components/gentelella/vendors/animate.css/animate.min.css">
+    <link rel="stylesheet" href="../bower_components/gentelella/vendors/switchery/dist/switchery.min.css">
     <link rel="stylesheet" href="../bower_components/gentelella/build/css/custom.min.css">
     <link rel="stylesheet" href="../bower_components/angular-growl/build/angular-growl.min.css">
     <link rel="stylesheet" href="../bower_components/angular/angular-csp.css">
     <link rel="stylesheet" href="../bower_components/angular-datatables/dist/css/angular-datatables.css">
     <link rel="stylesheet" href="../bower_components/angular-bootstrap/ui-bootstrap-csp.css">
     <link rel="stylesheet" href="../bower_components/angular-ui-grid/ui-grid.min.css">
+    <link rel="stylesheet" href="../bower_components/angular-ui-select/dist/select.css">
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -47,10 +49,10 @@
 
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col" ng-show="$root.currentUser" ng-controller="NavbarCtrl" ng-init="init()">
+        <div class="col-md-3 left_col custom-navbar" ng-show="$root.currentUser" ng-controller="NavbarCtrl" ng-init="init()">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="/" class="site_title"><i class="fa fa-money"></i> <span>SAM</span></a>
+              <a href="/" class="site_title"><i class="fa fa-medkit"></i> <span>SAM</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -74,11 +76,12 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-dashboard"></i> Home <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-dashboard"></i> Menu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a ng-href="/dashboard">Dashboard</a></li>
-                      <li><a ng-href="/providers">Prestadores</a></li>
                       <li><a ng-href="/patients">Pacientes</a></li>
+                      <li><a ng-href="/services">Prestaciones</a></li>
+                      <li><a ng-href="/providers">Prestadores</a></li>
+                      <li ng-if="$root.currentUser.user_type === 'Admin'"><a ng-href="/admin/users">Usuarios</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -87,7 +90,7 @@
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+            <!-- <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="fa fa-cog" aria-hidden="true"></span>
               </a>
@@ -101,7 +104,7 @@
                 <span class="fa fa-power-off" aria-hidden="true" ng-click="logout()"></span>
               </a>
             </div>
-            <!-- /menu footer buttons -->
+ -->            <!-- /menu footer buttons -->
           </div>
         </div>
 
@@ -122,18 +125,18 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a ng-href="/profile/edit">Mi perfil</a></li>
-                    <li>
+                    <!-- <li>
                       <a href="javascript:;">
                         <span class="badge bg-red pull-right">50%</span>
                         <span>Settings</span>
                       </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li ng-controller="SessionCtrl"><a href="#" ng-click="logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    </li> -->
+                    <!-- <li><a href="javascript:;">Help</a></li> -->
+                    <li ng-controller="SessionCtrl"><a href="#" ng-click="logout()"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
                   </ul>
                 </li>
 
-                <li role="presentation" class="dropdown">
+                <!-- <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-bell-o"></i>
                     <span class="badge bg-green">6</span>
@@ -196,7 +199,7 @@
                       </div>
                     </li>
                   </ul>
-                </li>
+                </li> -->
               </ul>
             </nav>
           </div>
@@ -231,11 +234,16 @@
   <script src="../bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- bootstrap-daterangepicker -->
   <script src="../bower_components/gentelella/vendors/moment/min/moment.min.js"></script>
+  <script src="../bower_components/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
   <script src="../bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
   <script src="../bower_components/angular-translate/angular-translate.js"></script>
   <script src="../bower_components/gentelella/src/js/helper.js"></script>
   <script src="../bower_components/gentelella/src/js/custom.js"></script>
   <script src="../bower_components/gentelella/vendors/iCheck/icheck.js"></script>
+  <script src="../bower_components/gentelella/vendors/switchery/dist/switchery.min.js"></script>
+  <script src="../bower_components/ng-switchery/src/ng-switchery.js"></script>
+  <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="../bower_components/angular-ui-select/dist/select.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -243,25 +251,36 @@
   <script src="js/config/angular-locale_es-ar.js"></script>
   <script src="js/app.js"></script>
 
+  <script src="js/controllers/admin/dashboard.js"></script>
+  <script src="js/controllers/admin/user.js"></script>
+  <script src="js/controllers/admin/user-form-modal.js"></script>
+  <script src="js/controllers/audit-form-modal.js"></script>
   <script src="js/controllers/dashboard.js"></script>
   <script src="js/controllers/navbar.js"></script>
   <script src="js/controllers/register.js"></script>
   <script src="js/controllers/session.js"></script>
   <script src="js/controllers/profile/edit.js"></script>
   <script src="js/controllers/provider.js"></script>
-  <script src="js/controllers/provider-new-modal.js"></script>
+  <script src="js/controllers/provider-form-modal.js"></script>
   <script src="js/controllers/patient.js"></script>
-  <script src="js/controllers/patient-new-modal.js"></script>
+  <script src="js/controllers/patient-form-modal.js"></script>
+  <script src="js/controllers/service.js"></script>
+  <script src="js/controllers/service-form-modal.js"></script>
+  <script src="js/controllers/service-show.js"></script>
 
   <script src="js/directives/alerts.js"></script>
 
   <script src="js/factories/notification.js"></script>
 
   <script src="js/services/login_service.js"></script>
+  <script src="js/services/user.js"></script>
   <script src="js/services/register_user.js"></script>
   <script src="js/services/edit_user.js"></script>
   <script src="js/services/provider.js"></script>
   <script src="js/services/patient.js"></script>
+  <script src="js/services/service.js"></script>
+  <script src="js/services/service_audit.js"></script>
+  <script src="js/services/service_type.js"></script>
   <!-- endbuild -->
 
   <!-- build:js({.tmp,app}) js/templates.js -->

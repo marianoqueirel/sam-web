@@ -142,3 +142,11 @@ body {
   width: 500px;
   height: 400px;
 }
+
+.table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+  vertical-align: middle;
+}
+
+.custom-navbar {
+  z-index: 0!important;
+}

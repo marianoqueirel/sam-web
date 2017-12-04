@@ -1,8 +1,20 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('SessionCtrl', ['$rootScope', '$scope', '$location', 'LoginService', 'rootURL', 'localStorageService',
-    function($rootScope, $scope, $location, LoginService, rootURL, localStorageService) {
+  .controller('SessionCtrl', [
+    '$rootScope',
+    '$scope',
+    '$location',
+    'LoginService',
+    'rootURL',
+    'localStorageService',
+    function($rootScope,
+      $scope,
+      $location,
+      LoginService,
+      rootURL,
+      localStorageService)
+    {
 
       $scope.init = function() {
         var user = localStorageService.get('currentUser');

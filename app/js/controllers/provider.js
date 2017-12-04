@@ -23,9 +23,11 @@ angular.module('payeSAM.controllers')
           .query({
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
+            user_id: $scope.search_user_id,
             searchProvider: $scope.term
           }, function (response) {
             $scope.providers = response.rows;
+            $scope.users = response.users;
             $scope.pagination.totalItems = response.total;
             $scope.totalPages = Math.ceil(response.total / paginationLimit);
             $rootScope.loading = false;
@@ -39,15 +41,17 @@ angular.module('payeSAM.controllers')
         $scope.pagination.currentPage = parseInt($location.search().page, 10) || 1;
         $scope.sortBy = $location.search().sortBy || null;
         $scope.sortDir = $location.search().sortDir || 'desc';
+        $scope.show = false;
         _getProviders();
       };
 
-      $scope.providerModal = function (provider) {
+      $scope.providerModal = function (provider, show) {
         var modalInstance = $uibModal.open({
-          templateUrl: 'views/modals/provider-new.html',
-          controller: 'ProviderNewModalCtrl',
+          templateUrl: 'views/modals/provider-form.html',
+          controller: 'ProviderFormModalCtrl',
           size: 'lg',
           resolve: {
+            show: show,
             provider_id: function() {
               return (provider && provider.id);
             }

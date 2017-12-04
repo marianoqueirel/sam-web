@@ -1,0 +1,81 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>Prestaciones</h3>
+  </div>
+
+  <div class="title_right">
+    <form ng-submit="searchService()">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="term">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">
+              <i class="fa fa-search"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.currentUser.user_type !== 'User'">
+        <select name="search_user_id" ng-model="search_user_id" class="form-control" ng-disabled="sending" ng-change="searchService()" ng-options="option.id as option.first_name for option in users">
+          <option value="" selected>Seleccione un usuario</option>
+        </select>
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+        <select name="service_type_id" ng-model="service_type_id" class="form-control" ng-disabled="sending" ng-change="searchService()">
+          <option value="" selected>Tipo de Prestacion</option>
+          <option ng-repeat="option in service_types" value="{{option.id}}">{{option.description}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="services" ng-init="init()">
+  <div class="x_panel">
+    <button ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary pull-right" ng-click="serviceModal()">
+      Nuevo
+      <i class="fa fa-user-md"></i>
+    </button>
+    <div class="x_content">
+      <div class="table-responsive">
+        <table class="table table-striped jambo_table bulk_action">
+          <thead>
+            <tr class="headings">
+              <th class="column-title"></th>
+              <th class="column-title">Tipo</th>
+              <th class="column-title">DNI</th>
+              <th class="column-title">Apellido y Nombre</th>
+              <th class="column-title">Lugar</th>
+              <th class="column-title">Diagnostico</th>
+              <th class="column-title no-link last">
+                <span class="nobr"></span>
+              </th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="service in services track by $id(service)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
+              <td class=" ">
+                <button type="button" class="btn btn-{{ statusColor(service.status) }} btn-xs">
+                {{ statusText(service.status) }}
+                </button>
+              </td>
+              <td class=" ">{{service.service_type || 'Prestacion'}}</td>
+              <td class=" ">{{service.patient.dni}}</td>
+              <td class=" ">{{service.patient.name}}</td>
+              <td class=" ">{{service.place}}</td>
+              <td class=" ">{{service.diagnosis}}</td>
+              <td class="">
+                <div class="btn-group">
+                  <a class="btn btn-info" ng-href="/services/{{service.id}}"> Auditorias </a>
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="serviceModal(service, false)">Editar</a>
+                  <a ng-if="$root.currentUser.user_type === 'User' && false" class="btn btn-danger" ng-click="deletePatient(service)">Eliminar</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dataTables_paginate" ng-if="totalPages > 1">
+        <ul uib-pagination total-items="pagination.totalItems" ng-model="pagination.currentPage" max-size="pagination.maxSize" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+      </div>
+    </div>
+  </div>
+</div>

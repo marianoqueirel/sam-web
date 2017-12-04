@@ -5,20 +5,27 @@
 
   <div class="title_right">
     <form ng-submit="searchProvider()">
-      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
         <div class="input-group">
           <input type="text" class="form-control" ng-model="term">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">Buscar</button>
+            <button type="submit" class="btn btn-default">
+              <i class="fa fa-search"></i>
+            </button>
           </span>
         </div>
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.currentUser.user_type !== 'User'">
+        <select name="search_user_id" ng-model="search_user_id" class="form-control" ng-disabled="sending" ng-change="searchProvider()" ng-options="option.id as option.first_name for option in users">
+          <option value="" selected>Seleccione un usuario</option>
+        </select>
       </div>
     </form>
   </div>
 </div>
 <div id="providers" ng-init="init()">
   <div class="x_panel">
-    <button class="btn btn-primary pull-right" ng-click="providerModal()">
+    <button ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary pull-right" ng-click="providerModal({}, false)">
       Nuevo
       <i class="fa fa-user-md"></i>
     </button>
@@ -35,9 +42,8 @@
               <th class="column-title">Mail</th>
               <th class="column-title">CUIT</th>
               <th class="column-title">CBU</th>
-              <th class="column-title">Calificacion</th>
+              <th ng-if="$root.currentUser.user_type != 'User'" class="column-title">Usuario</th>
               <th class="column-title no-link last">
-                <span class="nobr">Opciones</span>
               </th>
           </thead>
 
@@ -51,12 +57,12 @@
               <td class=" ">{{provider.email}}</td>
               <td class=" ">{{provider.cuit}}</td>
               <td class=" ">{{provider.cbu}}</td>
-              <td class="a-right">"★★★★★"</td>
+              <td ng-if="$root.currentUser.user_type != 'User'" class=" ">{{provider.user_name}}</td>
               <td class="">
                 <div class="btn-group">
                   <a class="btn btn-info" ng-click="providerModal(provider, true)"> Ver</a>
-                  <a class="btn btn-primary" ng-click="providerModal(patient, false)">Editar</a>
-                  <a class="btn btn-danger" ng-click="deleteProvider(provider)">Eliminar</a>
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="providerModal(provider, false)">Editar</a>
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-danger" ng-click="deleteProvider(provider)">Eliminar</a>
                 </div>
               </td>
             </tr>

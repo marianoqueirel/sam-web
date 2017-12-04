@@ -4,11 +4,15 @@
 angular.module('payeSAM', [
   'ngRoute',
   'ngResource',
+  'ngSanitize',
+
   'ui.bootstrap',
+  'ui.select',
   // 'ngAnimate',
   'LocalStorageModule',
   'angular-growl',
   'templates',
+  'NgSwitchery',
 
   // App
   'payeSAM.factories',
@@ -31,7 +35,7 @@ var originUrl = isProd ? 'http://staging.sam.com.ar' : 'http://localhost:9292';
 angular.module('payeSAM')
   .constant('originUrl',  originUrl)
   .constant('apiUrl', originUrl + '/api/v1')
-  .constant('paginationLimit', 20)
+  .constant('paginationLimit', 10)
   .constant('rootURL', '/dashboard')
   .constant('adminRootURL', '/dashboard');
 
@@ -66,8 +70,31 @@ angular.module('payeSAM')
         templateUrl: 'views/patients.html',
         controller: 'PatientCtrl'
       })
+      .when('/services', {
+        templateUrl: 'views/services/index.html',
+        controller: 'ServiceCtrl'
+      })
+      .when('/services/:id', {
+        templateUrl: 'views/services/show.html',
+        controller: 'ServiceShowCtrl'
+      })
       .when('/404', {
         templateUrl: 'views/404.html'
+      })
+      // ADMIN ROUTES
+      .when('/admin/dashboard', {
+        controller: 'AdminDashboardCtrl',
+        templateUrl: 'views/admin/dashboard.html',
+        data: {
+          roles: 'Admin'
+        }
+      })
+      .when('/admin/users', {
+        controller: 'AdminUserCtrl',
+        templateUrl: 'views/admin/user.html',
+        data: {
+          roles: 'Admin'
+        }
       })
       .otherwise({ redirectTo: '/404' });
 
@@ -112,6 +139,16 @@ angular.module('payeSAM')
     }
   }])
 
+  .run(['$rootScope', '$location', function($rootScope, $location) {
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+      // Check if current user has group access
+      var role = next.$$route.data && next.$$route.data.roles;
+      if(role && role !== $rootScope.currentUser.user_type) {
+         $location.path('/');
+      }
+    });
+  }])
+
   // user permissions
   .run(['$rootScope', function ($rootScope) {
     var _accessLevel = function (role) {
@@ -128,5 +165,17 @@ angular.module('payeSAM')
       if ($rootScope.currentUser) return _accessLevel($rootScope.currentUser.role) <= _accessLevel(role);
 
       return false;
+    };
+
+    $rootScope.validatorLabel = function (key) {
+      var msg = {
+        'not_present': 'Es requerido.',
+        'not_numeric': 'No es número.',
+        'format': 'Formato Inválido.',
+        'not_in_range': 'Longitud Inválida.',
+        'not_equal': 'No es igual.',
+        'can_create_new_service': 'No puede tener mas de 1 prestación en progreso'
+      };
+      return msg[key];
     };
   }]);

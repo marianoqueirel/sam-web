@@ -4,21 +4,28 @@
   </div>
 
   <div class="title_right">
-    <form ng-submit="searchPatient()">
-      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+    <form ng-submit="searchPatients()">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
         <div class="input-group">
           <input type="text" class="form-control" ng-model="term">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">Buscar</button>
+            <button type="submit" class="btn btn-default">
+              <i class="fa fa-search"></i>
+            </button>
           </span>
         </div>
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.currentUser.user_type !== 'User'">
+        <select name="search_user_id" ng-model="search_user_id" class="form-control" ng-disabled="sending" ng-change="searchPatients()" ng-options="option.id as option.first_name for option in users">
+          <option value="" selected>Seleccione un usuario</option>
+        </select>
       </div>
     </form>
   </div>
 </div>
 <div id="patients" ng-init="init()">
   <div class="x_panel">
-    <button class="btn btn-primary pull-right" ng-click="patientModal()">
+    <button ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary pull-right" ng-click="patientModal()">
       Nuevo
       <i class="fa fa-user-md"></i>
     </button>
@@ -31,9 +38,8 @@
               <th class="column-title">DNI</th>
               <th class="column-title">Apellido y Nombre</th>
               <th class="column-title">Domicilio</th>
-              <th class="column-title">Diagnostico</th>
+              <th ng-if="$root.currentUser.user_type != 'User'" class="column-title">Usuario</th>
               <th class="column-title no-link last">
-                <span class="nobr">Opciones</span>
               </th>
           </thead>
 
@@ -43,12 +49,12 @@
               <td class=" ">{{patient.dni}}</td>
               <td class=" ">{{patient.name}}</td>
               <td class=" ">{{patient.address}}</td>
-              <td class=" ">{{patient.first_diagnosis}}</td>
+              <td ng-if="$root.currentUser.user_type != 'User'" class=" ">{{patient.user_name}}</td>
               <td class="">
                 <div class="btn-group">
                   <a class="btn btn-info" ng-click="patientModal(patient, true)"> Ver</a>
-                  <a class="btn btn-primary" ng-click="patientModal(patient, false)">Editar</a>
-                  <a class="btn btn-danger" ng-click="deletePatient(patient)">Eliminar</a>
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="patientModal(patient, false)">Editar</a>
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-danger" ng-click="deletePatient(patient)">Eliminar</a>
                 </div>
               </td>
             </tr>

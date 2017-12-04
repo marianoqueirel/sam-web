@@ -1,0 +1,52 @@
+<div id="user-form" ng-init="init()">
+  <div class="modal-header">
+    <h3 class="modal-title">{{ title }} Usuario</h3>
+  </div>
+
+  <form role="form" name="userForm" ng-submit="saveForm()">
+    <div class="modal-body clearfix">
+      <div class="form-group">
+        <div class="col-md-12">
+          <label for="last_name">Apellido</label>
+          <input type="text" class="form-control" placeholder="Apellido..." ng-model="user.last_name" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.last_name">* {{$root.validatorLabel(form_errors.last_name[0])}}</div>
+        </div>
+        <div class="col-md-12">
+          <label for="first_name">Nombre</label>
+          <input type="text" class="form-control" placeholder="Nombre..." ng-model="user.first_name" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.first_name">* {{$root.validatorLabel(form_errors.first_name[0])}}</div>
+        </div>
+        <div class="col-md-12">
+          <label for="first_name">Tipo</label>
+          <select class="form-control" ng-model="user.user_type" ng-disabled="sending" ng-readonly="show">
+            <option value="" disabled selected>Seleccione un tipo</option>
+            <option value="User">Usuario</option>
+            <option value="Auditor">Auditor</option>
+            <option value="Admin">Administrador</option>
+          </select>
+          <div class="validator-error" ng-show="form_errors.user_type">* {{$root.validatorLabel(form_errors.user_type[0])}}</div>
+        </div>
+        <div class="col-md-12">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" placeholder="Email..." ng-model="user.email" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.email">* {{$root.validatorLabel(form_errors.email[0])}}</div>
+        </div>
+        <div class="col-md-12">
+          <label for="password">Contrase&ntilde;a</label>
+          <input type="password" class="form-control" placeholder="Contrase&ntilde;a..." ng-model="user.password" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.password">* {{$root.validatorLabel(form_errors.password[0])}}</div>
+        </div>
+        <div class="col-md-12">
+          <label for="password_confirmation">Confirmar contrase&ntilde;a</label>
+          <input type="password" class="form-control" placeholder="Confirmar contrase&ntilde;a..." ng-model="user.password_confirmation" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.password_confirmation">* {{$root.validatorLabel(form_errors.password_confirmation[0])}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
+      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+    </div>
+  </form>
+</div>
