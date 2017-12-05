@@ -159,8 +159,17 @@ body {
   li.active {
     a {
       background: $body-bg;
+      :disabled {
+        color: #bfbfbf;
+      }
     }
   }
+}
+
+.not_enabled {
+  color: #bfbfbf;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .nav-sm {

@@ -79,8 +79,21 @@
                   <li><a><i class="fa fa-dashboard"></i> Menu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a ng-href="/patients">Pacientes</a></li>
-                      <li><a ng-href="/services">Prestaciones</a></li>
                       <li><a ng-href="/providers">Prestadores</a></li>
+                      <li>
+                        <a>
+                          Auditorias
+                          <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                          <li class="sub_menu"><a ng-href="/services">Internaciones</a></li>
+                          <li class="sub_menu"><a style="color: #bfbfbf; pointer-events: none; cursor: not-allowed;">Convenio</a></li>
+                          <li class="sub_menu"><a style="color: #bfbfbf; pointer-events: none; cursor: not-allowed;">Facturaci&oacute;n</a></li>
+                          <li class="sub_menu"><a style="color: #bfbfbf; pointer-events: none; cursor: not-allowed;">Medicamentos e Insumos</a></li>
+                          <li class="sub_menu"><a style="color: #bfbfbf; pointer-events: none; cursor: not-allowed;">Planes</a></li>
+                        </ul>
+                      </li>
+                      <li><a style="color: #bfbfbf; pointer-events: none; cursor: not-allowed;">Tablero de Control</a></li>
                       <li ng-if="$root.currentUser.user_type === 'Admin'"><a ng-href="/admin/users">Usuarios</a></li>
                     </ul>
                   </li>
