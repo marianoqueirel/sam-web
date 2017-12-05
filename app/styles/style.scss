@@ -150,3 +150,33 @@ body {
 .custom-navbar {
   z-index: 0!important;
 }
+
+.nav_title, .left_col {
+  background: $body-bg;
+}
+
+.nav.side-menu {
+  li.active {
+    a {
+      background: $body-bg;
+    }
+  }
+}
+
+.nav-sm {
+  ul.nav.child_menu {
+    background: $body-bg;
+  }
+}
+
+table.jambo_table {
+  thead{
+    background: darken($body-bg, 5%)
+  }
+}
+
+.profile_info {
+  span{
+    color: #ffffff;
+  }
+}
