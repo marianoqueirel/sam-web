@@ -1,0 +1,73 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>Periodos</h3>
+  </div>
+
+  <div class="title_right">
+    <form ng-submit="searchAudits()">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="term">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">
+              <i class="fa fa-search"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+        <select name="search_provider_id" ng-model="provider_id" class="form-control" ng-disabled="sending" ng-change="searchAudits()" ng-options="option.id as option.name for option in providers">
+          <option value="" selected>Seleccione un proveedor</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="patients" ng-init="init()">
+  <div class="x_panel">
+    <div class="x_content">
+      <div class="table-responsive">
+        <table class="table table-striped jambo_table bulk_action">
+          <thead>
+            <tr class="headings">
+              <th class="column-title">Apellido y Nombre</th>
+              <th class="column-title">DNI</th>
+              <th class="column-title">Proveedor</th>
+              <th class="column-title">Estado</th>
+              <th class="column-title">Inicio</th>
+              <th class="column-title">Fin</th>
+              <th class="column-title">Tipo</th>
+              <th class="column-title">Pagada</th>
+              <th class="column-title no-link last">
+              </th>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="audit in audits track by $id(audit)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
+              <td class=" ">{{audit.patient_name}}</td>
+              <td class=" ">{{audit.patient_dni}}</td>
+              <td class=" ">{{audit.provider_name}}</td>
+              <td class=" ">
+                <button type="button" class="btn btn-{{ statusColor(audit.status) }} btn-xs">
+                  {{ statusText(audit.status) }}
+                </button>
+              </td>
+              <td class=" ">{{audit.started_on | date:'dd/MM/yyyy' }}</td>
+              <td class=" ">{{audit.finished_on | date:'dd/MM/yyyy'}}</td>
+              <td class=" ">{{audit.service_type_option_description}}</td>
+              <td class=" ">{{audit.payed_at | date:'dd/MM/yyyy'}}{{ !audit.payed_at ? '--' : '' }}</td>
+              <td class="">
+                <div class="btn-group">
+                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-danger" ng-show="audit.can_pay" ng-click="markAsPayed(audit)">Pagar</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dataTables_paginate" ng-if="totalPages > 1">
+        <ul uib-pagination total-items="pagination.totalItems" ng-model="pagination.currentPage" max-size="pagination.maxSize" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+      </div>
+    </div>
+  </div>
+</div>

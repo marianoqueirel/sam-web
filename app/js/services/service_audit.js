@@ -12,8 +12,17 @@ angular.module('payeSAM.services')
       get: {
         method:'GET'
       },
+      query: {
+        url: urlResources,
+        method: 'GET',
+        isArray: false
+      },
       new: {
         url: urlResources,
+        method: 'POST'
+      },
+      markAsPayed: {
+        url: urlResource + '/mark_as_payed',
         method: 'POST'
       },
       update: {

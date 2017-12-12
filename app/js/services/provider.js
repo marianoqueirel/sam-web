@@ -17,6 +17,11 @@ angular.module('payeSAM.services')
         method: 'GET',
         isArray: false
       },
+      for_select: {
+        url: urlResources + '/for_select',
+        method: 'GET',
+        isArray: true
+      },
       new: {
         url: urlResources,
         method: 'POST'
