@@ -5,7 +5,7 @@ angular.module('payeSAM', [
   'ngRoute',
   'ngResource',
   'ngSanitize',
-
+  'ngFileUpload',
   'ui.bootstrap',
   'ui.select',
   // 'ngAnimate',

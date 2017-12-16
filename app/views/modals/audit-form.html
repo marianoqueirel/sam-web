@@ -66,6 +66,27 @@
         </div>
       </div>
 
+      <div class="col-md-12" ng-controller="UploadFile">
+        <label class="control-label" for="files">Seleccione los archivos que desea subir</label>
+        <br><br>
+        <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, $files, $invalidFiles)" multiple accept="*/*" ngf-max-height="1000" ngf-max-size="10MB">
+          Seleccionar Archivos
+        </button>
+        <br><br>
+        Archivos:
+        <ul>
+          <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+            <span class="progress" ng-show="f.progress >= 0">
+              <div style="width:{{f.progress}}%; display: inline; background: orange;"
+                  ng-bind="f.progress + '%'"></div>
+            </span>
+          </li>
+          <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+          </li>
+        </ul>
+        {{errorMsg}}
+      </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
         <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newAuditForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
