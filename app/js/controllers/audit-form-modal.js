@@ -109,6 +109,12 @@ angular.module('payeSAM.controllers')
       $scope.sending = true;
       if($scope.audit.started_on)
         $scope.audit.started_on = new Date($scope.audit.started_on);
+      if(!$scope.audit.approved){
+        $scope.audit.started_on = null;
+        $scope.audit.days = null;
+        $scope.audit.service_type_option_id = null;
+        $scope.audit.provider_id = null;
+      }
       if ($scope.action === 'create') {
         create();
       } else {
