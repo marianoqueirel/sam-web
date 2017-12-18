@@ -65,8 +65,8 @@
         <tbody>
           <tr ng-repeat="audit in service.audits">
             <td>
-              <button type="button" class="btn btn-{{ statusColor(audit.status) }} btn-xs">
-                {{ statusText(audit.status) }}
+              <button type="button" class="btn btn-{{ $root.statusColor(audit.status) }} btn-xs">
+                {{ $root.statusText(audit.status) }}
               </button>
             </td>
             <td>
