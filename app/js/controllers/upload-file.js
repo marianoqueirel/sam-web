@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('payeSAM.controllers').controller('UploadFile', ['$scope', 'Upload', '$timeout', 'apiUrl', function ($scope, Upload, $timeout, apiUrl) {
-  $scope.uploadFiles = function(service_audit_id, files, errFiles) {
+  $scope.uploadFiles = function(service_audit_id, file_type, files, errFiles) {
     $scope.files = files;
     $scope.errFiles = errFiles;
     angular.forEach(files, function(file) {
       file.upload = Upload.upload({
         url: apiUrl + '/service_audits/upload',
-        data: {service_audit_id: service_audit_id, file: file}
+        data: {service_audit_id: service_audit_id, file_type: file_type, file: file}
       });
 
       file.upload.then(function (response) {

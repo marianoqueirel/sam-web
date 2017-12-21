@@ -66,25 +66,95 @@
         </div>
       </div>
 
-      <div class="col-md-12" ng-controller="UploadFile">
-        <label class="control-label" for="files">Seleccione los archivos que desea subir</label>
-        <br><br>
-        <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, $files, $invalidFiles)" multiple accept="*/*" ngf-max-height="1000" ngf-max-size="10MB">
-          Seleccionar Archivos
-        </button>
-        <br><br>
-        Archivos:
-        <ul>
-          <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
-            <span class="progress" ng-show="f.progress >= 0">
-              <div style="width:{{f.progress}}%; display: inline; background: orange;"
-                  ng-bind="f.progress + '%'"></div>
-            </span>
-          </li>
-          <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
-          </li>
-        </ul>
-        {{errorMsg}}
+      <div class="form-group">
+        <h2>Archivos</h2>
+        <div class="col-md-3" ng-controller="UploadFile">
+          <label class="control-label" for="files">Autorizacion Inicial</label>
+          <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, 1, $files, $invalidFiles)" multiple accept="application/pdf" ngf-max-size="10MB">
+            Seleccionar Archivos
+          </button>
+          <ul class="file-upload">
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+              <span class="progress" ng-show="f.progress >= 0">
+                <div class="file-upload-percent"
+                    ng-bind="f.progress + '%'"></div>
+              </span>
+            </li>
+            <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+            </li>
+          </ul>
+          <div class="file-upload-error" ng-if="errorMsg">
+            <hr>
+              {{errorMsg}}
+            <hr>
+          </div>
+        </div>
+
+        <div class="col-md-3" ng-controller="UploadFile">
+          <label class="control-label" for="files">Control</label>
+          <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, 2, $files, $invalidFiles)" multiple accept="application/pdf" ngf-max-size="10MB">
+            Seleccionar Archivos
+          </button>
+          <ul class="file-upload">
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+              <span class="progress" ng-show="f.progress >= 0">
+                <div class="file-upload-percent"
+                    ng-bind="f.progress + '%'"></div>
+              </span>
+            </li>
+            <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+            </li>
+          </ul>
+          <div class="file-upload-error" ng-if="errorMsg">
+            <hr>
+              {{errorMsg}}
+            <hr>
+          </div>
+        </div>
+
+        <div class="col-md-3" ng-controller="UploadFile">
+          <label class="control-label" for="files">Encuesta satisfaccion</label>
+          <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, 3, $files, $invalidFiles)" multiple accept="application/pdf" ngf-max-size="10MB">
+            Seleccionar Archivos
+          </button>
+          <ul class="file-upload">
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+              <span class="progress" ng-show="f.progress >= 0">
+                <div class="file-upload-percent"
+                    ng-bind="f.progress + '%'"></div>
+              </span>
+            </li>
+            <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+            </li>
+          </ul>
+          <div class="file-upload-error" ng-if="errorMsg">
+            <hr>
+              {{errorMsg}}
+            <hr>
+          </div>
+        </div>
+
+        <div class="col-md-3" ng-controller="UploadFile">
+          <label class="control-label" for="files">Imagenes</label>
+          <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, 4, $files, $invalidFiles)" multiple accept="image/*" ngf-max-size="10MB">
+            Seleccionar Archivos
+          </button>
+          <ul class="file-upload">
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+              <span class="progress" ng-show="f.progress >= 0">
+                <div class="file-upload-percent"
+                    ng-bind="f.progress + '%'"></div>
+              </span>
+            </li>
+            <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+            </li>
+          </ul>
+          <div class="file-upload-error" ng-if="errorMsg">
+            <hr>
+              {{errorMsg}}
+            <hr>
+          </div>
+        </div>
       </div>
 
       <div class="modal-footer">

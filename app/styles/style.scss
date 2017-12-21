@@ -150,3 +150,41 @@ body {
 .custom-navbar {
   z-index: 0!important;
 }
+
+ul.file-upload {
+  padding-left: 15px;
+}
+
+.file-upload-percent {
+  width:100%;
+  display: inline;
+  background: #26B99A;
+  padding:2px;
+  border-radius: 2px;
+}
+
+.file-upload-error {
+  color: #d9534f;
+}
+
+.file-container {
+  display: inline;
+  padding-right: 10px;
+}
+
+.file-link {
+  display: inline;
+  font-size: 1.2em;
+  color: black;
+}
+
+tr.selected {
+  background-color: #F0F9E4!important;
+}
+
+.file-box {
+  padding: 10px;
+  border-spacing: 2px;
+  border: 1px solid #1ABB9C;
+  background: #F0F9E4;
+}

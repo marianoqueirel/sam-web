@@ -11,6 +11,7 @@ angular.module('payeSAM.controllers')
     'ServiceType',
     'Patient',
     'notification',
+    'Attachment',
     function (
       $filter,
       $rootScope,
@@ -20,7 +21,8 @@ angular.module('payeSAM.controllers')
       Service,
       ServiceType,
       Patient,
-      notification
+      notification,
+      Attachment
     )
   {
 
@@ -31,9 +33,44 @@ angular.module('payeSAM.controllers')
           { id: service_id },
           function (data) {
             $scope.service = data;
+            $scope.selectedAudit = {};
+            $scope.selectedAuditId = null;
+            $scope.files = {};
+            $scope.files1 = {};
+            $scope.files2 = {};
+            $scope.files3 = {};
+            $scope.files4 = {};
           }
         );
       }
+    };
+
+    var _getFiles = function(serviceAuditId) {
+      Attachment
+        .query({
+          service_audit_id: serviceAuditId
+        }, function (data) {
+          $scope.files = data;
+          $scope.files1 = _.filter($scope.files, function(value) {
+            return value.file_type === 1;
+          });
+          $scope.files2 = _.filter($scope.files, function(value) {
+            return value.file_type === 2;
+          });
+          $scope.files3 = _.filter($scope.files, function(value) {
+            return value.file_type === 3;
+          });
+          $scope.files4 = _.filter($scope.files, function(value) {
+            return value.file_type === 4;
+          });
+        }, function (error) {
+          $scope.files = {};
+          $scope.files1 = {};
+          $scope.files2 = {};
+          $scope.files3 = {};
+          $scope.files4 = {};
+          notification.error('No se pueden cargar los archivos de esta auditoria.');
+        });
     };
 
     $scope.init = function () {
@@ -41,6 +78,7 @@ angular.module('payeSAM.controllers')
       $scope.loadingServices = false;
       $scope.loadingPatients = false;
 
+      $scope.files = {};
       $scope.service = {};
       _getService();
     };
@@ -97,6 +135,35 @@ angular.module('payeSAM.controllers')
       if (status === 'approved_in_progress') { return 'success'; }
       if (status === 'approved_finished') { return 'success'; }
       if (status === 'rejected') { return 'danger'; }
+    };
+
+    $scope.loadFiles = function (serviceAudit) {
+      if (serviceAudit) {
+        $rootScope.loading = true;
+        _getFiles(serviceAudit.id);
+        $scope.selectedAudit = serviceAudit;
+        $scope.selectedAuditId = serviceAudit.id;
+        $rootScope.loading = false;
+      }
+    };
+
+    $scope.deleteFile = function (id, fileName, auditId) {
+      if (id) {
+        $rootScope.loading = true;
+        var confirmation = window.confirm('Esta seguro que desea eliminar el archivo ' + fileName + '?');
+
+        if (confirmation) {
+          Attachment
+            .delete({
+              id: id
+            }, function (data) {
+              _getFiles(auditId);
+            }, function (error) {
+              notification.error('No se pudo eliminar el archivo ' + fileName + '.');
+            });
+        }
+        $rootScope.loading = false;
+      }
     };
   }
 ]);
