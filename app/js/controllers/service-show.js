@@ -46,31 +46,35 @@ angular.module('payeSAM.controllers')
     };
 
     var _getFiles = function(serviceAuditId) {
-      Attachment
-        .query({
-          service_audit_id: serviceAuditId
-        }, function (data) {
-          $scope.files = data;
-          $scope.files1 = _.filter($scope.files, function(value) {
-            return value.file_type === 1;
+      if (serviceAuditId) {
+        $rootScope.loading = true;
+        Attachment
+          .query({
+            service_audit_id: serviceAuditId
+          }, function (data) {
+            $scope.files = data;
+            $scope.files1 = _.filter($scope.files, function(value) {
+              return value.file_type === 1;
+            });
+            $scope.files2 = _.filter($scope.files, function(value) {
+              return value.file_type === 2;
+            });
+            $scope.files3 = _.filter($scope.files, function(value) {
+              return value.file_type === 3;
+            });
+            $scope.files4 = _.filter($scope.files, function(value) {
+              return value.file_type === 4;
+            });
+          }, function (error) {
+            $scope.files = {};
+            $scope.files1 = {};
+            $scope.files2 = {};
+            $scope.files3 = {};
+            $scope.files4 = {};
+            notification.error('No se pueden cargar los archivos de esta auditoria.');
           });
-          $scope.files2 = _.filter($scope.files, function(value) {
-            return value.file_type === 2;
-          });
-          $scope.files3 = _.filter($scope.files, function(value) {
-            return value.file_type === 3;
-          });
-          $scope.files4 = _.filter($scope.files, function(value) {
-            return value.file_type === 4;
-          });
-        }, function (error) {
-          $scope.files = {};
-          $scope.files1 = {};
-          $scope.files2 = {};
-          $scope.files3 = {};
-          $scope.files4 = {};
-          notification.error('No se pueden cargar los archivos de esta auditoria.');
-        });
+        $rootScope.loading = false;
+      }
     };
 
     $scope.init = function () {
@@ -101,6 +105,10 @@ angular.module('payeSAM.controllers')
 
         modalInstance.result.then(function(){
           _getService();
+        });
+
+        modalInstance.closed.then(function(){
+          _getFiles($scope.selectedAuditId);
         });
       };
 
@@ -139,11 +147,9 @@ angular.module('payeSAM.controllers')
 
     $scope.loadFiles = function (serviceAudit) {
       if (serviceAudit) {
-        $rootScope.loading = true;
         _getFiles(serviceAudit.id);
         $scope.selectedAudit = serviceAudit;
         $scope.selectedAuditId = serviceAudit.id;
-        $rootScope.loading = false;
       }
     };
 

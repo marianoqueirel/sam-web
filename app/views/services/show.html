@@ -101,21 +101,21 @@
     </div>
   </div>
 </div>
-<div class="container file-box" ng-show="files.length > 0">
+<div class="container file-box" ng-show="selectedAuditId">
   <h3>Informe:</h3>
   <div class="row">
     <div class="col-md-9">
-      <p>{{selectedAudit.report}}</p>
+      <p>{{selectedAudit.report || 'Informe no disponible.' }}</p>
     </div>
   </div>
-  <div class="row">
+  <div class="row" ng-show="files.length > 0">
     <div class="col-md-3">
       <h2>Autorizacion Inicial</h2>
       <div ng-repeat="f in files1" class="file-container">
         <a ng-href="{{f.path}}" target="_blank" class="file-link">
           <i class="fa fa-file-pdf-o">{{' '}}{{f.name}}</i>
         </a>
-        <a ng-click="deleteFile(f.id, f.name, audit.id)" class="file-link">
+        <a ng-click="deleteFile(f.id, f.name, selectedAuditId)" class="file-link">
           <i class="fa fa-remove"></i>
         </a>
       </div>
@@ -126,7 +126,7 @@
         <a ng-href="{{f.path}}" target="_blank" class="file-link">
           <i class="fa fa-file-pdf-o">{{' '}}{{f.name}}</i>
         </a>
-        <a ng-click="deleteFile(f.id, f.name, audit.id)" class="file-link">
+        <a ng-click="deleteFile(f.id, f.name, selectedAuditId)" class="file-link">
             <i class="fa fa-remove"></i>
         </a>
       </div>
@@ -137,7 +137,7 @@
         <a ng-href="{{f.path}}" target="_blank" class="file-link">
           <i class="fa fa-file-pdf-o">{{' '}}{{f.name}}</i>
         </a>
-        <a ng-click="deleteFile(f.id, f.name, audit.id)" class="file-link">
+        <a ng-click="deleteFile(f.id, f.name, selectedAuditId)" class="file-link">
           <i class="fa fa-remove"></i>
         </a>
       </div>
@@ -148,7 +148,7 @@
         <a ng-href="{{f.path}}" target="_blank" class="file-link">
           <i class="fa fa-file-image-o">{{' '}}{{f.name}}</i>
         </a>
-        <a ng-click="deleteFile(f.id, f.name, audit.id)" class="file-link">
+        <a ng-click="deleteFile(f.id, f.name, selectedAuditId)" class="file-link">
           <i class="fa fa-remove"></i>
         </a>
       </div>

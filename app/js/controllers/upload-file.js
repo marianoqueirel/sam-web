@@ -16,7 +16,8 @@ angular.module('payeSAM.controllers').controller('UploadFile', ['$scope', 'Uploa
         });
       }, function (response) {
         if (response.status > 0)
-         $scope.errorMsg = response.data.message;
+          $scope.errorMsg = response.data.message;
+          console.log($scope.errorMsg);
       }, function (evt) {
           file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
       });

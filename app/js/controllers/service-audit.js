@@ -10,6 +10,7 @@ angular.module('payeSAM.controllers')
     'Provider',
     'notification',
     'paginationLimit',
+    '$uibModal',
     function (
       $rootScope,
       $scope,
@@ -18,7 +19,8 @@ angular.module('payeSAM.controllers')
       ServiceAudit,
       Provider,
       notification,
-      paginationLimit)
+      paginationLimit,
+      $uibModal)
     {
       $scope.sort = {
         column: 'created_at',
@@ -34,6 +36,7 @@ angular.module('payeSAM.controllers')
 
       var _getAudits = function (page) {
         $rootScope.loading = true;
+        $scope.selectedAuditId = null;
         ServiceAudit
           .query({
             searchAudits: $scope.term,
@@ -102,6 +105,28 @@ angular.module('payeSAM.controllers')
       $scope.$watch('pagination.currentPage', function() {
         _getAudits();
       });
+
+      $scope.filesModal = function (serviceAudit) {
+        $scope.selectedAuditId = serviceAudit.id;
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/modals/audit-files.html',
+          controller: 'ServiceAuditFilesModalCtrl',
+          size: 'lg',
+          resolve: {
+            serviceAudit: function () {
+              return serviceAudit;
+            }
+          }
+        });
+
+        modalInstance.result.then(function(){
+          _getAudits();
+        });
+
+        modalInstance.closed.then(function(){
+          $scope.selectedAuditId = null;
+        });
+      };
   }]);
 
 

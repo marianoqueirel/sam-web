@@ -80,10 +80,11 @@
                     ng-bind="f.progress + '%'"></div>
               </span>
             </li>
-            <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+            <li ng-repeat="f in errFiles" class="file-upload-error">
+              {{f.name}} - Error: {{f.$error == "maxSize" ? "El archivo debe ser menor a " : f.$error }} {{f.$errorParam}}
             </li>
           </ul>
-          <div class="file-upload-error" ng-if="errorMsg">
+          <div class="file-upload-error" ng-show="errorMsg">
             <hr>
               {{errorMsg}}
             <hr>
@@ -102,10 +103,11 @@
                     ng-bind="f.progress + '%'"></div>
               </span>
             </li>
-            <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+            <li ng-repeat="f in errFiles" class="file-upload-error">
+              {{f.name}} - Error: {{f.$error == "maxSize" ? "El archivo debe ser menor a " : f.$error }} {{f.$errorParam}}
             </li>
           </ul>
-          <div class="file-upload-error" ng-if="errorMsg">
+          <div class="file-upload-error" ng-show="errorMsg">
             <hr>
               {{errorMsg}}
             <hr>
@@ -124,14 +126,15 @@
                     ng-bind="f.progress + '%'"></div>
               </span>
             </li>
-            <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+            <li ng-repeat="f in errFiles" class="file-upload-error">
+              {{f.name}} - Error: {{f.$error == "maxSize" ? "El archivo debe ser menor a " : f.$error }} {{f.$errorParam}}
             </li>
+            <div class="file-upload-error" ng-show="errorMsg">
+              <hr>
+                {{errorMsg}}
+              <hr>
+            </div>
           </ul>
-          <div class="file-upload-error" ng-if="errorMsg">
-            <hr>
-              {{errorMsg}}
-            <hr>
-          </div>
         </div>
 
         <div class="col-md-3" ng-controller="UploadFile">
@@ -146,10 +149,11 @@
                     ng-bind="f.progress + '%'"></div>
               </span>
             </li>
-            <li ng-repeat="f in errFiles" style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+            <li ng-repeat="f in errFiles" class="file-upload-error">
+              {{f.name}} - Error: {{f.$error == "maxSize" ? "El archivo debe ser menor a " : f.$error }} {{f.$errorParam}}
             </li>
           </ul>
-          <div class="file-upload-error" ng-if="errorMsg">
+          <div class="file-upload-error" ng-show="errorMsg">
             <hr>
               {{errorMsg}}
             <hr>
