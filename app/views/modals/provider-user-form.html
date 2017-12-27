@@ -1,0 +1,25 @@
+<div id="provider-users" ng-init="init()">
+  <div class="modal-header">
+    <h3 class="modal-title">{{ provider.name }}</h3>
+  </div>
+
+  <form role="form" name="newProviderForm" ng-submit="saveForm()">
+    <div class="modal-body clearfix">
+      <h4>Usuarios</h4>
+      <ui-select multiple ng-model="providerUsers.users" theme="bootstrap">
+        <ui-select-match placeholder="Seleccione los usuarios...">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+        <ui-select-choices repeat="user in users |  propsFilter: {name: $select.search, email: $select.search}"">
+          <div ng-bind-html="user.name | highlight: $select.search"></div>
+          <small>
+            email: <span ng-bind-html="user.email | highlight: $select.search"></span>
+          </small>
+        </ui-select-choices>
+      </ui-select>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
+      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="newProviderForm.$invalid || sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+    </div>
+  </form>
+</div>

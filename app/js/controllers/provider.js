@@ -63,6 +63,23 @@ angular.module('payeSAM.controllers')
         });
       };
 
+      $scope.providerUserModal = function (provider) {
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/modals/provider-user-form.html',
+          controller: 'ProviderUserFormModalCtrl',
+          size: 'lg',
+          resolve: {
+            provider_id: function() {
+              return (provider && provider.id);
+            }
+          }
+        });
+
+        modalInstance.result.then(function(){
+          _getProviders();
+        });
+      };
+
       $scope.searchProvider = function () {
         _getProviders();
       };

@@ -42,7 +42,6 @@
               <th class="column-title">Mail</th>
               <th class="column-title">CUIT</th>
               <th class="column-title">CBU</th>
-              <th ng-if="$root.currentUser.user_type != 'User'" class="column-title">Usuario</th>
               <th class="column-title no-link last">
               </th>
           </thead>
@@ -57,12 +56,11 @@
               <td class=" ">{{provider.email}}</td>
               <td class=" ">{{provider.cuit}}</td>
               <td class=" ">{{provider.cbu}}</td>
-              <td ng-if="$root.currentUser.user_type != 'User'" class=" ">{{provider.user_name}}</td>
               <td class="">
                 <div class="btn-group">
                   <a class="btn btn-info" ng-click="providerModal(provider, true)"> Ver</a>
-                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="providerModal(provider, false)">Editar</a>
-                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-danger" ng-click="deleteProvider(provider)">Eliminar</a>
+                  <a class="btn btn-success" ng-click="providerModal(provider, false)"> Editar</a>
+                  <a ng-if="$root.currentUser.user_type === 'Admin'" class="btn btn-primary" ng-click="providerUserModal(provider)">Conf. Usuarios</a>
                 </div>
               </td>
             </tr>
