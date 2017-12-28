@@ -150,3 +150,11 @@ body {
 .custom-navbar {
   z-index: 0!important;
 }
+
+.x_content,
+.x_panel,
+.input-group,
+div[class*='col-'],
+.input-group .form-control {
+  position: inherit;
+}
