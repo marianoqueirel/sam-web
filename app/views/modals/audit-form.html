@@ -64,6 +64,7 @@
           <label class="control-label" for="report">Informe</label>
           <textarea class="form-control" placeholder="Informe..." ng-model="audit.report" ng-disabled="sending" ng-readonly="show">
         </div>
+        <div class="validator-error" ng-show="form_errors.report">* {{$root.validatorLabel(form_errors.report[0])}}</div>
       </div>
 
       <div class="form-group">
