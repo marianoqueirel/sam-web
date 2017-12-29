@@ -32,6 +32,38 @@
           <div class="validator-error" ng-show="form_errors.address">* {{$root.validatorLabel(form_errors.address[0])}}</div>
         </div>
         <div class="col-md-12">
+          <label for="state">Provincia</label>
+          <ui-select ng-model="selectedState"
+            theme="bootstrap"
+            on-select="setSelectedState($select.selected)"
+            reset-search-input="false">
+            <ui-select-match
+              placeholder="Seleccionar provincia...">
+              {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="state in availableStates track by $index"
+              refresh="listStates($select.search)"
+              refresh-delay="300">{{ state.name }}
+            </ui-select-choices>
+          </ui-select>
+        </div>
+        <div class="col-md-12">
+          <label for="city">Ciudad</label>
+          <ui-select ng-model="patient.city_id"
+            theme="bootstrap"
+            reset-search-input="false">
+            <ui-select-match
+              placeholder="Seleccionar una ciudad...">
+              {{$select.selected.name}}
+            </ui-select-match>
+            <ui-select-choices repeat="city in availableCities track by $index"
+              refresh="listCities($select.search)"
+              refresh-delay="300">{{ city.name }}
+            </ui-select-choices>
+          </ui-select>
+          <div class="validator-error" ng-show="form_errors.city_id">* {{$root.validatorLabel(form_errors.city_id[0])}}</div>
+        </div>
+        <div class="col-md-12">
           <label for="phone">Telefono</label>
           <input type="text" class="form-control" placeholder="Telefono..." ng-model="patient.phone" ng-disabled="sending" ng-readonly="show">
           <div class="validator-error" ng-show="form_errors.phone">* {{$root.validatorLabel(form_errors.phone[0])}}</div>

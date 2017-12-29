@@ -6,6 +6,7 @@ angular.module('payeSAM.controllers')
                   '$rootScope',
                   '$scope',
                   'Patient',
+                  'Location',
                   '$uibModalInstance',
                   'notification',
                   'patient_id',
@@ -14,6 +15,7 @@ angular.module('payeSAM.controllers')
                     $rootScope,
                     $scope,
                     Patient,
+                    Location,
                     $uibModalInstance,
                     notification,
                     patient_id,
@@ -22,6 +24,9 @@ angular.module('payeSAM.controllers')
 
     $scope.init = function () {
       $scope.sending = false;
+      $scope.loadingStates = false;
+      $scope.selectedState = null;
+      $scope.selectedCity = null;
       if (show) {
         $scope.action = 'show';
       }
@@ -53,6 +58,46 @@ angular.module('payeSAM.controllers')
           $scope.title = 'Crear';
           break;
         }
+    };
+
+    $scope.listStates = function (query) {
+      $scope.availableStates = [];
+      if (query && query.length >= 3) {
+        $scope.loadingStates = true;
+        Location.states(
+          {name: query},
+          function (data) {
+            $scope.availableStates = data;
+          }, function () {
+              notification.error('Error al cargar los provincias.');
+              $scope.loadingStates = false;
+          });
+      }
+    };
+
+    $scope.listCities = function (query) {
+      $scope.availableCities = [];
+      if (query && query.length >= 3) {
+        $scope.loadingCities = true;
+        Location.cities(
+          {
+            state_id: $scope.selectedState.id,
+            name: query
+          },
+          function (data) {
+            $scope.availableCities = data;
+          }, function () {
+              notification.error('Error al cargar los ciudades.');
+              $scope.loadingCities = false;
+          });
+      }
+    };
+
+    $scope.setSelectedState = function (state) {
+      $scope.availableCities = [];
+      $scope.selectedState = state;
+      $scope.patient.city_id = null;
+      $scope.availableCities = [];
     };
 
     var createPatient = function () {
