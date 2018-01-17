@@ -64,6 +64,102 @@
           <label class="control-label" for="report">Informe</label>
           <textarea class="form-control" placeholder="Informe..." ng-model="audit.report" ng-disabled="sending" ng-readonly="show">
         </div>
+        <div class="validator-error" ng-show="form_errors.report">* {{$root.validatorLabel(form_errors.report[0])}}</div>
+      </div>
+
+      <div class="form-group">
+        <h2>Archivos</h2>
+        <div class="col-md-3" ng-controller="UploadFile">
+          <label class="control-label" for="files">Autorizacion Inicial</label>
+          <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, 1, $files, $invalidFiles)" multiple accept="application/pdf" ngf-max-size="10MB">
+            Seleccionar Archivos
+          </button>
+          <ul class="file-upload">
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+              <span class="progress" ng-show="f.progress >= 0">
+                <div class="file-upload-percent"
+                    ng-bind="f.progress + '%'"></div>
+              </span>
+            </li>
+            <li ng-repeat="f in errFiles" class="file-upload-error">
+              {{f.name}} - Error: {{f.$error == "maxSize" ? "El archivo debe ser menor a " : f.$error }} {{f.$errorParam}}
+            </li>
+          </ul>
+          <div class="file-upload-error" ng-show="errorMsg">
+            <hr>
+              {{errorMsg}}
+            <hr>
+          </div>
+        </div>
+
+        <div class="col-md-3" ng-controller="UploadFile">
+          <label class="control-label" for="files">Control</label>
+          <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, 2, $files, $invalidFiles)" multiple accept="application/pdf" ngf-max-size="10MB">
+            Seleccionar Archivos
+          </button>
+          <ul class="file-upload">
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+              <span class="progress" ng-show="f.progress >= 0">
+                <div class="file-upload-percent"
+                    ng-bind="f.progress + '%'"></div>
+              </span>
+            </li>
+            <li ng-repeat="f in errFiles" class="file-upload-error">
+              {{f.name}} - Error: {{f.$error == "maxSize" ? "El archivo debe ser menor a " : f.$error }} {{f.$errorParam}}
+            </li>
+          </ul>
+          <div class="file-upload-error" ng-show="errorMsg">
+            <hr>
+              {{errorMsg}}
+            <hr>
+          </div>
+        </div>
+
+        <div class="col-md-3" ng-controller="UploadFile">
+          <label class="control-label" for="files">Encuesta satisfaccion</label>
+          <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, 3, $files, $invalidFiles)" multiple accept="application/pdf" ngf-max-size="10MB">
+            Seleccionar Archivos
+          </button>
+          <ul class="file-upload">
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+              <span class="progress" ng-show="f.progress >= 0">
+                <div class="file-upload-percent"
+                    ng-bind="f.progress + '%'"></div>
+              </span>
+            </li>
+            <li ng-repeat="f in errFiles" class="file-upload-error">
+              {{f.name}} - Error: {{f.$error == "maxSize" ? "El archivo debe ser menor a " : f.$error }} {{f.$errorParam}}
+            </li>
+            <div class="file-upload-error" ng-show="errorMsg">
+              <hr>
+                {{errorMsg}}
+              <hr>
+            </div>
+          </ul>
+        </div>
+
+        <div class="col-md-3" ng-controller="UploadFile">
+          <label class="control-label" for="files">Imagenes</label>
+          <button type="button" class="btn btn-info" ngf-select="uploadFiles(audit.id, 4, $files, $invalidFiles)" multiple accept="image/*" ngf-max-size="10MB">
+            Seleccionar Archivos
+          </button>
+          <ul class="file-upload">
+            <li ng-repeat="f in files" style="font:smaller">{{f.name}} {{f.$errorParam}}
+              <span class="progress" ng-show="f.progress >= 0">
+                <div class="file-upload-percent"
+                    ng-bind="f.progress + '%'"></div>
+              </span>
+            </li>
+            <li ng-repeat="f in errFiles" class="file-upload-error">
+              {{f.name}} - Error: {{f.$error == "maxSize" ? "El archivo debe ser menor a " : f.$error }} {{f.$errorParam}}
+            </li>
+          </ul>
+          <div class="file-upload-error" ng-show="errorMsg">
+            <hr>
+              {{errorMsg}}
+            <hr>
+          </div>
+        </div>
       </div>
 
       <div class="modal-footer">

@@ -44,7 +44,7 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="audit in audits track by $id(audit)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
+            <tr ng-repeat="audit in audits track by $id(audit)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'" ng-click="filesModal(audit)" ng-class="{selected: audit.id === selectedAuditId}">
               <td class=" ">{{audit.patient_name}}</td>
               <td class=" ">{{audit.patient_dni}}</td>
               <td class=" ">{{audit.provider_name}}</td>

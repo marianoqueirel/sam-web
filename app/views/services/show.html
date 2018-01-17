@@ -63,7 +63,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="audit in service.audits">
+          <tr ng-repeat="audit in service.audits" ng-click="loadFiles(audit)" ng-class="{selected: audit.id === selectedAuditId}">
             <td>
               <button type="button" class="btn btn-{{ $root.statusColor(audit.status) }} btn-xs">
                 {{ $root.statusText(audit.status) }}
@@ -89,7 +89,8 @@
             </td>
             <td>
               <div class="btn-group btn-group-justified">
-                <a ng-click="auditModal(audit, true)" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Ver Informe </a>
+                <a ng-show="false" ng-click="auditModal(audit, true)" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Informe </a>
+                <a ng-show="false" ng-click="loadFiles(audit)" class="btn btn-primary btn-xs"><i class="fa fa-file"></i> Archivos </a>
                 <a ng-click="auditModal(audit, false)" class="btn btn-info btn-xs" ng-if="$root.currentUser.user_type === 'Auditor'"><i class="fa fa-pencil"></i> Editar </a>
               </div>
             </td>
@@ -99,6 +100,60 @@
       <!-- end audits list -->
     </div>
   </div>
-
 </div>
+<div class="container file-box" ng-show="selectedAuditId">
+  <h3>Informe:</h3>
+  <div class="row">
+    <div class="col-md-9">
+      <p>{{selectedAudit.report || 'Informe no disponible.' }}</p>
+    </div>
+  </div>
+  <div class="row" ng-show="files.length > 0">
+    <div class="col-md-3">
+      <h2>Autorizacion Inicial</h2>
+      <div ng-repeat="f in files1" class="file-container">
+        <a ng-href="{{f.path}}" target="_blank" class="file-link">
+          <i class="fa fa-file-pdf-o">{{' '}}{{f.name}}</i>
+        </a>
+        <a ng-click="deleteFile(f.id, f.name, selectedAuditId)" class="file-link">
+          <i class="fa fa-remove"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h2>Control</h2>
+      <div ng-repeat="f in files2" class="file-container">
+        <a ng-href="{{f.path}}" target="_blank" class="file-link">
+          <i class="fa fa-file-pdf-o">{{' '}}{{f.name}}</i>
+        </a>
+        <a ng-click="deleteFile(f.id, f.name, selectedAuditId)" class="file-link">
+            <i class="fa fa-remove"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h2>Encuesta satisfaccion</h2>
+      <div ng-repeat="f in files3" class="file-container">
+        <a ng-href="{{f.path}}" target="_blank" class="file-link">
+          <i class="fa fa-file-pdf-o">{{' '}}{{f.name}}</i>
+        </a>
+        <a ng-click="deleteFile(f.id, f.name, selectedAuditId)" class="file-link">
+          <i class="fa fa-remove"></i>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <h2>Imagenes</h2>
+      <div ng-repeat="f in files4" class="file-container">
+        <a ng-href="{{f.path}}" target="_blank" class="file-link">
+          <i class="fa fa-file-image-o">{{' '}}{{f.name}}</i>
+        </a>
+        <a ng-click="deleteFile(f.id, f.name, selectedAuditId)" class="file-link">
+          <i class="fa fa-remove"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</br></br>
 

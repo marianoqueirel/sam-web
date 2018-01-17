@@ -64,6 +64,8 @@ angular.module('payeSAM.controllers')
       if(!newValue){
         $scope.service_type_option_id = null;
         $scope.provider_id = null;
+        $scope.audit.days = null;
+        $scope.audit.started_on = null;
         $scope.empty_values = true;
       }else{
         $scope.empty_values = false;
