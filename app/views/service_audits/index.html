@@ -49,8 +49,8 @@
               <td class=" ">{{audit.patient_dni}}</td>
               <td class=" ">{{audit.provider_name}}</td>
               <td class=" ">
-                <button type="button" class="btn btn-{{ statusColor(audit.status) }} btn-xs">
-                  {{ statusText(audit.status) }}
+                <button type="button" class="btn btn-{{ $root.statusColor(audit.status) }} btn-xs">
+                  {{ $root.statusText(audit.status) }}
                 </button>
               </td>
               <td class=" ">{{audit.started_on | date:'dd/MM/yyyy' }}</td>

@@ -75,7 +75,7 @@ angular.module('payeSAM.controllers')
 
     $scope.listPatients = function (query) {
       $scope.availablePatients = [];
-      if (query && query.length >= 6) {
+      if (query && query.length >= 3) {
         $scope.loadingPatients = true;
         Patient
           .query({

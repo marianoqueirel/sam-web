@@ -155,6 +155,23 @@ angular.module('payeSAM')
 
   // user permissions
   .run(['$rootScope', function ($rootScope) {
+
+    $rootScope.statusText = function (status) {
+      if (status === 'pending') { return 'Pendiente'; }
+      if (status === 'approved') { return 'Aprobado'; }
+      if (status === 'approved_in_progress') { return 'Aprobado en Curso'; }
+      if (status === 'approved_finished') { return 'Aprobado Finalizado'; }
+      if (status === 'rejected') { return 'Rechazado'; }
+    };
+
+    $rootScope.statusColor = function (status) {
+      if (status === 'pending') { return 'warning'; }
+      if (status === 'approved') { return 'success'; }
+      if (status === 'approved_in_progress') { return 'success'; }
+      if (status === 'approved_finished') { return 'success'; }
+      if (status === 'rejected') { return 'danger'; }
+    };
+
     var _accessLevel = function (role) {
       var levels = {
         superadmin: 0,

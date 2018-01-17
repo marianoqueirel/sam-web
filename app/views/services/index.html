@@ -54,8 +54,8 @@
           <tbody>
             <tr ng-repeat="service in services track by $id(service)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
               <td class=" ">
-                <button type="button" class="btn btn-{{ statusColor(service.status) }} btn-xs">
-                {{ statusText(service.status) }}
+                <button type="button" class="btn btn-{{ $root.statusColor(service.status) }} btn-xs">
+                {{ $root.statusText(service.status) }}
                 </button>
               </td>
               <td class=" ">{{service.service_type || 'Prestacion'}}</td>

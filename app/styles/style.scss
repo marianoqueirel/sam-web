@@ -188,3 +188,11 @@ tr.selected {
   border: 1px solid #1ABB9C;
   background: #F0F9E4;
 }
+
+.x_content,
+.x_panel,
+.input-group,
+div[class*='col-'],
+.input-group .form-control {
+  position: inherit;
+}
