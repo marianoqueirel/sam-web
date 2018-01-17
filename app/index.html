@@ -90,9 +90,9 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-dashboard"></i> Menu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a ng-href="/patients">Pacientes</a></li>
-                      <li><a ng-href="/providers">Prestadores</a></li>
-                      <li>
+                      <li ng-if="$root.canNotAccess(['Provider'], $root.currentUser)"><a ng-href="/patients">Pacientes</a></li>
+                      <li ng-if="$root.canNotAccess(['Provider'], $root.currentUser)"><a ng-href="/providers">Prestadores</a></li>
+                      <li ng-if="$root.canNotAccess(['Provider'], $root.currentUser)">
                         <a>
                           Auditorias
                           <span class="fa fa-chevron-down"></span>
@@ -106,7 +106,7 @@
                         </ul>
                       </li>
                       <li class="sub_menu"><a ng-href="/service_audits">Tablero de Control</a></li>
-                      <li ng-if="$root.currentUser.user_type === 'Admin'"><a ng-href="/admin/users">Usuarios</a></li>
+                      <li ng-if="$root.canAccess(['Admin'], $root.currentUser)"><a ng-href="/admin/users">Usuarios</a></li>
                     </ul>
                   </li>
                 </ul>
