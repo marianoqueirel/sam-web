@@ -105,6 +105,11 @@
           <input type="text" class="form-control" placeholder="Matricula..." ng-model="service.primary_doctor_number" ng-disabled="sending">
           <div class="validator-error" ng-show="form_errors.primary_doctor_number">* {{$root.validatorLabel(form_errors.primary_doctor_number[0])}}</div>
         </div>
+        <div class="col-md-12" ng-show="action == 'edit'">
+          <label for="comment">Comentario</label>
+          <textarea class="form-control" placeholder="Comentario..." ng-model="service.comment" ng-disabled="sending">
+          <div class="validator-error" ng-show="form_errors.comment">* {{$root.validatorLabel(form_errors.comment[0])}}</div>
+        </div>
       </div>
 
       <div class="modal-footer">
