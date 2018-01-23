@@ -18,6 +18,16 @@ angular.module('payeSAM.services')
         url: urlResources + '/cities',
         method: 'GET',
         isArray: true
+      },
+      state: {
+        url: urlResources + '/state',
+        method: 'GET',
+        isArray: false
+      },
+      city: {
+        url: urlResources + '/city',
+        method: 'GET',
+        isArray: false
       }
     });
   }
