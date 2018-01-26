@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('ProviderUserFormModalCtrl', [
+  .controller('ProviderCompaniesFormModalCtrl', [
     '$rootScope',
     '$scope',
     'Provider',

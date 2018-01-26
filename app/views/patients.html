@@ -16,8 +16,8 @@
         </div>
       </div>
       <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.currentUser.user_type !== 'User'">
-        <select name="search_user_id" ng-model="search_user_id" class="form-control" ng-disabled="sending" ng-change="searchPatients()" ng-options="option.id as option.first_name for option in users">
-          <option value="" selected>Seleccione un usuario</option>
+        <select name="search_company_id" ng-model="search_company_id" class="form-control" ng-disabled="sending" ng-change="searchPatients()" ng-options="option.id as option.name for option in companies">
+          <option value="" selected>Seleccione un empresa</option>
         </select>
       </div>
     </form>
@@ -38,7 +38,7 @@
               <th class="column-title">DNI</th>
               <th class="column-title">Apellido y Nombre</th>
               <th class="column-title">Domicilio</th>
-              <th ng-if="$root.currentUser.user_type != 'User'" class="column-title">Usuario</th>
+              <th ng-if="$root.currentUser.user_type != 'User'" class="column-title">Empresa</th>
               <th class="column-title no-link last">
               </th>
           </thead>
@@ -49,7 +49,7 @@
               <td class=" ">{{patient.dni}}</td>
               <td class=" ">{{patient.name}}</td>
               <td class=" ">{{patient.address}}</td>
-              <td ng-if="$root.currentUser.user_type != 'User'" class=" ">{{patient.user_name}}</td>
+              <td ng-if="$root.currentUser.user_type != 'User'" class=" ">{{patient.company_name}}</td>
               <td class="">
                 <div class="btn-group">
                   <a class="btn btn-info" ng-click="patientModal(patient, true)"> Ver</a>
