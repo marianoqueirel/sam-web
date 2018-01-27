@@ -6,6 +6,7 @@ angular.module('payeSAM.controllers')
                   '$rootScope',
                   '$scope',
                   'Patient',
+                  'Location',
                   '$uibModalInstance',
                   'notification',
                   'patient_id',
@@ -14,14 +15,36 @@ angular.module('payeSAM.controllers')
                     $rootScope,
                     $scope,
                     Patient,
+                    Location,
                     $uibModalInstance,
                     notification,
                     patient_id,
                     show
                   ) {
 
+    var loadStateAndCity = function () {
+      if ($scope.patient.city_id)
+      {
+        Location.state({city_id: $scope.patient.city_id }, function (response) {
+            $scope.selectedState = response;
+          }, function () {
+            notification.error('Error al cargar provincia');
+          }
+        );
+        Location.city({ city_id: $scope.patient.city_id }, function (response) {
+            $scope.patient.city_id = response;
+          }, function () {
+            notification.error('Error al cargar ciudad');
+          }
+        );
+      }
+    };
+
     $scope.init = function () {
       $scope.sending = false;
+      $scope.loadingStates = false;
+      $scope.selectedState = null;
+      $scope.selectedCity = null;
       if (show) {
         $scope.action = 'show';
       }
@@ -39,6 +62,7 @@ angular.module('payeSAM.controllers')
           function (data) {
             $scope.patient = data;
             $scope.patient.birthday = new Date($scope.patient.birthday);
+            loadStateAndCity();
           }
         );
       }
@@ -55,7 +79,55 @@ angular.module('payeSAM.controllers')
         }
     };
 
+    $scope.listStates = function (query) {
+      $scope.availableStates = [];
+      if (query && query.length >= 3) {
+        $scope.loadingStates = true;
+        Location.states(
+          {name: query},
+          function (data) {
+            $scope.availableStates = data;
+          }, function () {
+              notification.error('Error al cargar los provincias.');
+              $scope.loadingStates = false;
+          });
+      }
+    };
+
+    $scope.listCities = function (query) {
+      $scope.availableCities = [];
+      if (query && query.length >= 3) {
+        $scope.loadingCities = true;
+        Location.cities(
+          {
+            state_id: $scope.selectedState.id,
+            name: query
+          },
+          function (data) {
+            $scope.availableCities = data;
+          }, function () {
+              notification.error('Error al cargar los ciudades.');
+              $scope.loadingCities = false;
+          });
+      }
+    };
+
+    $scope.setSelectedState = function (state) {
+      $scope.availableCities = [];
+      $scope.selectedState = state;
+      $scope.patient.city_id = null;
+      $scope.availableCities = [];
+    };
+
+    var setCityId = function () {
+      if ($scope.patient.city_id)
+      {
+        $scope.patient.city_id = $scope.patient.city_id.id;
+      }
+    };
+
     var createPatient = function () {
+      setCityId();
       Patient.new($scope.patient, function () {
         notification.success('Paciente creado con exito!');
 
@@ -72,7 +144,8 @@ angular.module('payeSAM.controllers')
     };
 
     var savePatient = function () {
-       Patient.update(
+      setCityId();
+      Patient.update(
         { id: $scope.patient.id, patient: $scope.patient },
         function () {
         notification.success('Paciente guardado con exito!');
