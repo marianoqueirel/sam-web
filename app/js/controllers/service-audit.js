@@ -40,6 +40,8 @@ angular.module('payeSAM.controllers')
         ServiceAudit
           .query({
             searchAudits: $scope.term,
+            date_from: $scope.date_from,
+            date_to: $scope.date_to,
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
             provider_id: $scope.provider_id
