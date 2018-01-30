@@ -77,6 +77,15 @@ angular.module('payeSAM.controllers')
         _getAudits();
       };
 
+      $scope.checkDateFilter = function () {
+        if ($scope.date_from  && $scope.date_to && ($scope.date_from > $scope.date_to))
+        {
+          notification.error('Los datos ingresados en el filtro de fecha son incorrectos. No serán tenidos en cuenta hasta que sean corregidos.');
+        }
+      };
+
+
+
       $scope.markAsPayed = function (audit) {
         var confirmation = window.confirm('Esta seguro que desea marcar como pagada?');
         if (confirmation){
