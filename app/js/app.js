@@ -177,11 +177,11 @@ angular.module('payeSAM')
     };
 
     $rootScope.canAccess = function (roles, user) {
-      return (roles.indexOf(user.user_type) >= 0);
+      return (user && roles.indexOf(user.user_type) >= 0);
     };
 
     $rootScope.canNotAccess = function (roles, user) {
-      return (roles.indexOf(user.user_type) < 0);
+      return (user && roles.indexOf(user.user_type) < 0);
     };
 
     var _accessLevel = function (role) {

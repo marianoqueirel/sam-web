@@ -57,6 +57,7 @@ angular.module('payeSAM.controllers')
       };
 
       var loadProviders = function () {
+        console.log($scope.selectedAuditId);
         Provider.for_select(
           {},
           function (response) {
