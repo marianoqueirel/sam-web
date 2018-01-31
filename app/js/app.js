@@ -174,6 +174,7 @@ angular.module('payeSAM')
       if (status === 'approved_in_progress') { return 'success'; }
       if (status === 'approved_finished') { return 'success'; }
       if (status === 'rejected') { return 'danger'; }
+    };
 
     $rootScope.canAccess = function (roles, user) {
       return (roles.indexOf(user.user_type) >= 0);
