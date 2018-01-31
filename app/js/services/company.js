@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('payeSAM.services')
-  .factory('Provider', ['$rootScope', '$resource', 'apiUrl', function ($rootScope, $resource, apiUrl) {
+  .factory('Company', ['$rootScope', '$resource', 'apiUrl', function ($rootScope, $resource, apiUrl) {
 
-    var urlResources = apiUrl + '/providers',
+    var urlResources = apiUrl + '/companies',
         urlResource  = urlResources + '/:id';
 
     return $resource(urlResource, {
@@ -17,11 +17,6 @@ angular.module('payeSAM.services')
         method: 'GET',
         isArray: false
       },
-      for_select: {
-        url: urlResources + '/for_select',
-        method: 'GET',
-        isArray: true
-      },
       new: {
         url: urlResources,
         method: 'POST'
@@ -29,16 +24,8 @@ angular.module('payeSAM.services')
       update: {
         method: 'PUT'
       },
-      add_companies: {
-        url: urlResource + '/add_companies',
-        method: 'PUT'
-      },
       delete: {
         method: 'DELETE'
-      },
-      count: {
-        url: urlResources + '/count',
-        method: 'GET'
       }
     });
   }

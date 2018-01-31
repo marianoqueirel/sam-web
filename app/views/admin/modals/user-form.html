@@ -27,6 +27,12 @@
           </select>
           <div class="validator-error" ng-show="form_errors.user_type">* {{$root.validatorLabel(form_errors.user_type[0])}}</div>
         </div>
+        <div class="col-md-12" ng-if="user.user_type == 'User'">
+          <label for="company_id">Empresa</label>
+          <select name="company_id" ng-model="user.company_id" class="form-control" ng-disabled="sending" ng-options="option.id as option.name for option in companies">
+          </select>
+          <div class="validator-error" ng-show="form_errors.company_id">* {{$root.validatorLabel(form_errors.company_id[0])}}</div>
+        </div>
         <div class="col-md-12">
           <label for="email">Email</label>
           <input type="text" class="form-control" placeholder="Email..." ng-model="user.email" ng-disabled="sending" ng-readonly="show">

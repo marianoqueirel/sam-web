@@ -1,0 +1,32 @@
+<div id="company-new" ng-init="init()">
+  <div class="modal-header">
+    <h3 class="modal-title">{{ title }} Empresa</h3>
+  </div>
+
+  <form role="form" name="newPatientForm" ng-submit="saveForm()">
+    <div class="modal-body clearfix">
+      <div class="form-group">
+        <div class="col-md-12">
+          <label for="number">Nombre</label>
+          <input type="text" class="form-control" placeholder="Nombre..." ng-model="company.name" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.name">* {{$root.validatorLabel(form_errors.name[0])}}</div>
+        </div>
+        <div class="col-md-12">
+          <label for="name">Direccion</label>
+          <input type="text" class="form-control" placeholder="Direccion..." ng-model="company.address" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.address">* {{$root.validatorLabel(form_errors.address[0])}}</div>
+        </div>
+        <div class="col-md-12">
+          <label for="dni">Telefono</label>
+          <input type="text" class="form-control" placeholder="Telefono..." ng-model="company.dni" ng-disabled="sending" ng-readonly="show">
+          <div class="validator-error" ng-show="form_errors.dni">* {{$root.validatorLabel(form_errors.dni[0])}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
+      <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="sending">{{ action == 'create' ? 'Crear' : 'Actualizar' }}</button>
+    </div>
+  </form>
+</div>

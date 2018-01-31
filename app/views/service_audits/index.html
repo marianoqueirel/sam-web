@@ -21,7 +21,7 @@
           </span>
         </div>
       </div>
-      <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+      <div ng-if="$root.canNotAccess(['Provider'], $root.currentUser)" class="col-md-5 col-sm-5 col-xs-12 pull-right">
         <select name="search_provider_id" ng-model="provider_id" class="form-control" ng-disabled="sending" ng-change="searchAudits()" ng-options="option.id as option.name for option in providers">
           <option value="" selected>Seleccione un proveedor</option>
         </select>

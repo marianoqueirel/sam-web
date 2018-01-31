@@ -5,7 +5,7 @@ angular.module('payeSAM.controllers')
     '$rootScope',
     '$scope',
     'Provider',
-    'User',
+    'Company',
     '$uibModalInstance',
     'notification',
     'provider_id',
@@ -13,47 +13,44 @@ angular.module('payeSAM.controllers')
       $rootScope,
       $scope,
       Provider,
-      User,
+      Company,
       $uibModalInstance,
       notification,
       provider_id
     ) {
 
     $scope.init = function () {
+      $scope.providerCompanies = {companies: []};
       Provider.get(
         {id: provider_id},
         function (response) {
           $scope.provider = response;
+          Company
+            .query({}, function (response) {
+              $scope.companies = response.rows;
+              $scope.companies.forEach(function (company) {
+                if($scope.provider.companies_ids.indexOf(company.id) >= 0){
+                  $scope.providerCompanies.companies.push(company);
+                }
+              });
+            }, function () {
+              notification.error('Error al cargar usuarios.');
+            });
+
         }, function () {
           notification.error('Error al cargar el prestador.');
         }
       );
 
-      $scope.providerUsers = {users: []};
-
-      User
-        .query({
-          limit: 10000,
-          userType: 'User'
-        }, function (response) {
-          $scope.users = response.rows;
-          $scope.users.forEach(function (user) {
-            if($scope.provider.users_ids.indexOf(user.id) >= 0){
-              $scope.providerUsers.users.push(user);
-            }
-          });
-        }, function () {
-          notification.error('Error al cargar usuarios.');
-        });
     };
 
     $scope.saveForm = function () {
-      var users_ids = $scope.providerUsers.users.map(function (user) {
+      var companies_ids = $scope.providerCompanies.companies.map(function (user) {
         return user.id;
       });
 
-      Provider.add_users(
-        { id: provider_id, users_ids: users_ids },
+      Provider.add_companies(
+        { id: provider_id, companies_ids: companies_ids },
         function (response) {
           $uibModalInstance.close($scope.provider);
         }, function () {

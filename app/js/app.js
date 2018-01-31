@@ -100,6 +100,10 @@ angular.module('payeSAM')
           roles: 'Admin'
         }
       })
+      .when('/admin/companies', {
+        templateUrl: 'views/admin/companies.html',
+        controller: 'CompanyCtrl'
+      })
       .otherwise({ redirectTo: '/404' });
 
     // Set HTML5 mode

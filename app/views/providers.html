@@ -25,10 +25,6 @@
 </div>
 <div id="providers" ng-init="init()">
   <div class="x_panel">
-    <button ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary pull-right" ng-click="providerModal({}, false)">
-      Nuevo
-      <i class="fa fa-user-md"></i>
-    </button>
     <div class="x_content">
       <div class="table-responsive">
         <table class="table table-striped jambo_table bulk_action">
@@ -57,10 +53,10 @@
               <td class=" ">{{provider.cuit}}</td>
               <td class=" ">{{provider.cbu}}</td>
               <td class="">
-                <div class="btn-group">
+                <div ng-if="$root.canAccess(['Admin'], $root.currentUser)" class="btn-group">
                   <a class="btn btn-info" ng-click="providerModal(provider, true)"> Ver</a>
                   <a class="btn btn-success" ng-click="providerModal(provider, false)"> Editar</a>
-                  <a ng-if="$root.currentUser.user_type === 'Admin'" class="btn btn-primary" ng-click="providerUserModal(provider)">Conf. Usuarios</a>
+                  <a class="btn btn-primary" ng-click="providerUserModal(provider)">Conf. Usuarios</a>
                 </div>
               </td>
             </tr>
