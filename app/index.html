@@ -92,7 +92,7 @@
                     <ul class="nav child_menu">
                       <li ng-if="$root.canNotAccess(['Provider'], $root.currentUser)"><a ng-href="/patients">Pacientes</a></li>
                       <li ng-if="$root.canNotAccess(['Provider'], $root.currentUser)"><a ng-href="/providers">Prestadores</a></li>
-                      <li ng-if="$root.canNotAccess(['Provider'], $root.currentUser)">
+                      <li ng-show="$root.canNotAccess(['Provider'], $root.currentUser)">
                         <a>
                           Auditorias
                           <span class="fa fa-chevron-down"></span>
