@@ -6,6 +6,12 @@
   <div class="title_right">
     <form ng-submit="searchAudits()">
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+        <input type="date" class="form-control" ng-model="date_to" ng-change="checkDateFilter()">
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+        <input type="date" class="form-control" ng-model="date_from" ng-change="checkDateFilter()">
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
         <div class="input-group">
           <input type="text" class="form-control" ng-model="term">
           <span class="input-group-btn">
@@ -37,8 +43,8 @@
               <th class="column-title">Inicio</th>
               <th class="column-title">Fin</th>
               <th class="column-title">Tipo</th>
+              <th class="column-title">Dias Activos</th>
               <th class="column-title no-link last">
-              <th class="column-title">Pagada</th>
               <th class="column-title no-link last">
               </th>
           </thead>
@@ -56,13 +62,14 @@
               <td class=" ">{{audit.started_on | date:'dd/MM/yyyy' }}</td>
               <td class=" ">{{audit.finished_on | date:'dd/MM/yyyy'}}</td>
               <td class=" ">{{audit.service_type_option_description}}</td>
+              <td class=" ">{{audit.active_days}}</td>
               <td class=" ">
                 <div class="btn-group">
                   <a class="btn btn-default">Ver Detalles</a>
                 </div>
               </td>
-              <td class=" ">{{audit.payed_at | date:'dd/MM/yyyy'}}{{ !audit.payed_at ? '--' : '' }}</td>
-              <td class="">
+              <td class=" " ng-if="false">{{audit.payed_at | date:'dd/MM/yyyy'}}{{ !audit.payed_at ? '--' : '' }}</td>
+              <td class="" ng-if="false">
                 <div class="btn-group">
                   <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-danger" ng-show="audit.can_pay" ng-click="markAsPayed(audit)">Pagar</a>
                 </div>

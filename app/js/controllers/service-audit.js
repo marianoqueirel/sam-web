@@ -40,6 +40,8 @@ angular.module('payeSAM.controllers')
         ServiceAudit
           .query({
             searchAudits: $scope.term,
+            date_from: $scope.date_from,
+            date_to: $scope.date_to,
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
             provider_id: $scope.provider_id
@@ -74,6 +76,15 @@ angular.module('payeSAM.controllers')
       $scope.searchAudits = function () {
         _getAudits();
       };
+
+      $scope.checkDateFilter = function () {
+        if ($scope.date_from  && $scope.date_to && ($scope.date_from > $scope.date_to))
+        {
+          notification.error('Los datos ingresados en el filtro de fecha son incorrectos. No serán tenidos en cuenta hasta que sean corregidos.');
+        }
+      };
+
+
 
       $scope.markAsPayed = function (audit) {
         var confirmation = window.confirm('Esta seguro que desea marcar como pagada?');
