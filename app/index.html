@@ -105,7 +105,7 @@
                           <li class="sub_menu"><a style="color: #bfbfbf; pointer-events: none; cursor: not-allowed;">Planes</a></li>
                         </ul>
                       </li>
-                      <li class="sub_menu"><a ng-href="/service_audits">Tablero de Control</a></li>
+                      <li class="sub_menu"><a ng-href="/service_audits">{{ $root.currentUser.user_type === 'Provider' ? 'Prestaciones' : 'Tablero de Control'}}</a></li>
                       <li ng-if="$root.canAccess(['Admin'], $root.currentUser)"><a ng-href="/admin/users">Usuarios</a></li>
                     </ul>
                   </li>
