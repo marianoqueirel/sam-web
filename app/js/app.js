@@ -32,7 +32,6 @@ angular.module('payeSAM.factories', []);
 var isProd = (window.location.host === 'auditoriavdc.com.ar');
 var originUrl = isProd ? 'http://auditoriavdc.com.ar' : 'http://localhost:9292';
 
-// Config constans
 var host = window.location.host,
     appUrl = 'http://localhost:9292',
 if (host === 'auditoriavdc.com.ar') {
