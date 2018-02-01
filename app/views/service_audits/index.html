@@ -23,7 +23,7 @@
       </div>
       <div ng-show="$root.canNotAccess(['Provider'], $root.currentUser)" class="col-md-5 col-sm-5 col-xs-12 pull-right">
         <select name="search_provider_id" ng-model="provider_id" class="form-control" ng-disabled="sending" ng-change="searchAudits()" ng-options="option.id as option.name for option in providers">
-          <option value="" selected>Seleccione un proveedor</option>
+          <option value="" selected>Seleccione un prestador</option>
         </select>
       </div>
     </form>
@@ -50,7 +50,7 @@
           </thead>
 
           <tbody>
-            <tr ng-repeat="audit in audits track by $id(audit)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'" ng-click="filesModal(audit)" ng-class="{selected: audit.id === selectedAuditId}">
+            <tr ng-repeat="audit in audits track by $id(audit)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'" ng-class="{selected: audit.id === selectedAuditId}">
               <td class=" ">{{audit.patient_name}}</td>
               <td class=" ">{{audit.patient_dni}}</td>
               <td class=" ">{{audit.provider_name}}</td>
@@ -65,7 +65,8 @@
               <td class=" ">{{audit.active_days}}</td>
               <td class=" ">
                 <div class="btn-group">
-                  <a class="btn btn-default">Ver Detalles</a>
+                  <a class="btn btn-default" ng-click="filesModal(audit)">Detalles</a>
+                  <a class="btn btn-primary" ng-click="filesModal(audit)">Visitas</a>
                 </div>
               </td>
               <td class=" " ng-if="false">{{audit.payed_at | date:'dd/MM/yyyy'}}{{ !audit.payed_at ? '--' : '' }}</td>

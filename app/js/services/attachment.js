@@ -15,7 +15,7 @@ angular.module('payeSAM.services')
       query: {
         url: urlResources,
         method: 'GET',
-        isArray: true
+        isArray: false
       },
       delete: {
         method: 'DELETE'
