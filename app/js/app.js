@@ -32,6 +32,14 @@ angular.module('payeSAM.factories', []);
 var isProd = (window.location.host === 'auditoriavdc.com.ar');
 var originUrl = isProd ? 'http://auditoriavdc.com.ar' : 'http://localhost:9292';
 
+var host = window.location.host,
+    appUrl = 'http://localhost:9292',
+if (host === 'auditoriavdc.com.ar') {
+  appUrl = 'https://auditoriavdc.com.ar';
+} else if (host === 'test.auditoriavdc.com.ar') {
+  appUrl = 'https://test.auditoriavdc.com.ar';
+}
+
 angular.module('payeSAM')
   .constant('originUrl',  originUrl)
   .constant('apiUrl', originUrl + '/api/v1')
