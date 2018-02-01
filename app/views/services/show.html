@@ -60,55 +60,62 @@
       </div>
       <div class="clearfix"></div>
 
+      <div class="title_left">
+        <h3>
+          <small>Periodos</small>
+        </h3>
+      </div>
       <!-- start audits list -->
-      <table class="table table-striped projects">
-        <thead>
-          <tr>
-            <th>Dictamen</th>
-            <th>Desde</th>
-            <th>Hasta</th>
-            <th>D&iacute;as</th>
-            <th>Prestador</th>
-            <th>Tipo de Serv.</th>
-            <th>Auditor</th>
-            <th style="width: 15%"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="audit in service.audits" ng-click="loadFiles(audit)" ng-class="{selected: audit.id === selectedAuditId}">
-            <td>
-              <button type="button" class="btn btn-{{ $root.statusColor(audit.status) }} btn-xs">
-                {{ $root.statusText(audit.status) }}
-              </button>
-            </td>
-            <td>
-              {{ audit.started_on | date:'dd/MM/yyyy' }}
-            </td>
-            <td>
-              {{ audit.finished_on | date:'dd/MM/yyyy' }}
-            </td>
-            <td>
-              {{ audit.days }}
-            </td>
-            <td>
-              {{ audit.provider_name }}
-            </td>
-            <td>
-              {{ audit.service_type_option_description }}
-            </td>
-            <td>
-              {{ audit.auditor_name }}
-            </td>
-            <td>
-              <div class="btn-group btn-group-justified">
-                <a ng-show="false" ng-click="auditModal(audit, true)" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Informe </a>
-                <a ng-show="false" ng-click="loadFiles(audit)" class="btn btn-primary btn-xs"><i class="fa fa-file"></i> Archivos </a>
-                <a ng-click="auditModal(audit, false)" class="btn btn-info btn-xs" ng-if="$root.currentUser.user_type === 'Auditor'"><i class="fa fa-pencil"></i> Editar </a>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-striped projects">
+          <thead>
+            <tr>
+              <th>Dictamen</th>
+              <th>Desde</th>
+              <th>Hasta</th>
+              <th>D&iacute;as</th>
+              <th>Prestador</th>
+              <th>Tipo de Serv.</th>
+              <th>Auditor</th>
+              <th style="width: 15%"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="audit in service.audits" ng-click="loadFiles(audit)" ng-class="{selected: audit.id === selectedAuditId}">
+              <td>
+                <button type="button" class="btn btn-{{ $root.statusColor(audit.status) }} btn-xs">
+                  {{ $root.statusText(audit.status) }}
+                </button>
+              </td>
+              <td>
+                {{ audit.started_on | date:'dd/MM/yyyy' }}
+              </td>
+              <td>
+                {{ audit.finished_on | date:'dd/MM/yyyy' }}
+              </td>
+              <td>
+                {{ audit.days }}
+              </td>
+              <td>
+                {{ audit.provider_name }}
+              </td>
+              <td>
+                {{ audit.service_type_option_description }}
+              </td>
+              <td>
+                {{ audit.auditor_name }}
+              </td>
+              <td>
+                <div class="btn-group">
+                  <a ng-show="false" ng-click="auditModal(audit, true)" class="btn btn-primary"><i class="fa fa-folder"></i> Informe </a>
+                  <a ng-show="false" ng-click="loadFiles(audit)" class="btn btn-primary"><i class="fa fa-file"></i> Archivos </a>
+                  <a ng-click="auditModal(audit, false)" class="btn btn-info" ng-if="$root.currentUser.user_type === 'Auditor'"><i class="fa fa-pencil"></i> Editar </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <!-- end audits list -->
     </div>
   </div>

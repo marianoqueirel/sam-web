@@ -16,8 +16,8 @@
         </div>
       </div>
       <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.currentUser.user_type !== 'User'">
-        <select name="search_user_id" ng-model="search_user_id" class="form-control" ng-disabled="sending" ng-change="searchService()" ng-options="option.id as option.first_name for option in users">
-          <option value="" selected>Seleccione un usuario</option>
+        <select name="search_company_id" ng-model="search_company_id" class="form-control" ng-disabled="sending" ng-change="searchService()" ng-options="option.id as option.name for option in companies">
+          <option value="" selected>Seleccione un empresa</option>
         </select>
       </div>
       <div class="col-md-5 col-sm-5 col-xs-12 pull-right">

@@ -100,6 +100,10 @@ angular.module('payeSAM')
           roles: 'Admin'
         }
       })
+      .when('/admin/companies', {
+        templateUrl: 'views/admin/companies.html',
+        controller: 'CompanyCtrl'
+      })
       .otherwise({ redirectTo: '/404' });
 
     // Set HTML5 mode
@@ -170,6 +174,14 @@ angular.module('payeSAM')
       if (status === 'approved_in_progress') { return 'success'; }
       if (status === 'approved_finished') { return 'success'; }
       if (status === 'rejected') { return 'danger'; }
+    };
+
+    $rootScope.canAccess = function (roles, user) {
+      return (user && roles.indexOf(user.user_type) >= 0);
+    };
+
+    $rootScope.canNotAccess = function (roles, user) {
+      return (user && roles.indexOf(user.user_type) < 0);
     };
 
     var _accessLevel = function (role) {

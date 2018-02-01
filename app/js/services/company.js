@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('payeSAM.services')
-  .factory('Attachment', ['$rootScope', '$resource', 'apiUrl', function ($rootScope, $resource, apiUrl) {
+  .factory('Company', ['$rootScope', '$resource', 'apiUrl', function ($rootScope, $resource, apiUrl) {
 
-    var urlResources = apiUrl + '/attachments',
+    var urlResources = apiUrl + '/companies',
         urlResource  = urlResources + '/:id';
 
     return $resource(urlResource, {
@@ -17,9 +17,16 @@ angular.module('payeSAM.services')
         method: 'GET',
         isArray: false
       },
+      new: {
+        url: urlResources,
+        method: 'POST'
+      },
+      update: {
+        method: 'PUT'
+      },
       delete: {
         method: 'DELETE'
-      },
+      }
     });
   }
 ]);

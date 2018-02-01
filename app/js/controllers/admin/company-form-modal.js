@@ -1,32 +1,25 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('UserFormModalCtrl', [
-      '$rootScope',
-      '$scope',
-      'User',
-      'Company',
-      '$uibModalInstance',
-      'notification',
-      'user_id',
-      'show',
-      function (
-        $rootScope,
-        $scope,
-        User,
-        Company,
-        $uibModalInstance,
-        notification,
-        user_id,
-        show) {
+  .controller('CompanyFormModalCtrl', [
+    '$rootScope',
+    '$scope',
+    'Company',
+    '$uibModalInstance',
+    'notification',
+    'company_id',
+    'show',
+    function ($rootScope,
+      $scope,
+      Company,
+      $uibModalInstance,
+      notification,
+      company_id,
+      show)
+    {
 
     $scope.init = function () {
-      Company.query(
-        {},
-        function (response) {
-          $scope.companies = response.rows;
-        }
-      );
+      $scope.form_errors = null;
       $scope.sending = false;
       if (show) {
         $scope.action = 'show';
@@ -34,16 +27,16 @@ angular.module('payeSAM.controllers')
       else {
         $scope.action = 'create';
       }
+      $scope.company = {};
       $scope.show = show;
-      $scope.user = {};
-      if (user_id) {
+      if (company_id) {
         if (!show) {
           $scope.action = 'edit';
         }
-        User.get(
-          { id: user_id },
+        Company.get(
+          { id: company_id },
           function (data) {
-            $scope.user = data;
+            $scope.company = data;
           }
         );
       }
@@ -60,36 +53,36 @@ angular.module('payeSAM.controllers')
         }
     };
 
-    var createUser = function () {
-      User.new($scope.user, function () {
-        notification.success('User creado con exito!');
+    var createCompany = function () {
+      Company.new($scope.company, function () {
+        notification.success('Empresa creada.');
 
         $rootScope.loading = false;
         $scope.sending = false;
 
-        $uibModalInstance.close($scope.user);
+        $uibModalInstance.close($scope.company);
       }, function (err) {
+        $scope.form_errors = err.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
-        $scope.form_errors = err.data.errors;
         notification.error('Error.');
       });
     };
 
-    var saveUser = function () {
-       User.update(
-        { id: $scope.user.id, user: $scope.user },
+    var saveCompany = function () {
+       Company.update(
+        { id: $scope.company.id, company: $scope.company },
         function () {
-        notification.success('User guardado con exito!');
+        notification.success('Proveedor Guardado.');
 
         $rootScope.loading = false;
         $scope.sending = false;
 
-        $uibModalInstance.close($scope.user);
+        $uibModalInstance.close($scope.company);
       }, function (err) {
+        $scope.form_errors = err.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
-        $scope.form_errors = err.data.errors;
         notification.error('Error.');
       });
     };
@@ -99,14 +92,23 @@ angular.module('payeSAM.controllers')
       $rootScope.loading = true;
       $scope.sending = true;
       if ($scope.action === 'create') {
-        createUser();
+        createCompany();
       } else {
-        saveUser();
+        saveCompany();
       }
     };
 
     $scope.cancel = function () {
       $uibModalInstance.close(false);
+    };
+
+    $scope.validatorLabel = function (key) {
+      var msg = {
+        'not_present': 'Es requerido',
+        'not_numeric': 'No es número',
+        'format': 'Formato Inválido'
+      };
+      return msg[key];
     };
   }
 ]);

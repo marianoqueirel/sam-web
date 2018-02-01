@@ -119,12 +119,14 @@ angular.module('payeSAM.controllers')
       $scope.userTypeText = function (userType) {
         if (userType === 'Admin') { return 'Administrador'; }
         if (userType === 'Auditor') { return 'Auditor'; }
+        if (userType === 'Provider') { return 'Prestador'; }
         if (userType === 'User') { return 'Usuario'; }
       };
 
       $scope.userTypeColor = function (userType) {
         if (userType === 'Admin') { return 'danger'; }
         if (userType === 'Auditor') { return 'warning'; }
+        if (userType === 'Provider') { return 'primary'; }
         if (userType === 'User') { return 'success'; }
       };
   }]);

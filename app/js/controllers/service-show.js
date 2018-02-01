@@ -97,6 +97,9 @@ angular.module('payeSAM.controllers')
             service_type_options: function () {
               return $scope.service.available_service_type_options;
             },
+            company_id: function () {
+              return $scope.service.company_id;
+            },
             audit: function() {
               return (audit);
             }

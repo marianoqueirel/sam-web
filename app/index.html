@@ -90,9 +90,9 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-dashboard"></i> Menu <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a ng-href="/patients">Pacientes</a></li>
-                      <li><a ng-href="/providers">Prestadores</a></li>
-                      <li>
+                      <li ng-if="$root.canNotAccess(['Provider'], $root.currentUser)"><a ng-href="/patients">Pacientes</a></li>
+                      <li ng-if="$root.canNotAccess(['Provider'], $root.currentUser)"><a ng-href="/providers">Prestadores</a></li>
+                      <li ng-show="$root.canNotAccess(['Provider'], $root.currentUser)">
                         <a>
                           Auditorias
                           <span class="fa fa-chevron-down"></span>
@@ -105,8 +105,8 @@
                           <li class="sub_menu"><a style="color: #bfbfbf; pointer-events: none; cursor: not-allowed;">Planes</a></li>
                         </ul>
                       </li>
-                      <li class="sub_menu"><a ng-href="/service_audits">Tablero de Control</a></li>
-                      <li ng-if="$root.currentUser.user_type === 'Admin'"><a ng-href="/admin/users">Usuarios</a></li>
+                      <li class="sub_menu"><a ng-href="/service_audits">{{ $root.currentUser.user_type === 'Provider' ? 'Prestaciones' : 'Tablero de Control'}}</a></li>
+                      <li ng-if="$root.canAccess(['Admin'], $root.currentUser)"><a ng-href="/admin/users">Usuarios</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -277,6 +277,8 @@
   <script src="js/config/angular-locale_es-ar.js"></script>
   <script src="js/app.js"></script>
 
+  <script src="js/controllers/admin/company.js"></script>
+  <script src="js/controllers/admin/company-form-modal.js"></script>
   <script src="js/controllers/admin/dashboard.js"></script>
   <script src="js/controllers/admin/user.js"></script>
   <script src="js/controllers/admin/user-form-modal.js"></script>
@@ -290,6 +292,7 @@
   <script src="js/controllers/profile/edit.js"></script>
   <script src="js/controllers/provider.js"></script>
   <script src="js/controllers/provider-form-modal.js"></script>
+  <script src="js/controllers/provider-companies-form-modal.js"></script>
   <script src="js/controllers/patient.js"></script>
   <script src="js/controllers/patient-form-modal.js"></script>
   <script src="js/controllers/service.js"></script>
@@ -300,19 +303,21 @@
 
 
   <script src="js/directives/alerts.js"></script>
+  <script src="js/directives/props-filter.js"></script>
 
   <script src="js/factories/notification.js"></script>
 
-  <script src="js/services/login_service.js"></script>
-  <script src="js/services/user.js"></script>
-  <script src="js/services/register_user.js"></script>
+  <script src="js/services/attachment.js"></script>
+  <script src="js/services/company.js"></script>
   <script src="js/services/edit_user.js"></script>
-  <script src="js/services/provider.js"></script>
+  <script src="js/services/login_service.js"></script>
   <script src="js/services/patient.js"></script>
+  <script src="js/services/provider.js"></script>
+  <script src="js/services/register_user.js"></script>
   <script src="js/services/service.js"></script>
   <script src="js/services/service_audit.js"></script>
   <script src="js/services/service_type.js"></script>
-  <script src="js/services/attachment.js"></script>
+  <script src="js/services/user.js"></script>
   <!-- endbuild -->
 
   <!-- build:js({.tmp,app}) js/templates.js -->

@@ -1,0 +1,60 @@
+<div class="page-title">
+  <div class="title_left">
+    <h3>Empresas</h3>
+  </div>
+
+  <div class="title_right">
+    <form ng-submit="searchCompanies()">
+      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+        <div class="input-group">
+          <input type="text" class="form-control" ng-model="term">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">
+              <i class="fa fa-search"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="companies" ng-init="init()">
+  <div class="x_panel">
+    <button class="btn btn-primary pull-right" ng-click="companyModal()">
+      Nueva
+      <i class="fa fa-user-md"></i>
+    </button>
+    <div class="x_content">
+      <div class="table-responsive">
+        <table class="table table-striped jambo_table bulk_action">
+          <thead>
+            <tr class="headings">
+              <th class="column-title">Nombre</th>
+              <th class="column-title">Direcci&oacute;n</th>
+              <th class="column-title">T&eacute;lefono</th>
+              <th class="column-title no-link last">
+              </th>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="company in companies track by $id(company)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'">
+              <td class=" ">{{company.name}}</td>
+              <td class=" ">{{company.address}}</td>
+              <td class=" ">{{company.phone}}</td>
+              <td class="">
+                <div class="btn-group">
+                  <a class="btn btn-info" ng-click="companyModal(company, true)"> Ver</a>
+                  <a ng-if="$root.canAccess('Admin', $root.currentUser)" class="btn btn-primary" ng-click="companyModal(company, false)">Editar</a>
+                  <a ng-if="$root.canAccess('Admin', $root.currentUser)" class="btn btn-danger" ng-click="deleteCompany(company)">Eliminar</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="dataTables_paginate" ng-if="totalPages > 1">
+        <ul uib-pagination total-items="pagination.totalItems" ng-model="pagination.currentPage" max-size="pagination.maxSize" class="pagination-sm" boundary-links="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+      </div>
+    </div>
+  </div>
+</div>

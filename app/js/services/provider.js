@@ -29,6 +29,10 @@ angular.module('payeSAM.services')
       update: {
         method: 'PUT'
       },
+      add_companies: {
+        url: urlResource + '/add_companies',
+        method: 'PUT'
+      },
       delete: {
         method: 'DELETE'
       },

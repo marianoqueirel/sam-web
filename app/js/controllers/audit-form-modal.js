@@ -11,6 +11,7 @@ angular.module('payeSAM.controllers')
     'audit',
     'show',
     'service_type_options',
+    'company_id',
     function (
       ServiceAudit,
       Provider,
@@ -20,7 +21,8 @@ angular.module('payeSAM.controllers')
       notification,
       audit,
       show,
-      service_type_options
+      service_type_options,
+      company_id
     )
   {
 
@@ -51,6 +53,7 @@ angular.module('payeSAM.controllers')
         .query(
           {
             searchProvider: provider,
+            company_id: company_id,
             limit: 20
           }, function (response) {
             $scope.providers = response.rows;

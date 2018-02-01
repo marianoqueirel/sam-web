@@ -16,8 +16,8 @@
         </div>
       </div>
       <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.currentUser.user_type !== 'User'">
-        <select name="search_user_id" ng-model="search_user_id" class="form-control" ng-disabled="sending" ng-change="searchProvider()" ng-options="option.id as option.first_name for option in users">
-          <option value="" selected>Seleccione un usuario</option>
+        <select name="search_company_id" ng-model="search_company_id" class="form-control" ng-disabled="sending" ng-change="searchProvider()" ng-options="option.id as option.name for option in companies">
+          <option value="" selected>Seleccione un empresa</option>
         </select>
       </div>
     </form>
@@ -25,10 +25,6 @@
 </div>
 <div id="providers" ng-init="init()">
   <div class="x_panel">
-    <button ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary pull-right" ng-click="providerModal({}, false)">
-      Nuevo
-      <i class="fa fa-user-md"></i>
-    </button>
     <div class="x_content">
       <div class="table-responsive">
         <table class="table table-striped jambo_table bulk_action">
@@ -42,7 +38,6 @@
               <th class="column-title">Mail</th>
               <th class="column-title">CUIT</th>
               <th class="column-title">CBU</th>
-              <th ng-if="$root.currentUser.user_type != 'User'" class="column-title">Usuario</th>
               <th class="column-title no-link last">
               </th>
           </thead>
@@ -57,12 +52,11 @@
               <td class=" ">{{provider.email}}</td>
               <td class=" ">{{provider.cuit}}</td>
               <td class=" ">{{provider.cbu}}</td>
-              <td ng-if="$root.currentUser.user_type != 'User'" class=" ">{{provider.user_name}}</td>
               <td class="">
-                <div class="btn-group">
+                <div ng-if="$root.canAccess(['Admin'], $root.currentUser)" class="btn-group">
                   <a class="btn btn-info" ng-click="providerModal(provider, true)"> Ver</a>
-                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="providerModal(provider, false)">Editar</a>
-                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-danger" ng-click="deleteProvider(provider)">Eliminar</a>
+                  <a class="btn btn-success" ng-click="providerModal(provider, false)"> Editar</a>
+                  <a class="btn btn-primary" ng-click="providerUserModal(provider)">Conf. Usuarios</a>
                 </div>
               </td>
             </tr>

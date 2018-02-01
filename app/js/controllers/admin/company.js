@@ -1,7 +1,25 @@
 'use strict';
 
 angular.module('payeSAM.controllers')
-  .controller('PatientCtrl', ['$rootScope', '$scope', '$http', '$location', '$uibModal', 'Patient', 'notification', 'paginationLimit', function ($rootScope, $scope, $http, $location, $uibModal, Patient, notification, paginationLimit) {
+  .controller('CompanyCtrl', [
+    '$rootScope',
+    '$scope',
+    '$http',
+    '$location',
+    '$uibModal',
+    'Company',
+    'notification',
+    'paginationLimit',
+    function (
+      $rootScope,
+      $scope,
+      $http,
+      $location,
+      $uibModal,
+      Company,
+      notification,
+      paginationLimit)
+    {
       $scope.sort = {
         column: 'created_at',
         descending: false
@@ -14,22 +32,21 @@ angular.module('payeSAM.controllers')
         itemsPerPage: 10
       };
 
-      var _getPatients = function (page) {
+      var _getCompanies = function (page) {
         $rootScope.loading = true;
-        Patient
+        Company
           .query({
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
             company_id: $scope.search_company_id,
-            searchPatient: $scope.term
+            searchCompany: $scope.term
           }, function (response) {
-            $scope.patients = response.rows;
-            $scope.companies = response.companies;
+            $scope.companies = response.rows;
             $scope.pagination.totalItems = response.total;
             $scope.totalPages = Math.ceil(response.total / paginationLimit);
             $rootScope.loading = false;
           }, function () {
-            notification.error('Error al cargar pacientes.');
+            notification.error('Error al cargar empresas.');
             $rootScope.loading = false;
           });
       };
@@ -39,50 +56,50 @@ angular.module('payeSAM.controllers')
         $scope.sortBy = $location.search().sortBy || null;
         $scope.sortDir = $location.search().sortDir || 'desc';
         $scope.show = false;
-        _getPatients($scope.currentPage);
+        _getCompanies($scope.currentPage);
       };
 
-      $scope.patientModal = function (patient, show) {
+      $scope.companyModal = function (company, show) {
         var modalInstance = $uibModal.open({
-          templateUrl: 'views/modals/patient-form.html',
-          controller: 'PatientFormModalCtrl',
+          templateUrl: 'views/modals/company-form.html',
+          controller: 'CompanyFormModalCtrl',
           size: 'lg',
           resolve: {
             show: show,
-            patient_id: function() {
-              return (patient && patient.id);
+            company_id: function() {
+              return (company && company.id);
             }
           }
         });
 
         modalInstance.result.then(function(){
-          _getPatients();
+          _getCompanies();
         });
       };
 
-      $scope.searchPatients = function () {
-        _getPatients();
+      $scope.searchCompanies = function () {
+        _getCompanies();
       };
 
-      $scope.deletePatient = function (patient) {
-        var confirmation = window.confirm('Esta seguro que desea eliminar este Paciente?');
+      $scope.deleteCompany = function (company) {
+        var confirmation = window.confirm('Esta seguro que desea eliminar esta Empresa?');
 
         if (confirmation) {
           $rootScope.loading = true;
 
-          Patient
-          .delete({ id: patient.id }, function () {
-            notification.success('Paciente eliminado con exito.');
-            _getPatients();
+          Company
+          .delete({ id: company.id }, function () {
+            notification.success('Empresa eliminada con exito.');
+            _getCompanies();
           }, function () {
             $rootScope.loading = false;
-            notification.error('Ocurrio un error al intentar eliminar el paciente.');
+            notification.error('Ocurrio un error al intentar eliminar el Empresa.');
           });
         }
       };
 
       $scope.$watch('pagination.currentPage', function() {
-        _getPatients();
+        _getCompanies();
       });
   }]);
 
