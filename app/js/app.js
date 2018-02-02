@@ -38,6 +38,7 @@ var host = window.location.host,
 if (host === 'auditoriavdc.com.ar') {
   appUrl = 'https://auditoriavdc.com.ar';
 } else if (host === 'test.auditoriavdc.com.ar') {
+  originUrl = 'http://test.auditoriavdc.com.ar';
   appUrl = 'https://test.auditoriavdc.com.ar';
 }
 
