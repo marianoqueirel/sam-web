@@ -13,7 +13,7 @@ angular.module('payeSAM', [
   'angular-growl',
   'templates',
   'NgSwitchery',
-
+  'moment-picker',
   // App
   'payeSAM.factories',
   'payeSAM.filters',

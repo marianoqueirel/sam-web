@@ -1,0 +1,60 @@
+<div id="visit-new-list" ng-init="init()">
+  <div class="modal-header">
+    <h3 class="modal-title">Visitas</h3>
+  </div>
+
+  <form role="form" ng-if="$root.canAccess(['Provider'], $root.currentUser)" name="newPatientForm" ng-submit="saveForm()">
+    <div class="modal-body clearfix">
+      <div class="form-group">
+        <div class="col-md-12">
+          <label for="number">Fecha - Hora de Visita</label>
+          <input type="text" class="form-control" ng-model="visit.visited_at" ng-model-options="{ updateOn: 'blur' }" placeholder="Fecha - Hora" moment-picker="visit.visited_at" format="DD/MM/YYYY HH:mm" locale="es">
+          <div class="validator-error" ng-show="form_errors.visited_at">* {{$root.validatorLabel(form_errors.visited_at[0])}}</div>
+        </div>
+        <div class="col-md-12">
+          <label for="name">Evolucion</label>
+          <textarea class="form-control" placeholder="Evolucion..." ng-model="visit.comment" ng-disabled="sending"></textarea>
+          <div class="validator-error" ng-show="form_errors.comment">* {{$root.validatorLabel(form_errors.comment[0])}}</div>
+        </div>
+      </div>
+      <div class="clearfix">
+        <br>
+      </div>
+      <div class="pull-right">
+        <button type="button" class="btn btn-link" ng-click="cancel()">Cancelar</button>
+        <button type="submit" class="btn btn-success" ng-hide="show" ng-disabled="sending">Guardar</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="x_panel">
+    <div class="x_content">
+      <div class="row">
+        <table class="table table-striped jambo_table bulk_action">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Evoluci&oacute;n</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-show="visits.length === 0" class="danger">
+              <td colspan="2">
+                <center>
+                  <b>
+                    No hay registros
+                  </b>
+                </center>
+              </td>
+            </tr>
+            <tr ng-repeat="visit in visits track by $id(visit)" ng-class-odd="'pointer odd'" ng-class-even="'pointer even'" >
+              <td>{{ visit.visited_at | date:'yyyy-MM-dd HH:mm' }}</td>
+              <td>{{ visit.comment }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

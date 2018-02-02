@@ -103,6 +103,28 @@ angular.module('payeSAM.controllers')
         _getAudits();
       });
 
+      $scope.visitsModal = function (serviceAudit) {
+        $scope.selectedAuditId = serviceAudit.id;
+        var modalInstance = $uibModal.open({
+          templateUrl: 'views/modals/visit-form-list.html',
+          controller: 'ServiceAuditVisitsModalCtrl',
+          size: 'lg',
+          resolve: {
+            serviceAudit: function () {
+              return serviceAudit;
+            }
+          }
+        });
+
+        modalInstance.result.then(function(){
+          _getAudits();
+        });
+
+        modalInstance.closed.then(function(){
+          $scope.selectedAuditId = null;
+        });
+      };
+
       $scope.filesModal = function (serviceAudit) {
         $scope.selectedAuditId = serviceAudit.id;
         var modalInstance = $uibModal.open({
