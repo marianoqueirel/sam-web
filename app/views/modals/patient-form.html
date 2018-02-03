@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-12">
           <label for="dni">DNI</label>
-          <input type="text" class="form-control" placeholder="DNI..." ng-model="patient.dni" ng-disabled="sending" ng-readonly="show">
+          <input type="number" class="form-control" placeholder="DNI..." ng-model="patient.dni" ng-disabled="sending" ng-readonly="show" ng-min="100000" ng-max="99999999" ng-pattern="^\d+$">
           <div class="validator-error" ng-show="form_errors.dni">* {{$root.validatorLabel(form_errors.dni[0])}}</div>
         </div>
         <div class="col-md-12">
