@@ -178,6 +178,7 @@ angular.module('payeSAM.controllers')
       if (selectedPatient) {
         $scope.service.patient_id = selectedPatient.id;
         $scope.service.diagnosis = selectedPatient.diagnosis;
+        $scope.service.phone = selectedPatient.phone;
         $scope.place = selectedPatient.address;
         setPlace();
       }
