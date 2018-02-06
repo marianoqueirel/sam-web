@@ -71,6 +71,11 @@
           <div class="validator-error" ng-show="form_errors.city_id">* {{$root.validatorLabel(form_errors.city_id[0])}}</div>
         </div>
         <div class="col-md-12">
+          <label for="diagnosis">Telefono</label>
+          <input type="text" class="form-control" ng-model="service.phone" ng-disabled="sending">
+          <div class="validator-error" ng-show="form_errors.phone">* {{$root.validatorLabel(form_errors.phone[0])}}</div>
+        </div>
+        <div class="col-md-12">
           <label for="diagnosis">Diagnostico</label>
           <input type="textarea" class="form-control" ng-model="service.diagnosis" ng-disabled="sending">
           <div class="validator-error" ng-show="form_errors.diagnosis">* {{$root.validatorLabel(form_errors.diagnosis[0])}}</div>
