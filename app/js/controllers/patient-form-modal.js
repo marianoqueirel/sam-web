@@ -62,10 +62,7 @@ angular.module('payeSAM.controllers')
           function (data) {
             $scope.patient = data;
             $scope.patient.birthday = new Date($scope.patient.birthday);
-            console.log($scope.patient.dni);
-            console.log($scope.patient);
             $scope.patient.dni = parseInt($scope.patient.dni);
-            console.log($scope.patient.dni);
             loadStateAndCity();
           }
         );
