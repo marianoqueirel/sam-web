@@ -52,35 +52,35 @@
         </div>
       </div>
       <div class="row" ng-show="files.length > 0">
-        <div class="col-md-3">
+        <div class="col-lg-3 col-xs-12">
           <h2>Autorizacion Inicial</h2>
           <div ng-repeat="f in files1" class="file-container">
-            <a ng-href="{{f.path}}" target="_blank" class="file-link">
-              <i class="fa fa-file-pdf-o">{{' '}}{{f.name}}</i>
+            <a ng-href="{{f.path}}" target="_blank" class="file-link" title="{{f.name}}">
+              <i class="fa fa-file-pdf-o">{{' '}}{{f.name.substring(0,22)}}</i>
             </a>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 col-xs-12">
           <h2>Control</h2>
           <div ng-repeat="f in files2" class="file-container">
-            <a ng-href="{{f.path}}" target="_blank" class="file-link">
-              <i class="fa fa-file-pdf-o">{{' '}}{{f.name}}</i>
+            <a ng-href="{{f.path}}" target="_blank" class="file-link" title="{{f.name}}">
+              <i class="fa fa-file-pdf-o">{{' '}}{{f.name.substring(0,22)}}</i>
             </a>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 col-xs-12">
           <h2>Encuesta satisfaccion</h2>
           <div ng-repeat="f in files3" class="file-container">
-            <a ng-href="{{f.path}}" target="_blank" class="file-link">
-              <i class="fa fa-file-pdf-o">{{' '}}{{f.name}}</i>
+            <a ng-href="{{f.path}}" target="_blank" class="file-link" title="{{f.name}}">
+              <i class="fa fa-file-pdf-o">{{' '}}{{f.name.substring(0,22)}}</i>
             </a>
           </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-3 col-xs-12">
           <h2>Imagenes</h2>
           <div ng-repeat="f in files4" class="file-container">
-            <a ng-href="{{f.path}}" target="_blank" class="file-link">
-              <i class="fa fa-file-image-o">{{' '}}{{f.name}}</i>
+            <a ng-href="{{f.path}}" target="_blank" class="file-link" title="{{f.name}}">
+              <i class="fa fa-file-image-o">{{' '}}{{f.name.substring(0,22)}}</i>
             </a>
           </div>
         </div>

@@ -52,7 +52,7 @@ angular.module('payeSAM.controllers')
           .query({
             service_audit_id: serviceAuditId
           }, function (data) {
-            $scope.files = data;
+            $scope.files = data.files;
             $scope.files1 = _.filter($scope.files, function(value) {
               return value.file_type === 1;
             });
