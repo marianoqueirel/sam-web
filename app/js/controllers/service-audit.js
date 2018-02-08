@@ -34,6 +34,14 @@ angular.module('payeSAM.controllers')
         itemsPerPage: 10
       };
 
+      $scope.statuses = [
+        { key: 'pending', label: 'Pendiente'},
+        { key: 'approved', label: 'Aprobado'},
+        { key: 'approved_in_progress', label: 'Aprobado en Curso'},
+        { key: 'approved_finished', label: 'Aprobado Finalizado'},
+        { key: 'rejected', label: 'Rechazado'}
+      ];
+
       var _getAudits = function (page) {
         $rootScope.loading = true;
         $scope.selectedAuditId = null;
@@ -44,7 +52,8 @@ angular.module('payeSAM.controllers')
             date_to: $scope.date_to,
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
-            provider_id: $scope.provider_id
+            provider_id: $scope.provider_id,
+            status: $scope.selectedStatus
           }, function (response) {
             $scope.audits = response.rows;
             $scope.pagination.totalItems = response.total;

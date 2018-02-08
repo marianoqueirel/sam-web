@@ -36,6 +36,14 @@ angular.module('payeSAM.controllers')
         itemsPerPage: 10
       };
 
+      $scope.statuses = [
+        { key: 'pending', label: 'Pendiente'},
+        { key: 'approved', label: 'Aprobado'},
+        { key: 'approved_in_progress', label: 'Aprobado en Curso'},
+        { key: 'approved_finished', label: 'Aprobado Finalizado'},
+        { key: 'rejected', label: 'Rechazado'}
+      ];
+
       var _getServices = function (page) {
         $rootScope.loading = true;
         Service
@@ -44,7 +52,8 @@ angular.module('payeSAM.controllers')
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
             company_id: $scope.search_company_id,
-            service_type_id: $scope.service_type_id
+            service_type_id: $scope.service_type_id,
+            status: $scope.selectedStatus
           }, function (response) {
             $scope.services = response.rows;
             $scope.companies = response.companies;

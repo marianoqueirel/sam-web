@@ -45,10 +45,16 @@
               <option ng-repeat="option in states" value="{{option.id}}" ng-selected="option.name === 'CORRIENTES'">{{option.name}}</option>
             </select>
           </div>
-
-          
         </div>
-      </div>
+        <div class="row">
+          <!-- Start Status filter -->
+          <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+            <select name="search_status" ng-model="selectedStatus" class="form-control" ng-disabled="sending" ng-change="searchAudits()" ng-options="option.key as option.label for option in statuses">
+              <option value="" selected>Seleccione un Estado</option>
+            </select>
+          </div>
+          <!-- End Status filter -->
+        </div>
     </form>
   </div>
 </div>
