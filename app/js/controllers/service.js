@@ -11,6 +11,7 @@ angular.module('payeSAM.controllers')
     'ServiceType',
     'notification',
     'paginationLimit',
+    'Location',
     function (
       $rootScope,
       $scope,
@@ -20,7 +21,8 @@ angular.module('payeSAM.controllers')
       Service,
       ServiceType,
       notification,
-      paginationLimit)
+      paginationLimit,
+      Location)
     {
       $scope.sort = {
         column: 'created_at',
@@ -64,6 +66,22 @@ angular.module('payeSAM.controllers')
         );
       };
 
+      var loadStates = function (query) {
+        $scope.states = [];
+        $scope.loadingStates = true;
+        Location.states(
+          {},
+          function (data) {
+            $scope.states = data;
+            // $scope.states.forEach(function(state) {
+            //   if(state.name === 'CORRIENTES'){ $scope.selected_state_id = state.id };
+            // });
+          }, function () {
+              notification.error('Error al cargar los provincias.');
+          }
+        );
+      };
+
       $scope.init = function () {
         $scope.pagination.currentPage = parseInt($location.search().page, 10) || 1;
         $scope.sortBy = $location.search().sortBy || null;
@@ -71,6 +89,7 @@ angular.module('payeSAM.controllers')
         $scope.show = false;
         _getServices($scope.currentPage);
         loadServiceTypes();
+        loadStates();
       };
 
       $scope.serviceModal = function (service, show) {
