@@ -38,7 +38,6 @@ angular.module('payeSAM.controllers')
 
       $scope.statuses = [
         { key: 'pending', label: 'Pendiente'},
-        { key: 'approved', label: 'Aprobado'},
         { key: 'approved_in_progress', label: 'Aprobado en Curso'},
         { key: 'approved_finished', label: 'Aprobado Finalizado'},
         { key: 'rejected', label: 'Rechazado'}
@@ -77,23 +76,10 @@ angular.module('payeSAM.controllers')
       };
 
       $scope.setCity = function (city) {
-        $scope.selected_city_id = city.id;
-        _getServices();
-      };
-
-      $scope.listStates = function (query) {
-        $scope.availableStates = [];
-        if (query && query.length >= 3) {
-          $scope.loadingStates = true;
-          Location.states(
-            {name: query},
-            function (data) {
-              $scope.availableStates = data;
-            }, function () {
-                notification.error('Error al cargar los provincias.');
-                $scope.loadingStates = false;
-            });
+        if (city) {
+          $scope.selected_city_id = city.id;
         }
+        _getServices();
       };
 
       $scope.listCities = function (query) {
@@ -114,11 +100,27 @@ angular.module('payeSAM.controllers')
         }
       };
 
-      $scope.setSelectedState = function (state) {
+      var setSelectedState = function (state) {
         $scope.availableCities = [];
         $scope.selectedState = state;
         $scope.city_id = null;
         $scope.availableCities = [];
+      };
+
+      var listStates = function (query) {
+        $scope.availableStates = [];
+        if (query && query.length >= 3) {
+          $scope.loadingStates = true;
+          Location.states(
+            {name: query},
+            function (data) {
+              $scope.availableStates = data;
+              setSelectedState($scope.availableStates[0]);
+            }, function () {
+                notification.error('Error al cargar los provincias.');
+                $scope.loadingStates = false;
+            });
+        }
       };
 
       $scope.init = function () {
@@ -128,7 +130,7 @@ angular.module('payeSAM.controllers')
         $scope.show = false;
         _getServices($scope.currentPage);
         loadServiceTypes();
-        // loadStates();
+        listStates('CORRIENTES');
       };
 
       $scope.serviceModal = function (service, show) {

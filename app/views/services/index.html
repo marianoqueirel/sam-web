@@ -47,6 +47,7 @@
               on-select="setCity($select.selected)"
               reset-search-input="false">
               <ui-select-match
+                allow-clear="true"
                 placeholder="Seleccionar una ciudad...">
                 {{$select.selected.name}}
               </ui-select-match>
@@ -56,7 +57,8 @@
               </ui-select-choices>
             </ui-select>
           </div>
-          <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+          <!-- This block is commented because states CORRIENTES is hardcoded -->
+          <!-- <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
             <ui-select ng-model="selectedState"
               theme="bootstrap"
               on-select="setSelectedState($select.selected)"
@@ -70,7 +72,7 @@
                 refresh-delay="300">{{ state.name }}
               </ui-select-choices>
             </ui-select>
-          </div>
+          </div> -->
         </div>
     </form>
   </div>
@@ -87,7 +89,7 @@
           <thead>
             <tr class="headings">
               <th class="column-title"></th>
-              <th class="column-title">Fecha de pedido</th>
+              <th class="column-title">Fecha de aviso</th>
               <th class="column-title">Tipo</th>
               <th class="column-title">Apellido y Nombre</th>
               <th class="column-title">DNI</th>

@@ -105,8 +105,7 @@ gulp.task('images', function() {
 });
 
 gulp.task('fonts', function() {
-  return gulp.src($.mainBowerFiles())
-    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+  return gulp.src('./bower_components/**/*.{eot,svg,ttf,woff,woff2}')
     .pipe($.flatten())
     .pipe(gulp.dest(destAssets.fonts))
     .pipe($.size());
