@@ -32,28 +32,45 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
-            <select name="selected_state_id" ng-model="selected_state_id" class="form-control" ng-disabled="sending" ng-change="searchService()">
-              <option value="" selected>Ciudad</option>
-              <option ng-repeat="option in states" value="{{option.id}}">{{option.name}}</option>
-            </select>
-          </div>
-
-          <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
-            <select name="selected_state_id" ng-model="selected_state_id" class="form-control" ng-disabled="sending" ng-change="searchService()">
-              <option value="" selected>Provincia</option>
-              <option ng-repeat="option in states" value="{{option.id}}" ng-selected="option.name === 'CORRIENTES'">{{option.name}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="row">
           <!-- Start Status filter -->
           <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
-            <select name="search_status" ng-model="selectedStatus" class="form-control" ng-disabled="sending" ng-change="searchAudits()" ng-options="option.key as option.label for option in statuses">
+            <select name="search_status" ng-model="selectedStatus" class="form-control" ng-disabled="sending" ng-change="searchService()" ng-options="option.key as option.label for option in statuses">
               <option value="" selected>Seleccione un Estado</option>
             </select>
           </div>
           <!-- End Status filter -->
+        </div>
+        <div class="row">
+          <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+            <ui-select ng-model="city_id"
+              theme="bootstrap"
+              on-select="setCity($select.selected)"
+              reset-search-input="false">
+              <ui-select-match
+                placeholder="Seleccionar una ciudad...">
+                {{$select.selected.name}}
+              </ui-select-match>
+              <ui-select-choices repeat="city in availableCities track by $index"
+                refresh="listCities($select.search)"
+                refresh-delay="300">{{ city.name }}
+              </ui-select-choices>
+            </ui-select>
+          </div>
+          <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+            <ui-select ng-model="selectedState"
+              theme="bootstrap"
+              on-select="setSelectedState($select.selected)"
+              reset-search-input="false">
+              <ui-select-match
+                placeholder="Seleccionar provincia...">
+                {{$select.selected.name}}
+              </ui-select-match>
+              <ui-select-choices repeat="state in availableStates track by $index"
+                refresh="listStates($select.search)"
+                refresh-delay="300">{{ state.name }}
+              </ui-select-choices>
+            </ui-select>
+          </div>
         </div>
     </form>
   </div>

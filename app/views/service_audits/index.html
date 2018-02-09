@@ -5,11 +5,6 @@
 
   <div class="title_right">
     <form ng-submit="searchAudits()">
-      <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
-        <select name="search_status" ng-model="selectedStatus" class="form-control" ng-disabled="sending" ng-change="searchAudits()" ng-options="option.key as option.label for option in statuses">
-          <option value="" selected>Seleccione un Estado</option>
-        </select>
-      </div>
       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
         <input type="date" class="form-control" ng-model="date_to" ng-change="checkDateFilter()">
       </div>

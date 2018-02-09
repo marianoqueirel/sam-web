@@ -53,7 +53,8 @@ angular.module('payeSAM.controllers')
             limit: $scope.pagination.itemsPerPage,
             company_id: $scope.search_company_id,
             service_type_id: $scope.service_type_id,
-            status: $scope.selectedStatus
+            status: $scope.selectedStatus,
+            city_id: $scope.selected_city_id
           }, function (response) {
             $scope.services = response.rows;
             $scope.companies = response.companies;
@@ -75,20 +76,49 @@ angular.module('payeSAM.controllers')
         );
       };
 
-      var loadStates = function (query) {
-        $scope.states = [];
-        $scope.loadingStates = true;
-        Location.states(
-          {},
-          function (data) {
-            $scope.states = data;
-            // $scope.states.forEach(function(state) {
-            //   if(state.name === 'CORRIENTES'){ $scope.selected_state_id = state.id };
-            // });
-          }, function () {
-              notification.error('Error al cargar los provincias.');
-          }
-        );
+      $scope.setCity = function (city) {
+        $scope.selected_city_id = city.id;
+        _getServices();
+      };
+
+      $scope.listStates = function (query) {
+        $scope.availableStates = [];
+        if (query && query.length >= 3) {
+          $scope.loadingStates = true;
+          Location.states(
+            {name: query},
+            function (data) {
+              $scope.availableStates = data;
+            }, function () {
+                notification.error('Error al cargar los provincias.');
+                $scope.loadingStates = false;
+            });
+        }
+      };
+
+      $scope.listCities = function (query) {
+        $scope.availableCities = [];
+        if (query && query.length >= 3) {
+          $scope.loadingCities = true;
+          Location.cities(
+            {
+              state_id: $scope.selectedState.id,
+              name: query
+            },
+            function (data) {
+              $scope.availableCities = data;
+            }, function () {
+                notification.error('Error al cargar los ciudades.');
+                $scope.loadingCities = false;
+            });
+        }
+      };
+
+      $scope.setSelectedState = function (state) {
+        $scope.availableCities = [];
+        $scope.selectedState = state;
+        $scope.city_id = null;
+        $scope.availableCities = [];
       };
 
       $scope.init = function () {
@@ -98,7 +128,7 @@ angular.module('payeSAM.controllers')
         $scope.show = false;
         _getServices($scope.currentPage);
         loadServiceTypes();
-        loadStates();
+        // loadStates();
       };
 
       $scope.serviceModal = function (service, show) {
