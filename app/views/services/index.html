@@ -69,7 +69,7 @@
               <td class="">
                 <div class="btn-group">
                   <a class="btn btn-info" ng-href="/services/{{service.id}}"> Auditorias </a>
-                  <a ng-if="$root.currentUser.user_type === 'User'" class="btn btn-primary" ng-click="serviceModal(service, false)">Editar</a>
+                  <a ng-if="$root.canAccess(['User','Auditor'], $root.currentUser)" class="btn btn-primary" ng-click="serviceModal(service, false)">Editar</a>
                   <a ng-if="$root.currentUser.user_type === 'User' && service.can_add_audits" class="btn btn-warning" ng-click="requireAudit(service.id, service.patient.name)">Renovar</a>
                 </div>
               </td>

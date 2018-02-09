@@ -159,6 +159,7 @@ angular.module('payeSAM.controllers')
         $scope.form_errors = err.data.errors;
         $rootScope.loading = false;
         $scope.sending = false;
+        loadStateAndCity();
         notification.error(err.data.errors.patient || 'Error.');
       });
     };
