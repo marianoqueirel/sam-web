@@ -39,17 +39,17 @@
             </select>
           </div>
           <!-- End Status filter -->
-        </div>
-        <div class="row">
           <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
             <ui-select ng-model="city_id"
               theme="bootstrap"
               on-select="setCity($select.selected)"
               reset-search-input="false">
               <ui-select-match
-                allow-clear="true"
                 placeholder="Seleccionar una ciudad...">
                 {{$select.selected.name}}
+                <button class="btn btn-xs btn-link" ng-click="clear($event, $select)">
+                  <i class="glyphicon glyphicon-remove"></i>
+                </button>
               </ui-select-match>
               <ui-select-choices repeat="city in availableCities track by $index"
                 refresh="listCities($select.search)"

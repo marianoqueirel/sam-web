@@ -194,6 +194,12 @@ angular.module('payeSAM.controllers')
       $scope.$watch('pagination.currentPage', function() {
         _getServices();
       });
+
+      $scope.clear = function($event, $select) {
+        $event.stopPropagation();
+        $scope.selected_city_id = undefined;
+        $select.selected = undefined;
+      };
   }]);
 
 
