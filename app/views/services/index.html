@@ -5,27 +5,75 @@
 
   <div class="title_right">
     <form ng-submit="searchService()">
-      <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
-        <div class="input-group">
-          <input type="text" class="form-control" ng-model="term">
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-default">
-              <i class="fa fa-search"></i>
-            </button>
-          </span>
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="row">
+          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right">
+            <div class="input-group">
+              <input type="text" class="form-control" ng-model="term">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.currentUser.user_type !== 'User'">
-        <select name="search_company_id" ng-model="search_company_id" class="form-control" ng-disabled="sending" ng-change="searchService()" ng-options="option.id as option.name for option in companies">
-          <option value="" selected>Seleccione un empresa</option>
-        </select>
-      </div>
-      <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
-        <select name="service_type_id" ng-model="service_type_id" class="form-control" ng-disabled="sending" ng-change="searchService()">
-          <option value="" selected>Tipo de Prestacion</option>
-          <option ng-repeat="option in service_types" value="{{option.id}}">{{option.description}}</option>
-        </select>
-      </div>
+        <div class="row">
+          <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.canNotAccess(['User'], $root.currentUser)">
+            <select name="search_company_id" ng-model="search_company_id" class="form-control" ng-disabled="sending" ng-change="searchService()" ng-options="option.id as option.name for option in companies">
+              <option value="" selected>Seleccione un empresa</option>
+            </select>
+          </div>
+          <div class="col-md-5 col-sm-5 col-xs-12  pull-right">
+            <select name="service_type_id" ng-model="service_type_id" class="form-control" ng-disabled="sending" ng-change="searchService()">
+              <option value="" selected>Tipo de Prestacion</option>
+              <option ng-repeat="option in service_types" value="{{option.id}}">{{option.description}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Start Status filter -->
+          <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+            <select name="search_status" ng-model="selectedStatus" class="form-control" ng-disabled="sending" ng-change="searchService()" ng-options="option.key as option.label for option in statuses">
+              <option value="" selected>Seleccione un Estado</option>
+            </select>
+          </div>
+          <!-- End Status filter -->
+          <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+            <ui-select ng-model="city_id"
+              theme="bootstrap"
+              on-select="setCity($select.selected)"
+              reset-search-input="false">
+              <ui-select-match
+                placeholder="Seleccionar una ciudad...">
+                {{$select.selected.name}}
+                <button class="btn btn-xs btn-link" ng-click="clear($event, $select)">
+                  <i class="glyphicon glyphicon-remove"></i>
+                </button>
+              </ui-select-match>
+              <ui-select-choices repeat="city in availableCities track by $index"
+                refresh="listCities($select.search)"
+                refresh-delay="300">{{ city.name }}
+              </ui-select-choices>
+            </ui-select>
+          </div>
+          <!-- This block is commented because states CORRIENTES is hardcoded -->
+          <!-- <div class="col-md-5 col-sm-5 col-xs-12 pull-right">
+            <ui-select ng-model="selectedState"
+              theme="bootstrap"
+              on-select="setSelectedState($select.selected)"
+              reset-search-input="false">
+              <ui-select-match
+                placeholder="Seleccionar provincia...">
+                {{$select.selected.name}}
+              </ui-select-match>
+              <ui-select-choices repeat="state in availableStates track by $index"
+                refresh="listStates($select.search)"
+                refresh-delay="300">{{ state.name }}
+              </ui-select-choices>
+            </ui-select>
+          </div> -->
+        </div>
     </form>
   </div>
 </div>
@@ -41,6 +89,7 @@
           <thead>
             <tr class="headings">
               <th class="column-title"></th>
+              <th class="column-title">Fecha de aviso</th>
               <th class="column-title">Tipo</th>
               <th class="column-title">Apellido y Nombre</th>
               <th class="column-title">DNI</th>
@@ -59,6 +108,7 @@
                 {{ $root.statusText(service.status) }}
                 </button>
               </td>
+              <td class=" ">{{service.last_audit_created_at | date:'dd/MM/yyyy HH:mm' }}</td>
               <td class=" ">{{service.service_type || 'Prestacion'}}</td>
               <td class=" ">{{service.patient.name}}</td>
               <td class=" ">{{service.patient.dni}}</td>

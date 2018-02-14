@@ -11,6 +11,7 @@ angular.module('payeSAM.controllers')
     'ServiceType',
     'notification',
     'paginationLimit',
+    'Location',
     function (
       $rootScope,
       $scope,
@@ -20,7 +21,8 @@ angular.module('payeSAM.controllers')
       Service,
       ServiceType,
       notification,
-      paginationLimit)
+      paginationLimit,
+      Location)
     {
       $scope.sort = {
         column: 'created_at',
@@ -34,6 +36,13 @@ angular.module('payeSAM.controllers')
         itemsPerPage: 10
       };
 
+      $scope.statuses = [
+        { key: 'pending', label: 'Pendiente'},
+        { key: 'approved_in_progress', label: 'Aprobado en Curso'},
+        { key: 'approved_finished', label: 'Aprobado Finalizado'},
+        { key: 'rejected', label: 'Rechazado'}
+      ];
+
       var _getServices = function (page) {
         $rootScope.loading = true;
         Service
@@ -42,7 +51,9 @@ angular.module('payeSAM.controllers')
             page: $scope.pagination.currentPage,
             limit: $scope.pagination.itemsPerPage,
             company_id: $scope.search_company_id,
-            service_type_id: $scope.service_type_id
+            service_type_id: $scope.service_type_id,
+            status: $scope.selectedStatus,
+            city_id: $scope.selected_city_id
           }, function (response) {
             $scope.services = response.rows;
             $scope.companies = response.companies;
@@ -64,6 +75,54 @@ angular.module('payeSAM.controllers')
         );
       };
 
+      $scope.setCity = function (city) {
+        if (city) {
+          $scope.selected_city_id = city.id;
+        }
+        _getServices();
+      };
+
+      $scope.listCities = function (query) {
+        $scope.availableCities = [];
+        if (query && query.length >= 3) {
+          $scope.loadingCities = true;
+          Location.cities(
+            {
+              state_id: $scope.selectedState.id,
+              name: query
+            },
+            function (data) {
+              $scope.availableCities = data;
+            }, function () {
+                notification.error('Error al cargar los ciudades.');
+                $scope.loadingCities = false;
+            });
+        }
+      };
+
+      var setSelectedState = function (state) {
+        $scope.availableCities = [];
+        $scope.selectedState = state;
+        $scope.city_id = null;
+        $scope.availableCities = [];
+      };
+
+      var listStates = function (query) {
+        $scope.availableStates = [];
+        if (query && query.length >= 3) {
+          $scope.loadingStates = true;
+          Location.states(
+            {name: query},
+            function (data) {
+              $scope.availableStates = data;
+              setSelectedState($scope.availableStates[0]);
+            }, function () {
+                notification.error('Error al cargar los provincias.');
+                $scope.loadingStates = false;
+            });
+        }
+      };
+
       $scope.init = function () {
         $scope.pagination.currentPage = parseInt($location.search().page, 10) || 1;
         $scope.sortBy = $location.search().sortBy || null;
@@ -71,6 +130,7 @@ angular.module('payeSAM.controllers')
         $scope.show = false;
         _getServices($scope.currentPage);
         loadServiceTypes();
+        listStates('CORRIENTES');
       };
 
       $scope.serviceModal = function (service, show) {
@@ -92,6 +152,7 @@ angular.module('payeSAM.controllers')
       };
 
       $scope.searchService = function () {
+        $scope.pagination.currentPage = 1;
         _getServices();
       };
 
@@ -134,6 +195,12 @@ angular.module('payeSAM.controllers')
       $scope.$watch('pagination.currentPage', function() {
         _getServices();
       });
+
+      $scope.clear = function($event, $select) {
+        $event.stopPropagation();
+        $scope.selected_city_id = undefined;
+        $select.selected = undefined;
+      };
   }]);
 
 
