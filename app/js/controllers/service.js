@@ -152,6 +152,7 @@ angular.module('payeSAM.controllers')
       };
 
       $scope.searchService = function () {
+        $scope.pagination.currentPage = 1;
         _getServices();
       };
 

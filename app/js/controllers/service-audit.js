@@ -74,6 +74,7 @@ angular.module('payeSAM.controllers')
       };
 
       $scope.searchAudits = function () {
+        $scope.pagination.currentPage = 1;
         _getAudits();
       };
 

@@ -61,6 +61,7 @@ angular.module('payeSAM.controllers')
       };
 
       $scope.searchPatients = function () {
+        $scope.pagination.currentPage = 1;
         _getPatients();
       };
 
