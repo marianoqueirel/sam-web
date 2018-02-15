@@ -16,7 +16,7 @@
         <div class="col-md-6">
           <label class="control-label col-md-6 col-sm-6 col-xs-12" for="in_charge_relationship">Fecha de Inicio</label>
           <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" class="form-control" ng-model="audit.started_on" ng-disabled="sending || !audit.approved || show" ng-readonly="show" datetime="yyyy-MM-dd" datetime-utc>
+            <input type="date" class="form-control" ng-model="audit.started_on" ng-disabled="sending || !audit.approved || show" ng-readonly="show">
             <div class="validator-error" ng-show="form_errors.started_on">* {{$root.validatorLabel(form_errors.started_on[0])}}</div>
           </div>
         </div>

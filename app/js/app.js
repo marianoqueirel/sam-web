@@ -14,7 +14,6 @@ angular.module('payeSAM', [
   'templates',
   'NgSwitchery',
   'moment-picker',
-  'datetime',
   // App
   'payeSAM.factories',
   'payeSAM.filters',
