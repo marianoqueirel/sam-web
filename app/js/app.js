@@ -29,8 +29,8 @@ angular.module('payeSAM.filters', []);
 angular.module('payeSAM.factories', []);
 
 // Config constans
-var isProd = (window.location.host === 'auditoriafh.com.com.ar');
-var originUrl = isProd ? 'http://auditoriafh.com.com.ar' : 'http://localhost:9292';
+var isProd = (window.location.host === 'auditoriafh.com');
+var originUrl = isProd ? 'http://auditoriafh.com' : 'http://localhost:9292';
 
 var host = window.location.host,
     appUrl = 'http://localhost:9292';
