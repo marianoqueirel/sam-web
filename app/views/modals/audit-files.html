@@ -74,7 +74,7 @@
             </a>
           </div>
         </div>
-        <div class="col-lg-3 col-xs-12">
+        <div ng-if="$root.canNotAccess(['Provider'], $root.currentUser)" class="col-lg-3 col-xs-12">
           <h2>Encuesta satisfaccion</h2>
           <div ng-repeat="f in files3" class="file-container">
             <a ng-href="{{f.path}}" target="_blank" class="file-link" title="{{f.name}}">
