@@ -45,6 +45,13 @@ angular.module('payeSAM.controllers')
 
       var _getServices = function (page) {
         $rootScope.loading = true;
+        $scope.pagination.currentPage = page || 1;
+        $location.search('page', $scope.pagination.currentPage);
+        $location.search('term', $scope.term);
+        $location.search('search_company_id', $scope.search_company_id);
+        $location.search('service_type_id', $scope.service_type_id);
+        $location.search('selectedStatus', $scope.selectedStatus);
+        $location.search('selected_city_id', $scope.selected_city_id);
         Service
           .query({
             searchService: $scope.term,
@@ -120,15 +127,30 @@ angular.module('payeSAM.controllers')
                 notification.error('Error al cargar los provincias.');
                 $scope.loadingStates = false;
             });
+          if ($scope.selected_city_id){
+            Location.city({ city_id: $scope.selected_city_id }, function (response) {
+              $scope.availableCities = [response];
+              $scope.city_id = response;
+              $scope.selected_city_id = $scope.city_id.id;
+              }, function () {
+                notification.error('Error al cargar ciudad');
+              }
+            );
+          }
         }
       };
 
       $scope.init = function () {
         $scope.pagination.currentPage = parseInt($location.search().page, 10) || 1;
+        $scope.term = $location.search().term || null;
+        $scope.search_company_id = $location.search().search_company_id || null;
+        $scope.service_type_id = $location.search().service_type_id || null;
+        $scope.selectedStatus = $location.search().selectedStatus || null;
+        $scope.selected_city_id = $location.search().selected_city_id || null;
         $scope.sortBy = $location.search().sortBy || null;
         $scope.sortDir = $location.search().sortDir || 'desc';
         $scope.show = false;
-        _getServices($scope.currentPage);
+        _getServices($scope.pagination.currentPage);
         loadServiceTypes();
         listStates('CORRIENTES');
       };
@@ -192,8 +214,8 @@ angular.module('payeSAM.controllers')
         }
       };
 
-      $scope.$watch('pagination.currentPage', function() {
-        _getServices();
+      $scope.$watch('pagination.currentPage', function(page) {
+        _getServices(page);
       });
 
       $scope.clear = function($event, $select) {
