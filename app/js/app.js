@@ -82,7 +82,8 @@ angular.module('payeSAM')
       })
       .when('/services', {
         templateUrl: 'views/services/index.html',
-        controller: 'ServiceCtrl'
+        controller: 'ServiceCtrl',
+        reloadOnSearch: false
       })
       .when('/services/:id', {
         templateUrl: 'views/services/show.html',
