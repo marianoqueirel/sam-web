@@ -7,8 +7,10 @@ angular.module('payeSAM.controllers')
     '$http',
     '$location',
     '$uibModal',
+    '$timeout',
     'Service',
     'ServiceType',
+    'Company',
     'notification',
     'paginationLimit',
     'Location',
@@ -18,8 +20,10 @@ angular.module('payeSAM.controllers')
       $http,
       $location,
       $uibModal,
+      $timeout,
       Service,
       ServiceType,
+      Company,
       notification,
       paginationLimit,
       Location)
@@ -63,7 +67,6 @@ angular.module('payeSAM.controllers')
             city_id: $scope.selected_city_id
           }, function (response) {
             $scope.services = response.rows;
-            $scope.companies = response.companies;
             $scope.pagination.totalItems = response.total;
             $scope.totalPages = Math.ceil(response.total / paginationLimit);
             $rootScope.loading = false;
@@ -72,6 +75,16 @@ angular.module('payeSAM.controllers')
             $rootScope.loading = false;
           });
       };
+
+      var loadCompanies = function () {
+        Company.query(
+          {},
+          function (response) {
+            $scope.companies = response.rows;
+          }
+        );
+      };
+
 
       var loadServiceTypes = function () {
         ServiceType.query(
@@ -95,7 +108,8 @@ angular.module('payeSAM.controllers')
           $scope.loadingCities = true;
           Location.cities(
             {
-              state_id: $scope.selectedState.id,
+              // state_id: $scope.selectedState.id,
+              state_name: 'CORRIENTES',
               name: query
             },
             function (data) {
@@ -107,52 +121,32 @@ angular.module('payeSAM.controllers')
         }
       };
 
-      var setSelectedState = function (state) {
-        $scope.availableCities = [];
-        $scope.selectedState = state;
-        $scope.city_id = null;
-        $scope.availableCities = [];
-      };
-
-      var listStates = function (query) {
-        $scope.availableStates = [];
-        if (query && query.length >= 3) {
-          $scope.loadingStates = true;
-          Location.states(
-            {name: query},
-            function (data) {
-              $scope.availableStates = data;
-              setSelectedState($scope.availableStates[0]);
+      var setSelectedCity = function () {
+        if ($scope.selected_city_id){
+          Location.city({ city_id: $scope.selected_city_id }, function (response) {
+            $scope.city_id = response;
+            $scope.selected_city_id = $scope.city_id.id;
             }, function () {
-                notification.error('Error al cargar los provincias.');
-                $scope.loadingStates = false;
-            });
-          if ($scope.selected_city_id){
-            Location.city({ city_id: $scope.selected_city_id }, function (response) {
-              $scope.availableCities = [response];
-              $scope.city_id = response;
-              $scope.selected_city_id = $scope.city_id.id;
-              }, function () {
-                notification.error('Error al cargar ciudad');
-              }
-            );
-          }
+              notification.error('Error al cargar ciudad');
+            }
+          );
         }
       };
 
       $scope.init = function () {
+        $timeout(loadServiceTypes(), 3000);
+        $scope.selected_city_id = $location.search().selected_city_id || null;
+        $timeout(setSelectedCity(), 3000);
+        $timeout(loadCompanies(), 3000);
         $scope.pagination.currentPage = parseInt($location.search().page, 10) || 1;
         $scope.term = $location.search().term || null;
-        $scope.search_company_id = $location.search().search_company_id || null;
         $scope.service_type_id = $location.search().service_type_id || null;
+        $scope.search_company_id = $location.search().search_company_id || null;
         $scope.selectedStatus = $location.search().selectedStatus || null;
-        $scope.selected_city_id = $location.search().selected_city_id || null;
         $scope.sortBy = $location.search().sortBy || null;
         $scope.sortDir = $location.search().sortDir || 'desc';
         $scope.show = false;
         _getServices($scope.pagination.currentPage);
-        loadServiceTypes();
-        listStates('CORRIENTES');
       };
 
       $scope.serviceModal = function (service, show) {
@@ -217,6 +211,7 @@ angular.module('payeSAM.controllers')
       $scope.$watch('pagination.currentPage', function(page) {
         _getServices(page);
       });
+
 
       $scope.clear = function($event, $select) {
         $event.stopPropagation();
