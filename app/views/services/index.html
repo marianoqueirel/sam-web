@@ -20,8 +20,9 @@
         </div>
         <div class="row">
           <div class="col-md-5 col-sm-5 col-xs-12 pull-right" ng-show="$root.canNotAccess(['User'], $root.currentUser)">
-            <select name="search_company_id" ng-model="search_company_id" class="form-control" ng-disabled="sending" ng-change="searchService()" ng-options="option.id as option.name for option in companies">
+            <select name="search_company_id" ng-model="search_company_id" class="form-control" ng-disabled="sending" ng-change="searchService()">
               <option value="" selected>Seleccione un empresa</option>
+              <option ng-repeat="option in companies" value="{{option.id}}">{{option.name}}</option>
             </select>
           </div>
           <div class="col-md-5 col-sm-5 col-xs-12  pull-right">
